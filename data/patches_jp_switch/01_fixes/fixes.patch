@@ -1,0 +1,357 @@
+# Fix BGM in the main menu
+@@ _startup.scs
++		CallRL @ref(bgm_fn), @ra(ra)
++	*@ra(ra):
+	@ref(loop):
+		Wait 1
+		FlagOnJump 1805, @ignore
+		@ignore
+		$W(2119) ++;
+		If $W(2119) < 400, @ref(loop)
+	%loop_end:
+		$W(2119) = 400;
+		$W(2115) = 1;
+		$W(2116) = 0;
+-		CallRL @ref(bgm_fn), @ignore
+
+
+# Fix background position in prologue
+@@ sch00_001.scs
+-		$W(0 * 40 + 4501) = 360 - ($W(0 * 40 + 4501) + -120);
++		$W(0 * 40 + 4501) = 1240;
+
+
+# Replace Chaos Logic with fake me in prologue
+@@ sch00_001.scs
+-		PlayMovie 32, 0
++		PlayMovie 63, 0
+
+@@ sch00_001.scs
+-		FlagOffJump 858, @ref(label)
++		FlagOffJump 860, @ref(label)
+
+@@ sch00_001.scs
+-		SetFlag 858
++		SetFlag 860
+
+
+# Fix SE leaking to next script in ch05_102
+@@ sch05_102.scs
++		SEstop
+		SEplay2 207, 0
+
+# Fix true ending choices lip syncing
+@@ schz_212.scs
+-		$W(0 * 40 + 5118) = 0;
+-		$W(0 * 40 + 5119) = 0;
+		Noah_8C
+		Noah_8D
+	%markers:
+		MesSetSavePointRL @ignore
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		Mes2VSetMesMsb @ignore, @ignore, @ignore, 5900
+
+@@ schz_212.scs
+-		$W(0 * 40 + 5118) = 0;
+-		$W(0 * 40 + 5119) = 0;
+		Noah_8C
+		Noah_8D
+	%markers:
+		MesSetSavePointRL @ignore
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		Mes2VSetMesMsb @ignore, @ignore, @ignore, 6000
+
+@@ schz_212.scs
+-		$W(0 * 40 + 5118) = 0;
+-		$W(0 * 40 + 5119) = 0;
+		Noah_8C
+		Noah_8D
+	%markers:
+		MesSetSavePointRL @ignore
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		Mes2VSetMesMsb @ignore, @ignore, @ignore, 6100
+
+@@ schz_212.scs
+-		$W(0 * 40 + 5118) = 0;
+-		$W(0 * 40 + 5119) = 0;
+		Noah_8C
+		Noah_8D
+	%markers:
+		MesSetSavePointRL @ignore
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		Mes2VSetMesMsb @ignore, @ignore, @ignore, 6200
+
+@@ schz_212.scs
+-		$W(0 * 40 + 5118) = 0;
+-		$W(0 * 40 + 5119) = 0;
+		Noah_8C
+		Noah_8D
+	%markers:
+		MesSetSavePointRL @ignore
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		Mes2VSetMesMsb @ignore, @ignore, @ignore, 6300
+
+@@ schz_212.scs
+-		$W(0 * 40 + 5118) = 0;
+-		$W(0 * 40 + 5119) = 0;
+		Noah_8C
+		Noah_8D
+	%markers:
+		MesSetSavePointRL @ignore
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		Mes2VSetMesMsb @ignore, @ignore, @ignore, 6400
+
+
+# Fix true ending flag
+@@ schz_212.scs
++		ResetFlag 4022
+		FlagOnJump 4020, 26
+
+
+# Fix true end video
+@@ schz_213.scs
+		If 100 <= 0, @ref(loop_end)
+		$T(63) = 100 * 256 / 100 - $W(4 * 40 + 4513);
+		$T(64) = 0;
+	@ref(loop):
+-		$T(64) += 1;
+-		CalcMove 4 * 10 + 2408, $T(63), $T(64), 100 * 3 / 50
+		Mwait 1, 0
+-		If $T(64) <= 100 * 3 / 50, @ref(loop)
++		KeyOnJump2 5, 1, @ref(loop_end)
++		KeyOnJump2 6, 1, @ref(loop_end)
++		FlagOnJump 1234, @ref(loop_end)
++		FlagOnJump 1851, @ref(loop)
+	@ref(loop_end):
+		$W(4 * 40 + 4513) = 100 * 256 / 100;
+		$W(4 * 10 + 2408) = 0;
+		EndMovie
+		$W(6338) = 0;
+		$W(6330) = 65535;
+		ResetFlag 2488
+		SetFlag 2488
+		$W(6338) = 0;
+		$W(6330) = 10;
+		PlayMovieLoopNoAudio 36, 0
+
+# Fix serpent video
+@@ sch10_213.scs
+-		If $T(64) <= 300 * 3 / 50, @ref(loop1)
++		If $T(64) <= 60, @ref(loop1)
+	%markers:
+		$W(4 * 40 + 4513) = 0 * 256 / 100;
+		$W(4 * 10 + 2408) = 0;
+-		FlagOffJump 1851, @ref(finish)
+	@ref(loop2):
+-		Wait 1
+-		KeyOnJump2 5, 1, @ref(finish)
+-		KeyOnJump2 6, 1, @ref(finish)
+-		FlagOnJump 1234, @ref(finish)
+-		FlagOffJump 1851, @ref(finish)
+-		Jump @ref(loop2)
+
+@@ schz_214.scs
+-		PlayMovieLoopNoAudio 89, 0
++		PlayMovie 88, 0
+
+@@ schz_214.scs
+-		If $T(64) <= 300 * 3 / 50, @ref(ra)
++		If $T(64) <= 60, @ref(ra)
+	%markers:
+		$W(4 * 40 + 4513) = 0 * 256 / 100;
+		$W(4 * 10 + 2408) = 0;
+-		Mwait 800 * 3 / 50, 0
++		PlayMovieLoopNoAudio 89, 0
++		FlagOnWait 1236
++		$W(6338) = 256;
+
+
+# Fix serpent CG
+@@ schz_214.scs
+		SetFlag 2400 + 2
+		@ignore
+		@ignore
+		@ignore
+	%markers:
+		BGload 1 << 7, @ignore
+		$W(7 * 40 + 4500) = 0 * -1;
+-		$W(7 * 40 + 4501) = 1064 * -1;
++		$W(7 * 40 + 4501) =	0;
+
+@@ schz_214.scs
+-		$T(47) = 1;
+-		$T(48) = 0 * -1;
+-       $T(49) = 1064 * -1;
++       $T(47) = 0;
++		$T(48) = $W(0 * 40 + 4500);
++		$T(49) = $W(0 * 40 + 4501) + 960;
+		$T(50) = 1000 * 3 / 50;
+		$T(51) = 0 * 40 + 4500;
+		$T(52) = 0 * 40 + 4501;
+		$T(53) = 0 * 10 + 2400;
+		$T(54) = 0 * 10 + 2401;
+-		SetFlag 10 + 1
++		SetFlag 10
+
+@@ schz_214.scs
+-		FlagOnWait 19 + 1
++		FlagOnWait 19
+	*@ref(save):
+		MesSetSavePointRL @ref(save)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb @ignore, 6000
+
+
+# Fix Norose sprite
+@@ schz_213.scs
+-		$W(0 * 40 + 5110) = 4;
++		$W(4 * 40 + 5110) = 4;
+		$T(47) = 256 << 0 + 4;
+		CallFarRL 6, 100, @ignore
+	%markers:
+		If @ignore, @ignore
+
+@@ schz_214.scs
+		CallFarRL 6, 4, @ref(ra)
+	*@ref(ra):
+-		$W(0 * 40 + 5110) = 4;
++		$W(4 * 40 + 5110) = 4;
+		$T(47) = 256 << 0 + 4;
+		CallFarRL 6, 100, @ignore
+	%markers:
+		If 206 & 65535 < 692, @ignore
+
+
+# Fix transition in true end
+@@ schz_214.scs
+-		$W(2 * 40 + 4513) = 0;
++		$W(2 * 40 + 4513) = 100 * 256 / 100;
++		$W(2 * 10 + 2408) = 0;
+		SetFlag 2400 + 2
+		$T(76) = 0 * (255 + 16) / 100;
+
+
+# Restore Silent Sky BGM placement
+@@ sch10_214.scs
+        Mes2VSetMesMsb @ignore, @ignore, @ignore, 6800
+        MesMain
+        MesCls_08 @ignore
+        ResetFlag 2505
++        BGMplay 58
+
+@@ sboot_10.scs
+        Jump @ignore
+    %markers:
+        EndMovie
++        BGMstop
+
+# Fix Kozue lipsyncing
+
+@@ sch07_145.scs
+-	Mes2VSetMesMsb @ref(voiceline), $W(1507), @ref(unk), 300
++	Mes2VSetMesMsb @ref(voiceline), 0, @ref(unk), 300
+
+@@ sch07_145.scs
+-	Mes2VSetMesMsb @ref(voiceline), $W(1507), @ref(unk), 14400
++	Mes2VSetMesMsb @ref(voiceline), 0, @ref(unk), 14400
+
+@@ sch07_145.scs
+-	Mes2VSetMesMsb @ref(voiceline), $W(1507), @ref(unk), 14500
++	Mes2VSetMesMsb @ref(voiceline), 0, @ref(unk), 14500
+
+@@ sch07_144.scs
+-	Mes2VSetMesMsb @ref(voiceline), $W(1507), @ref(unk), 23700
++	Mes2VSetMesMsb @ref(voiceline), 0, @ref(unk), 23700
+
+@@ sch07_144.scs
+-	Mes2VSetMesMsb @ref(voiceline), $W(1507), @ref(unk), 29200
++	Mes2VSetMesMsb @ref(voiceline), 0, @ref(unk), 29200
+
+@@ sch07_144.scs
+-	Mes2VSetMesMsb @ref(voiceline), $W(1507), @ref(unk), 29300
++	Mes2VSetMesMsb @ref(voiceline), 0, @ref(unk), 29300
+
+@@ schk_153.scs
+-	Mes2VSetMesMsb @ref(voiceline), $W(1507), @ref(unk), 2100
++	Mes2VSetMesMsb @ref(voiceline), 0, @ref(unk), 2100
+
+@@ schk_163.scs
+-	Mes2VSetMesMsb @ref(voiceline), $W(1507), @ref(unk), 5200
++	Mes2VSetMesMsb @ref(voiceline), 0, @ref(unk), 5200
+
+@@ schk_154.scs
+-	Mes2VSetMesMsb @ref(voiceline), $W(1507), @ref(unk), 9000
++	Mes2VSetMesMsb @ref(voiceline), 0, @ref(unk), 9000
+
+@@ schk_164.scs
+-	Mes2VSetMesMsb @ref(voiceline), $W(1507), @ref(unk), 700
++	Mes2VSetMesMsb @ref(voiceline), 0, @ref(unk), 700
+
+@@ schk_164.scs
+-	Mes2VSetMesMsb @ref(voiceline), $W(1507), @ref(unk), 1500
++	Mes2VSetMesMsb @ref(voiceline), 0, @ref(unk), 1500
+
+@@ schk_164.scs
+-	Mes2VSetMesMsb @ref(voiceline), $W(1507), @ref(unk), 1600
++	Mes2VSetMesMsb @ref(voiceline), 0, @ref(unk), 1600
+
+@@ schk_164.scs
+-	Mes2VSetMesMsb @ref(voiceline), $W(1507), @ref(unk), 7300
++	Mes2VSetMesMsb @ref(voiceline), 0, @ref(unk), 7300
+
+# SFX not stopped
+@@ sch01_006.scs
+		MesSetMesMsb @ignore, 9500
+		MesMain
+		MessWindowCloseEx @ignore
+		MessWindowClosedWait
++		$W(2191) = 200 * 3 / 50;
++		SEstop
++		FlagOnJump 2824, @label(new)
++		$W(2191) = 200 * 3 / 50;
++		SEstop2
++	@label(new):
+
+# Shortcut menu unlocking
+@@ clrflg.scs
+	SetFlag 874
++	SetFlag 893
+
+@@ clrflg.scs
+	SetFlag 855
+-	SetFlag 893
+
+@@ clrflg.scs
+-	FlagOffJump 109, 93
++	FlagOffJump 93, 93
+
+@@ _startup.scs
+	%markers:
++		$F(893) = $F(874);
+		TitleMenuInit
+
+# Looping classroom SE doesn't stop in neutral
+@@ sch05_096.scs
++	SEstop
+	SEplay2 46, 0
+
+#Fixes text progression
+@@ sch02_043.scs
++       /Msb 00:4700:な、なにを言ってるｎ
+        MesSetMesMsb 0, 4700
+        MesMain
++       /MesCls

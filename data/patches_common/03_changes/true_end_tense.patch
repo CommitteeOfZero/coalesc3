@@ -1,0 +1,425 @@
+# Switch lines in sch10_214 depending on current route
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 0
++		/Msb 00:2000000:\lf:228;いつの間に、雨が降り出したんだろう。\a:210;
++		MesSetMesMsb 0, 0 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 100
++		/Msb 00:2000100:\lf:228;激しい爆発が起きた。\w:180;その爆風で。\a:210;
++		MesSetMesMsb 0, 100 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 200
++		/Msb 00:2000200:僕の身体はボロ切れみたいに軽々と飛ばされ。\a:210;
++		MesSetMesMsb 0, 200 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 300
++		/Msb 00:2000300:\lf:228;気が付けば、ここにいた――\a:150;
++		MesSetMesMsb 0, 300 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 400
++		/Msb 00:2000400:\lf:228;その瞳は、いつも僕を見つめていて。\a:150;
++		MesSetMesMsb 0, 400 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 500
++		/Msb 00:2000500:眼差しは、厚くて真っ黒な雨雲を突き抜けて。\a:150;
++		MesSetMesMsb 0, 500 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 600
++		/Msb 00:2000600:雨のように僕へと降り注ぐ。\a:150;
++		MesSetMesMsb 0, 600 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 700
++		/Msb 00:2000700:\lf:228;――僕を、見るな。\a:150;
++		MesSetMesMsb 0, 700 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 800
++		/Msb 00:2000800:\lf:228;雨の冷たさより、背中を預けている瓦礫の冷たさのせいで、\a:150;
++		MesSetMesMsb 0, 800 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 900
++		/Msb 00:2000900:さっきから身体の震えが止まらない。\a:150;
++		MesSetMesMsb 0, 900 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 1000
++		/Msb 00:2001000:\lf:228;ひどく、寒い……。\a:150;
++		MesSetMesMsb 0, 1000 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 1100
++		/Msb 00:2001100:\lf:228;突き刺さってくる、誰のものかも分からない天からの視線。\a:150;
++		MesSetMesMsb 0, 1100 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 1200
++		/Msb 00:2001200:\lf:228;それから逃げるように、\w:60;\n;僕はわずかに首を持ち上げて周囲を見回す。\a:150;
++		MesSetMesMsb 0, 1200 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 1300
++		/Msb 00:2001300:\lf:228;そこにあるのは、崩壊した街――\a:120;
++		MesSetMesMsb 0, 1300 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 1400
++		/Msb 00:2001400:そこにあるのは、絶望――\a:150;
++		MesSetMesMsb 0, 1400 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 1500
++		/Msb 00:2001500:\lf:228;そこにあるのは、死――\a:90;
++		MesSetMesMsb 0, 1500 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 1600
++		/Msb 00:2001600:そこにあるのは、無――\a:150;
++		MesSetMesMsb 0, 1600 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 1700
++		/Msb 00:2001700:\lf:228;誰もいない。\w:120;誰も動いてない。\w:120;誰も、生きていない。\a:120;
++		MesSetMesMsb 0, 1700 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 1800
++		/Msb 00:2001800:聞こえるのはただ、降り続ける雨の音だけ。\a:150;
++		MesSetMesMsb 0, 1800 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 1900
++		/Msb 00:2001900:\lf:228;このまますべてを――\a:150;
++		MesSetMesMsb 0, 1900 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 2000
++		/Msb 00:2002000:生きているものも、死んでいるものも、\a:150;
++		MesSetMesMsb 0, 2000 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 2100
++		/Msb 00:2002100:すべてを優しく包み込んで洗い流してしまうんだろうか。\a:180;
++		MesSetMesMsb 0, 2100 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 2200
++		/Msb 00:2002200:\lf:228;全部の出来事が単なる妄想だったらよかったんだけど、\n;どうやらそうでもないらしい――\a:240;
++		MesSetMesMsb 0, 2200 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 2300
++		/Msb 00:2002300:\lf:228;身体が、動かない。\w:120;動かせるのはかろうじて、首と瞳だけ。\a:150;
++		MesSetMesMsb 0, 2300 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 2400
++		/Msb 00:2002400:もう、さっきみたいな化け物じみた力も使えない。\a:120;
++		MesSetMesMsb 0, 2400 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 2500
++		/Msb 00:2002500:身体が震えているけど、そんなのただの生理現象でしかない。\a:210;
++		MesSetMesMsb 0, 2500 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 2600
++		/Msb 00:2002600:\lf:228;僕の意志じゃない。\w:150;僕は身を震わせたいなんて思ってない。\a:150;
++		MesSetMesMsb 0, 2600 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 2700
++		/Msb 00:2002700:僕の自由にならないなら、こんなの僕の身体じゃない。\a:180;
++		MesSetMesMsb 0, 2700 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 2800
++		/Msb 00:2002800:\lf:228;あるいは生まれたときから\n;僕は自由なんかじゃなかったかもしれない。\a:150;
++		MesSetMesMsb 0, 2800 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 2900
++		/Msb 00:2002900:心の保管してある場所なんて誰にも分からないんだ。\a:180;
++		MesSetMesMsb 0, 2900 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 3000
++		/Msb 00:2003000:\lf:228;それなのにいったい誰が、\a:150;
++		MesSetMesMsb 0, 3000 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 3100
++		/Msb 00:2003100:この身体の中に僕の心があるって言い切れるんだ？\a:180;
++		MesSetMesMsb 0, 3100 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 3200
++		/Msb 00:2003200:\lf:228;でも――\a:150;
++		MesSetMesMsb 0, 3200 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 3300
++		/Msb 00:2003300:\lf:228;だったら僕はどこにいたんだろう？\a:150;
++		MesSetMesMsb 0, 3300 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 3400
++		/Msb 00:2003400:僕は、ここにいるのかな？\a:150;
++		MesSetMesMsb 0, 3400 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 3500
++		/Msb 00:2003500:僕は、どこにもいないのかな？\a:180;
++		MesSetMesMsb 0, 3500 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 3600
++		/Msb 00:2003600:\lf:228;すべてが静止している、コワレてしまった世界に、\n;ふと死の雨以外の音が響く。\a:240;
++		MesSetMesMsb 0, 3600 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 3700
++		/Msb 00:2003700:\lf:228;無の中から浮かび上がってくる、たったひとつの有。\a:150;
++		MesSetMesMsb 0, 3700 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 3800
++		/Msb 00:2003800:\lf:228;――君は、誰？\a:150;
++		MesSetMesMsb 0, 3800 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 3900
++		/Msb 00:2003900:\lf:228;その肌が青白く見えるのは、\a:150;
++		MesSetMesMsb 0, 3900 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 4000
++		/Msb 00:2004000:\lf:228;雨の冷たさに凍えているから？\a:120;
++		MesSetMesMsb 0, 4000 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 4100
++		/Msb 00:2004100:それとも、君がもう死んでいるから？\a:180;
++		MesSetMesMsb 0, 4100 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 4200
++		/Msb 00:2004200:\lf:228;でも、彼女は震えていなかった。\a:120;
++		MesSetMesMsb 0, 4200 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 4300
++		/Msb 00:2004300:そして、前髪で隠れそうになっているその瞳は――\a:210;
++		MesSetMesMsb 0, 4300 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 4400
++		/Msb 00:2004400:\lf:228;――僕を、見るな。\a:180;
++		MesSetMesMsb 0, 4400 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 4500
++		/Msb 00:2004500:\lf:228;ひどく悲しそうにも見える。\a:90;
++		MesSetMesMsb 0, 4500 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 4600
++		/Msb 00:2004600:狂気じみているようにも見える。\a:90;
++		MesSetMesMsb 0, 4600 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 4700
++		/Msb 00:2004700:なにも映していないようにも見える。\a:120;
++		MesSetMesMsb 0, 4700 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 4800
++		/Msb 00:2004800:\lf:228;もしも――\a:120;
++		MesSetMesMsb 0, 4800 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 4900
++		/Msb 00:2004900:\lf:228;世界には僕と彼女の２人だけしかいなくて。\a:120;
++		MesSetMesMsb 0, 4900 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 5000
++		/Msb 00:2005000:こうしてお互いだけを永遠に見つめ合っていたら――\a:180;
++		MesSetMesMsb 0, 5000 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 5100
++		/Msb 00:2005100:\lf:228;僕の世界は、彼女の瞳に映るものだけになるのかな？\a:150;
++		MesSetMesMsb 0, 5100 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 5200
++		/Msb 00:2005200:彼女の世界は、僕の瞳に映るものだけになるのかな？\a:180;
++		MesSetMesMsb 0, 5200 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 5300
++		/Msb 00:2005300:\lf:228;彼女の瞳に映るものは、僕。\n;僕の瞳に映るものは、彼女。\n;そう考えると、世界は途端に矮小化する。\a:300;
++		MesSetMesMsb 0, 5300 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 5310
++		/Msb 00:2005310:ねえ
++		MesSetMesMsb 0, 5310 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 5400
++		/Msb 00:2005400:\lf:228;不意に僕の耳に届く、とてもキレイなノイズ――\a:180;
++		MesSetMesMsb 0, 5400 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 5500
++		/Msb 00:2005500:\lf:228;彼女はうなだれて――\a:120;
++		MesSetMesMsb 0, 5500 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 5600
++		/Msb 00:2005600:両手を、左右に広げる――\a:150;
++		MesSetMesMsb 0, 5600 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 5700
++		/Msb 00:2005700:\lf:228;まるで、あの雨雲の上へ向けて飛び立とうとするかのように。\a:240;
++		MesSetMesMsb 0, 5700 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 5800
++		/Msb 00:2005800:\lf:228;あるいは、この雨すべてを、受け止めようとするかのように。\a:240;
++		MesSetMesMsb 0, 5800 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 5810
++		/Msb 00:2005810:あなたを見つめる――
++		MesSetMesMsb 0, 5810 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 5820
++		/Msb 00:2005820:妄想
++		MesSetMesMsb 0, 5820 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 5900
++		/Msb 00:2005900:\lf:228;うなだれた彼女の表情は、\w:120;僕の位置からもうかがい知ることが\n;できない。\a:150;
++		MesSetMesMsb 0, 5900 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 6000
++		/Msb 00:2006000:\lf:228;雨の薄膜の向こうで、君は、どんな顔をしている……？\a:150;
++		MesSetMesMsb 0, 6000 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 6100
++		/Msb 00:2006100:\lf:228;――天使？\a:120;
++		MesSetMesMsb 0, 6100 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 6200
++		/Msb 00:2006200:\lf:228;乱舞する光の羽は、\n;僕を祝福しているのか、\n;それとも……\a:240;
++		MesSetMesMsb 0, 6200 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 6300
++		/Msb 00:2006300:\lf:228;ああ……そうか。理解したよ。\a:120;
++		MesSetMesMsb 0, 6300 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 6400
++		/Msb 00:2006400:\lf:228;“それ”で、僕を殺してくれるんだね――\a:150;
++		MesSetMesMsb 0, 6400 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 6500
++		/Msb 00:2006500:\lf:228;ゆっくりと、倒れている僕の前に彼女が膝をつく。\a:180;
++		MesSetMesMsb 0, 6500 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 6600
++		/Msb 00:2006600:\lf:228;いまだに、彼女はうなだれたまま。\w:90;僕の頭をそっと抱えてくる。\a:120;
++		MesSetMesMsb 0, 6600 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 6700
++		/Msb 00:2006700:僕を見てくれないことに、僕はホッとして、ただ身を委ねた。\a:180;
++		MesSetMesMsb 0, 6700 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 6900
++		/Msb 00:2006900:\lf:228;耳元で、ささやき。キレイなノイズ。\a:180;
++		MesSetMesMsb 0, 6900 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 7100
++		/Msb 00:2007100:\lf:228;謝ること、ないよ。\a:120;
++		MesSetMesMsb 0, 7100 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 7200
++		/Msb 00:2007200:\lf:228;僕が消えなくちゃ、もうひとりの僕――本物の僕が、死んじゃ\n;うんだ。\a:210;
++		MesSetMesMsb 0, 7200 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 7300
++		/Msb 00:2007300:\lf:228;だから、これでいい。\a:120;
++		MesSetMesMsb 0, 7300 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 7400
++		/Msb 00:2007400:\lf:228;君に消されるなら、よかった。\n;化け物としては、幸せな終わり方。\n;もう、なにも悔いはない。\a:240;
++		MesSetMesMsb 0, 7400 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 7600
++		/Msb 00:2007600:\lf:228;温かくて、柔らかくて、優しくて、甘美な感触。\a:210;
++		MesSetMesMsb 0, 7600 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 7700
++		/Msb 00:2007700:\lf:228;それは麻酔のようで――\a:90;
++		MesSetMesMsb 0, 7700 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 7800
++		/Msb 00:2007800:\lf:228;不思議なことに、身体の震えが、ゆっくりと治まっていく。\n;彼女のかすかな鼻息が、僕の頬をくすぐる。とても甘い匂い。\a:240;
++		MesSetMesMsb 0, 7800 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 7900
++		/Msb 00:2007900:\lf:228;ふと、胸に圧迫感を覚えた。\a:120;
++		MesSetMesMsb 0, 7900 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 8000
++		/Msb 00:2008000:\lf:228;彼女の持っていた大きな剣が、\w:60;僕の胸の皮膚を裂き、\a:90;
++		MesSetMesMsb 0, 8000 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 8100
++		/Msb 00:2008100:肉をえぐり、骨の間を縫い、\w:60;ゆっくりと身体の中に沈み込んできている。\a:120;
++		MesSetMesMsb 0, 8100 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 8200
++		/Msb 00:2008200:\lf:228;でも、彼女のキスという麻酔にかけられて、もう痛みを感じない。\a:180;
++		MesSetMesMsb 0, 8200 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 8300
++		/Msb 00:2008300:\lf:228;こんなにも優しく殺してくれるから――\n;不意に切なくなって――\n;涙が溢れそうになって――\a:300;
++		MesSetMesMsb 0, 8300 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000
+
+@@ sch10_214.scs
+-		MesSetMesMsb 0, 8400
++		/Msb 00:2008400:\lf:228;それをごまかすために、\n;彼女の頭越しに、雨を落とし続けている鈍色の空を見上げた。\a:180;
++		MesSetMesMsb 0, 8400 + ($W($$SW_TITLE) == $$TITLE_BLUE_SKY) * 2000000

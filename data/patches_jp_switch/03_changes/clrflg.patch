@@ -1,0 +1,45 @@
+# Disabling old DI-sword TIP unlocks
+@@ clrflg.scs
+    If $W(1) != 8, @ignore
+-   SetDic_02 @ignore
+-   SetDic_02 @ignore
+-	SetDic_02 @ignore
+-	SetDic_02 @ignore
+-	SetDic_02 @ignore
+-	SetDic_02 @ignore
+-	SetDic_02 @ignore
+-	SetDic_02 @ignore
+
+
+# Reassigning DI-sword TIP unlocks to respective endings
+@@ clrflg.scs
+    SetFlag 874
++   SetDic_02 135    
+
+@@ clrflg.scs
+    SetFlag 875
++   SetDic_02 140
+
+@@ clrflg.scs
+    SetFlag 876
++   SetDic_02 133
+
+@@ clrflg.scs
+    SetFlag 877
++   SetDic_02 138
+
+@@ clrflg.scs
+    SetFlag 878
++   SetDic_02 139
+
+@@ clrflg.scs
+    SetFlag 879
++   SetDic_02 137
+
+@@ clrflg.scs
+    SetFlag 880
++   SetDic_02 134
+
+@@ clrflg.scs
+    SetFlag 881
++   SetDic_02 136    

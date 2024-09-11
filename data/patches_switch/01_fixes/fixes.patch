@@ -1,0 +1,9 @@
+# Fix find the blue reset
+@@ schz_214.scs
++		If $W(3772) == 64, @label(ftb)   
+		CallFarRL 6, 50, @ignore
+    %markers:
+		$W(4314) = 100;
+		$W(2190) = 1000;
+		BGMplay @ignore
++	@label(ftb):

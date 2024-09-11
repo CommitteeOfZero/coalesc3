@@ -1,0 +1,58 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v8.0/win-x64",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v8.0": {},
+    ".NETCoreApp,Version=v8.0/win-x64": {
+      "MagesScriptTool/1.0.0": {
+        "dependencies": {
+          "System.CommandLine": "2.0.0-beta4.22272.1",
+          "YamlDotNet": "16.0.0"
+        },
+        "runtime": {
+          "MagesScriptTool.dll": {}
+        }
+      },
+      "System.CommandLine/2.0.0-beta4.22272.1": {
+        "runtime": {
+          "lib/net6.0/System.CommandLine.dll": {
+            "assemblyVersion": "2.0.0.0",
+            "fileVersion": "2.0.22.27201"
+          }
+        }
+      },
+      "YamlDotNet/16.0.0": {
+        "runtime": {
+          "lib/net8.0/YamlDotNet.dll": {
+            "assemblyVersion": "16.0.0.0",
+            "fileVersion": "16.0.0.0"
+          }
+        }
+      }
+    }
+  },
+  "libraries": {
+    "MagesScriptTool/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "System.CommandLine/2.0.0-beta4.22272.1": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-1uqED/q2H0kKoLJ4+hI2iPSBSEdTuhfCYADeJrAqERmiGQ2NNacYKRNEQ+gFbU4glgVyK8rxI+ZOe1onEtr/Pg==",
+      "path": "system.commandline/2.0.0-beta4.22272.1",
+      "hashPath": "system.commandline.2.0.0-beta4.22272.1.nupkg.sha512"
+    },
+    "YamlDotNet/16.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-kZ4jR5ltFhnjaUqK9x81zXRIUTH4PTXTTEmJDNQdkDLQhcv+2Nl19r0dCSvPW1mstOYBfXTnjdieRbUO6gHMDw==",
+      "path": "yamldotnet/16.0.0",
+      "hashPath": "yamldotnet.16.0.0.nupkg.sha512"
+    }
+  }
+}

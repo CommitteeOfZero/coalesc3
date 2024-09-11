@@ -1,0 +1,3 @@
+[submodule "data/txt_eng"]
+	path = data/txt_eng
+	url = https://github.com/CommitteeOfZero/noah-textdumps.git

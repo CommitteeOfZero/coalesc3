@@ -1,0 +1,4 @@
+#Shortcut goes up one because of DoZ
+@@ _startup.scs
+-   ScriptLoad 2, 347
++   ScriptLoad 2, 348

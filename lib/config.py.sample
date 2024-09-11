@@ -1,0 +1,10 @@
+from pathlib import Path
+
+MGSSCRIPTTOOLS_PATH = "path/to/MagesScriptTool.exe"
+PATCHSCS_PATH = "path/to/PatchScs.exe"
+
+BANK_PATH = "path/to/mgs-spec-bank"
+
+SWITCH_JPN_RESOURCES_PATH = Path("path/to/jpn/romfs")
+SWITCH_ENG_RESOURCES_PATH = Path("path/to/eng/romfs")
+WINDOWS_RESOURCES_PATH = Path("path/to/steam/Data")

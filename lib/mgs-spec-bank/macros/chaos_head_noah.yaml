@@ -1,0 +1,117 @@
+- name: CHAload
+  operands: [expression, expression]
+  body:
+  - name: CHAloadAtlas
+    operands:
+    - kind: value
+      index: 0
+    - kind: value
+      index: 1
+  - name: CharaLayerLoad
+    operands: []
+  flags: [game_chn]
+
+- name: MesMsbRL
+  operands: [expression, expression, expression]
+  body:
+  - name: MesSetSavePointRL
+    operands:
+    - kind: value
+      index: 2
+  - name: MessWindowOpen
+    operands: []
+  - name: MessWindowOpenedWait
+    operands: []
+  - name: MesVoiceWait
+    operands: []
+  - name: MesSetMesMsb
+    operands:
+    - kind: value
+      index: 0
+    - kind: value
+      index: 1
+  - name: MesMain
+    operands: []
+  flags: [game_chn]
+
+- name: Mes2VMsbRL
+  operands: [expression, expression, expression, expression, expression]
+  body:
+  - name: MesSetRL
+    operands:
+    - kind: value
+      index: 4
+  - name: MessWindowOpen
+    operands: []
+  - name: MessWindowOpenedWait
+    operands: []
+  - name: MesVoiceWait
+    operands: []
+  - name: Mes2VSetMesMsb
+    operands:
+    - kind: value
+      index: 0
+    - kind: value
+      index: 1
+    - kind: value
+      index: 2
+    - kind: value
+      index: 3
+  - name: MesMain
+    operands: []
+  flags: [game_chn]
+
+- name: AutoSaveRL
+  operands: [expression]
+  body:
+  - name: AutoSave_FF
+    operands: []
+  - name: AutoSaveSetSavePointRL
+    operands:
+    - kind: value
+      index: 0
+  - name: AutoSaveMain
+    operands: []
+  - name: Save_2E
+    operands: []
+  - name: Save_2F
+    operands: []
+  - name: Save_28
+    operands: []
+  - name: Save_29
+    operands: []
+  flags: [game_chn]
+
+- name: SetSavePointRL
+  operands: [expression]
+  body:
+  - name: AutoSave_FF
+    operands: []
+  - name: AutoSaveSetSavePointRL
+    operands:
+    - kind: value
+      index: 0
+  - name: SetSavePointMain
+    operands: []
+  flags: [game_chn]
+
+- name: Select
+  operands: [expression]
+  body:
+  - name: Select_00
+    operands: []
+  - name: Save_2E
+    operands: []
+  - name: Save_2F
+    operands: []
+  - name: Save_28
+    operands: []
+  - name: Save_29
+    operands: []
+  - name: Select_01
+    operands: []
+  - name: Select_02
+    operands:
+    - kind: value
+      index: 0
+  flags: [game_chn]

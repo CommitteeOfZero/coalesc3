@@ -1,0 +1,175 @@
+@@ schk_157.scs
+	*@ref(ra):
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb 0, 7700
+		MesMain
+		MessWindowCloseEx 0
+		MessWindowClosedWait
+
++		/LoadCha 0, $$st梢_制服_武器構え2_血まみれ_cry, 4, 150
++		/InCha 0, 200
+
++		/Wait 200
+
++		/Msb 00:1000000:〔梢〕「ぁ――！」\p;
++		/Mes2VMsb $$chn04_01000280ko, $W($$LR_LIP_KOZ), $$VID_KOZ, 1000000
+
++		/Msb 00:1000100:涙を流しながら、梢が絶叫する。\n;その目はもはやなにも見ていない。\p;
++		/MesMsb 0, 1000100
+
++		/AsyncFadeCha 0, 0, 300, 0
++		/PlaySe $$SE_擬音_ちを蹴る, 0, 1000, 0
+
++		/Msb 00:1000200:よろけるようにして、梢は一歩前へと踏み出し。\p;
++		/MesMsb 0, 1000200
+
++		/Await 0
++		/OutCha 0, 0
+
++		/MessWindowCloseWait
+
++		/StopBgm 500
+
++		/PlayMovie $$mv軌跡01_SE_擬音_ディそーど1, 6, 1000
+
++		/Wait 500
++		/FadeMovie 500, 0
++		/EndMovie
+
++		/PlaySe $$SE_じん体_心臓_鼓動_LOOP, 0, 1000, 1
+
++		/Msb 00:1000300:軽々と、ディソードを振り上げた。\p;
++		/MesMsb 0, 1000300
+
++		/Msb 00:1000400:その間合いの内に、美菜子がいた。\p;
++		/MesMsb 0, 1000400
+
++		/Msb 00:1000500:一刀両断という表現がふさわしかった。\p;
++		/MesMsb 0, 1000500
+
++		/Msb 00:1000600:美菜子の左脇下から右肩にかけて。\p;
++		/MesMsb 0, 1000600
+
++		/Msb 00:1000700:断裂した。\p;
++		/MesMsb 0, 1000700
+
++		/Msb 00:1000800:斬る、という表現はあまりに生ぬるい。\p;
++		/MesMsb 0, 1000800
+
++		/MessWindowCloseWait
+
++		/PlayMovie $$mvやられ01_SE_じん体_血_噴きでる, 6, 1000
++		/LoadBgAlpha 7, 0xffFF0000, 7, 0, 0, 200
++		/LoadBgAlpha 6, $$bg_mvやられ01_end, 5, 0, 0, 1000
+
++		/WaitMovie
++		/AsyncFadeBg 0, 7, 500, 0
++		/FadeBg 6, 500, 0
++		/Await 0
++		/ReleaseBg 7
++		/ReleaseBg 6
+
++		/Msb 00:1000900:すさまじい量の血が飛び散った。\p;
++		/MesMsb 0, 1000900
+
++		/Msb 00:1001000:梢は振り上げたディソードに引っ張られるように、今度は後ろ側へとよろけて。\p;
++		/MesMsb 0, 1001000
+
++		/Msb 00:1001100:そのまま身を翻し、踊るように回る。\n;巨大な剣を、小柄な身体で軽々と振り回して。\p;
++		/MesMsb 0, 1001100
+
++		/MessWindowCloseWait
+
++		/LoadBgAlpha 5, $$bg050_01_1, 0, 0, -120, 1000
+
++		/PlaySe2 $$SE_擬音_びちゃ, 0, 1000, 0
++		/PlaySe3 $$SE_擬音_ディそーど_コンクリート砕く, 0, 1000, 0
+
++		/AsyncShakeBg 0, 0, 500, 0, 10, 0, 0, 500
++		/LoadBgAlpha 7, 0xffFF0000, 5, 0, 0, 800
++		/FadeBg 7, 500, 0
++		/Await 0
+
++		/Msb 00:1001200:すでに絶命している美菜子に、さらなる追い打ちを叩き込む。\p;
++		/MesMsb 0, 1001200
+
++		/MessWindowCloseWait
+
++		/FadeBg 7, 0, 800
+
++		/PlaySe2 $$SE_じん体_血_噴きでる_SE_擬音_びちゃ, 0, 1000, 0
++		/PlaySe3 $$SE_擬音_ディそーど_コンクリート砕く, 0, 1000, 0
+
++		/AsyncShakeBg 0, 0, 500, 0, 10, 0, 0, 500
+
++		/FadeBg 7, 1000, 0
++		/Await 0
++		/ReleaseBg 7
+
++		/Msb 00:1001300:鮮血が舞い、剣を、梢の身体を、コンクリートを赤く染める。\p;
++		/MesMsb 0, 1001300
+
++		/Msb 00:1001400:つい数秒前まで“美菜子だったもの”が倒れ伏すのと、梢が脱力したようにストンと膝を突いたのは、同時だった。\p;
++		/MesMsb 0, 1001400
+
++		/Msb 00:1001500:梢は泣きじゃくっていて、その涙のせいで、目は閉じていた。\p;
++		/MesMsb 0, 1001500
+
++		/Msb 00:1001600:あまりの光景に、クラスメイトたちはポカンとだらしなく口を半開きにして、声もなく立ち尽くしていた。\p;
++		/MesMsb 0, 1001600
+
++		/Msb 00:1001700:目の前で起きたことを、理解できていないようだった。\p;
++		/MesMsb 0, 1001700
+
++		/Msb 00:1001800:梢が、ゆらりと立ち上がる。\p;
++		/MesMsb 0, 1001800
+
++		/MessWindowCloseWait
+
++		/LoadChaAlpha 0, $$st梢_制服_武器構え2_血まみれ_sad, 4, 50, 0
++		/InCha 0, 0
++		/MoveCha 0, 0, 0, 50
++		/AsyncMoveCha 0, 0, 1000, 0, -50
++		/FadeCha 0, 1000, 1000
++		/Await 0
+
++		/Msb 00:1001900:〔梢〕「っ、……っ」\p;
++		/Mes2VMsb $$chn04_01000290ko, $W($$LR_LIP_KOZ), $$VID_KOZ, 1001900
+
++		/Msb 00:1002000:うなだれて、しゃくり上げながら。\p;
++		/MesMsb 0, 1002000
+
++		/Msb 00:1002100:血の滴るディソードを、凍り付いているクラスメイトたちへ向けた。\p;
++		/MesMsb 0, 1002100
+
++		/Msb 00:1002200:〔梢〕「殺してやる――」\p;
++		/Mes2VMsb $$chn04_01000300ko, 0, $$VID_KOZ, 1002200
+
++		/MessWindowCloseWait
+
++		/Wait 200
+
+-		$W(0 * 40 + 5110) = 4;
+-		$T(47) = 256 << 0 + 4;
+-		CallFarRL 6, 100, @ref(ra_172)
+	*@ref(ra_172):
+-		If 459044 & 65535 < 692, @ref(label_95)
+-		If 707 < 459044 & 65535, @ref(label_95)
+-		FlagOnJump 4008, @ref(label_95)
+-		CHAloadAtlas 1 << 0 + 4, 459046
+-		CharaLayerLoad
+-		Jump @ref(label_96)
+	@ref(label_95):
+-		CHAloadAtlas 1 << 0 + 4, 459044
+-		CharaLayerLoad
+	@ref(label_96):
+-		$W((0 + 4) * 40 + 5100) = 640 + 150;
+-		$W((0 + 4) * 40 + 5101) = 420;
+-		$W(1022) = 16;
+-		SetFlag 0
+-		$W(51) = 4096 << 0;
+-		CallFarRL 6, 343, @ref(label_173)
+	*@ref(label_173):

@@ -1,0 +1,11 @@
+@@ schk_161.scs
+	*@ref(ra):
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb 0, 10400
+		MesMain
+
++		/Msb 00:1000000:三住くんの首が、飛んでいた。\p;
++		/MesMsb 0, 1000000

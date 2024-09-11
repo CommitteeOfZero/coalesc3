@@ -1,0 +1,26 @@
+@@ sch08_174.scs
+		SetRevMesMsb 4300
+
++		/Msb 00:1000000:さっきまでうるさいくらいに泣いていたのに、\w:60;いつの間にか、その身体は腐り、\w:60;干からびて、異臭を放っていた。\p;
++		/MesMsb 0, 1000000
+
+@@ sch08_174.scs
++		SetFlag $$SF_REVADDDISABLE
+
++		/Msb 00:8700:突如ミイラと化した――\w:60;ように妻には見えただろう――\w:60;我が子の姿に、\w:60;自らの頭をかきむしり、\w:60;髪を引きちぎり、\w:60;顔面の皮膚を爪でえぐり、\w:60;そして\w:42;最後には
+	*@ref(ra):
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb 0, 8700
+		MesMain
+
++		/PlaySe3 $$SE_擬音_肉手を突っ込む, 0, 1000, 0
+
++		/Msb 00:1000100:\w:120;我が子の干からびた身体をむしゃむしゃと食べ始めた。\p;
++		/MesMsb 0, 1000100
+
++		ResetFlag $$SF_REVADDDISABLE
+
++		/SetRevMes 1000200:突如ミイラと化した――ように妻には見えただろう――我が子の姿に、自らの頭をかきむしり、髪を引きちぎり、顔面の皮膚を爪でえぐり、そして最後には我が子の干からびた身体をむしゃむしゃと食べ始めた。

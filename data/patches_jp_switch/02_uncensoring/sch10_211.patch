@@ -1,0 +1,36 @@
+@@ sch10_211.scs
++		/Mes 0, 1000000:わしづかみにする。\n;下着越しに。\n;その、豊かな胸を。\p;
+
++		/Mes2V $$ch10_21100720ri, $W($$LR_LIP_RIM), $$VID_RIM, 1000100:〔梨深〕「痛っ……」\p;
+
++		/Mes 0, 1000200:血にまみれた、右手で。\n;下着に。梨深の柔肌に。赤い血をこすりつけるようにして。\p;
+
++		/Mes 0, 1000300:弾力が、伝わってくる。\n;なんて、柔らかい……。\p;
+
+	*@ref(ra):
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		Mes2VSetMesMsb @ignore, @ignore, @ignore, 20800
+
+@@ sch10_211.scs
++		SetFlag $$SF_REVADDDISABLE
+
++		/Mes 0, 1000400:胸に、顔を埋める。\n;ぴったりと吸い付くような、すべすべした肌。\n;
+
++		/PlaySe3 $$SE_じん体_動作_すかーと裾まくり, 0, 1000, 0
+
++		/Mes 0, 1000500:さらに、自由になった右手で彼女のスカートの中をまさぐる。\p;
+
++		ResetFlag $$SF_REVADDDISABLE
+
++		/SetRevMes 1000600:胸に、顔を埋める。\n;ぴったりと吸い付くような、すべすべした肌。\n;さらに、自由になった右手で彼女のスカートの中をまさぐる。\p;
+
+	*@ref(ra):
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		Mes2VSetMesMsb @ignore, @ignore, @ignore, 21000
+		MesMain

@@ -1,0 +1,155 @@
+SE_じん体_血_噴きでる:
+  $$se025
+SE_じん体_血_噴きでる_包丁でさされ:
+  $$se026
+SE_じん体_手首_たれる血:
+  $$se027
+SE_じん体_心臓_鼓動:
+  $$se028
+SE_じん体_心臓_鼓動_LOOP:
+  $$se028l
+SE_じん体_動作_すかーと裾まくり:
+  $$se035
+SE_じん体_動作_と血:
+  $$se036
+SE_じん体_動作_のぞく:
+  $$se037
+SE_じん体_動作_尻餅:
+  $$se056
+SE_じん体_動作_足_歩く:
+  $$se071
+SE_にん間_動作_手_はたく:
+  $$se082
+SE_はいけい_びょういん_LOOP:
+  $$se108l
+SE_はいけい_玉川通ち下道_LOOP:
+  $$se122l
+SE_はいけい_白いびょう室_LOOP:
+  $$se135l
+SE_擬音_お腹裂く:
+  $$se147
+SE_擬音_きかい_ひゅんひゅん1_LOOP:
+  $$se148l
+SE_擬音_ちを蹴る:
+  $$se157
+SE_擬音_ディそーど_コンクリート砕く:
+  $$se158
+SE_擬音_ディそーど1:
+  $$se170
+SE_擬音_びちゃ:
+  $$se185
+SE_擬音_杭_突きささる:
+  $$se196
+SE_擬音_胴体引きちぎり:
+  $$se210
+SE_擬音_肉手を突っ込む:
+  $$se213
+SE_擬音_脳みそ:
+  $$se215
+SE_擬音_風圧落下_LOOP:
+  $$se216l
+SE_自然_風音_強_LOOP:
+  $$se238l
+SE_衝撃_5にん落下音:
+  $$se239
+SE_衝撃_どあに激突:
+  $$se250
+SE_衝撃_どすーん:
+  $$se252
+SE_衝撃_ふらっしゅばっく:
+  $$se258
+SE_衝撃_鞄_落ちる:
+  $$se262
+SE_衝撃_顔面蹴られる:
+  $$se264
+SE_衝撃_杭_打つ_LOOP:
+  $$se268l
+SE_衝撃_衝撃音03:
+  $$se278
+SE_衝撃_落下激突:
+  $$se284
+SE_日常_びょういんどあ_開く:
+  $$se328
+SE_日常_車椅す:
+  $$se350
+
+mvやられ01:
+  $$mvbloodspray01
+mvやられ01_SE_じん体_血_噴きでる:
+  $$mvbloodspray01_se025
+mv体験:
+  $$mvexperience
+mv軌跡01:
+  $$mvtracks01
+mv軌跡01_SE_擬音_ディそーど1:
+  $$mvtracks01_se170
+
+bg_mvやられ01_end:
+  $$bg_mvbloodspray01_end
+
+st梢_制服_武器構え2_血まみれ_sad:
+  306
+st梢_制服_武器構え2_血まみれ_cry:
+  459044
+
+st志乃_白衣_通常_worry:
+  1835708
+
+bu護_スーツ_通常_normal:
+  332
+bu護_スーツ_通常_hard:
+  459084
+bu護_スーツ_通常_cool:
+  917836
+
+cl1: 259
+cl2: 232
+cl3: 205
+cl4: 178
+
+SW_LANGUAGE: 3374
+SW_TITLE:    4300
+
+SF_REVADDDISABLE: 2483
+SF_NOAH_A2_ROUTE: 4022
+
+COZ_SAVEPOINT: 7499
+
+TITLE_BLUE_SKY: 17
+
+LR_LIP_TAK: 1500
+LR_LIP_RIM: 1501
+LR_LIP_NAN: 1502
+LR_LIP_YUA: 1503
+LR_LIP_MIA: 1504
+LR_LIP_AYA: 1505
+LR_LIP_SEN: 1506
+LR_LIP_KOZ: 1507
+LR_LIP_SEI: 1508
+LR_LIP_MIS: 1509
+LR_LIP_BAN: 1510
+LR_LIP_SUW: 1511
+LR_LIP_MOM: 1512
+LR_LIP_FUM: 1513
+LR_LIP_HAZ: 1514
+LR_LIP_NOR: 1515
+LR_LIP_SHO: 1516
+LR_LIP_HAT: 1517
+
+VID_TAK:  0
+VID_RIM:  1
+VID_NAN:  2
+VID_YUA:  3
+VID_AYA:  4
+VID_SEN:  5
+VID_KOZ:  6
+VID_SEI:  7
+VID_MIS:  8
+VID_BAN:  9
+VID_SUW: 10
+VID_MOM: 11
+VID_FUM: 12
+VID_HAZ: 13
+VID_NOR: 14
+VID_SHO: 15
+VID_HAT: 16

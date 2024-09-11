@@ -1,0 +1,9 @@
+@@ schk_159.scs
++		/Msb 00:100:訳が分からなかった。\n;人が、人の形でなくなっていて。\n;バラバラになっていて。\p;
+	*@ref(ra):
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb 0, 100
+		MesMain

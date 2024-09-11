@@ -1,0 +1,77 @@
+@@ schz_214.scs
++		/Msb 00:700:野呂瀬の素早い一撃で。\n;拓巳の身体は分断され。\p;
+	*@ref(ra):
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb 0, 700
+		MesMain
+
++		/Msb 00:1000000:首と右手、右肩が、スライドする。\n;ズルリと。\p;
++		/MesMsb 0, 1000000
+
+@@ schz_214.scs
++		/Msb 00:800:内臓ごと、床に落ち。\n;だが血は出ない。\p;
+	*@ref(ra):
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb 0, 800
+		MesMain
+
+@@ schz_214.scs
+	*@ref(ra):
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb 0, 1100
+		MesMain
+
++		/Msb 00:1000100:次の瞬間には、切断面が波打ち。\n;うごめき。\p;
++		/MesMsb 0, 1000100
+
+@@ schz_214.scs
++		/Msb 00:1000200:泡立つ音。\p;
++		/MesMsb 0, 1000200
+
++		/Msb 00:1200:そして、再生した。\p;
+	*@ref(ra):
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb 0, 1200
+		MesMain
+
+@@ schz_214.scs
++		/Msb 00:1400:たった１秒前に斬られた身体。\n;すでに、新たな首と右手、右肩が生まれていた。\n;ずり落ちた古い方の首や内臓はそのままに。\p;
+	*@ref(ra):
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb 0, 1400
+		MesMain
+
+@@ schz_214.scs
++		/Msb 00:3000:拓巳の頭が潰される。\n;割れたスイカ。\n;血と脳漿が炸裂する。\p;
+	*@ref(ra):
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb 0, 3000
+		MesMain
+
+@@ schz_214.scs
++		/Msb 00:3100:首から上を失って。\n;拓巳の身体はそれでも前へ。\p;
+	*@ref(ra):
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb 0, 3100
+		MesMain

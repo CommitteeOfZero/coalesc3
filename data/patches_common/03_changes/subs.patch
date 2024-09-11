@@ -1,0 +1,234 @@
+@@ sch00_001.scs
++	*@ra(ra):
++		If $W($$SW_LANGUAGE) == 1, @label(english)
+		$W(4324) = 100;
+		SetFlag 2580
+		$W(4327) = 1;
+		VoicePlay 1, 0
+	@ref(loop):
+		FlagOnJump 1234, @ref(end)
+		GetSystemStatus 1
+		If $T(7), @ref(end)
+		Wait 1
+		Jump @ref(loop)
++	@label(english):
++		/Mes2VMsbRA @ra(ra), 1, $W($$LR_LIP_RIM), $$VID_RIM, 2004810
++		MesCls_08 0
+	@ref(end):
+
+@@ sch01_010.scs
++		If $W($$SW_LANGUAGE) == 1, @label(skip_voiceplay)
+		$W(4325) = 30;
+		SetFlag 2581
+		$W(4328) = 2;
+		VoicePlay2 251, 0
++	@label(skip_voiceplay):
+	*@ref(ra):
++		If $W($$SW_LANGUAGE) == 1, @label(english)
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb 0, 1300
+		MesMain
++		Jump @label(end)
++	@label(english):
++		/InitMesSync1
++		/MesSMsbRA @ref(ra), 0, 0, 1300
++		/MesS2VMsbRA @ref(ra), 1, 251, $W($$LR_LIP_NAN), $$VID_NAN, 2001350
++		/MesSync
++		/ResetMesSync1
++	@label(end):
+
+@@ sch01_010.scs
++		If $W($$SW_LANGUAGE) == 1, @label(skip_voiceplay)
+		$W(4325) = 40;
+		SetFlag 2581
+		$W(4328) = 2;
+		VoicePlay2 252, 0
++	@label(skip_voiceplay):
+	*@ref(ra):
++		If $W($$SW_LANGUAGE) == 1, @label(english)
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb 0, 1400
+		MesMain
++		Jump @label(end)
++	@label(english):
++		/InitMesSync1
++		/MesSMsbRA @ref(ra), 0, 0, 1400
++		/MesS2VMsbRA @ref(ra), 1, 252, $W($$LR_LIP_NAN), $$VID_NAN, 2001450
++		/MesSync
++		/ResetMesSync1
++	@label(end):
+
+@@ sch01_010.scs
++		If $W($$SW_LANGUAGE) == 1, @label(skip_voiceplay)
+		$W(4325) = 60;
+		SetFlag 2581
+		$W(4328) = 2;
+		VoicePlay2 253, 0
++	@label(skip_voiceplay):
+	*@ref(ra):
++		If $W($$SW_LANGUAGE) == 1, @label(english)
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb 0, 1500
+		MesMain
++		Jump @label(end)
++	@label(english):
++		/InitMesSync1
++		/MesSMsbRA @ref(ra), 0, 0, 1500
++		/MesS2VMsbRA @ref(ra), 1, 253, $W($$LR_LIP_NAN), $$VID_NAN, 2001550
++		/MesSync
++		/ResetMesSync1
++	@label(end):
+
+@@ sch01_010.scs
++		If $W($$SW_LANGUAGE) == 1, @label(skip_voiceplay)
+		$W(4325) = 80;
+		SetFlag 2581
+		$W(4328) = 2;
+		VoicePlay2 254, 0
++	@label(skip_voiceplay):
+	*@ref(ra):
++		If $W($$SW_LANGUAGE) == 1, @label(english)
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		Mes2VSetMesMsb 255, $W(1500), 0, 1700
+		MesMain
++		Jump @label(end)
++	@label(english):
++		/InitMesSync1
++		/MesS2VMsbRA @ref(ra), 0, 255, $W(1500), 0, 1700
++		/MesS2VMsbRA @ref(ra), 1, 254, $W($$LR_LIP_NAN), $$VID_NAN, 2001750
++		/MesSync
++		/ResetMesSync1
++	@label(end):
+
+@@ sch08_161.scs
++		If $W($$SW_LANGUAGE) == 1, @label(skip_voiceplay)
+		$W(4324) = 30;
+		SetFlag 2580
+		$W(4327) = 13;
+		VoicePlay 6196, 0
++	@label(skip_voiceplay):
+	*@ref(ra):
++		If $W($$SW_LANGUAGE) == 1, @label(english)
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb 0, 21900
+		MesMain
++		Jump @label(end)
++	@label(english):
++		/InitMesSync1
++		/MesSMsbRA @ref(ra), 0, 0, 21900
++		/MesS2VMsbRA @ref(ra), 1, 6196, $W($$LR_LIP_HAZ), $$VID_HAZ, 2021950
++		/MesSync
++		If $W(3754) == 6196, @label(end)
++		MesCls_08 1
++		/ResetMesSync1
++	@label(end):
+
+@@ sch08_161.scs
+		MesSetMesMsb 0, 22000
+		MesMain
++		If $W(3754) == 6196, @label(end)
++		MesCls_08 1
++		/ResetMesSync1
++	@label(end):
+
+@@ sch08_161.scs
+		MesSetMesMsb 0, 22100
+		MesMain
++		If $W(3754) == 6196, @label(end)
++		MesCls_08 1
++		/ResetMesSync1
++	@label(end):
+
+@@ sch08_161.scs
+		MesSetMesMsb 0, 22200
+		MesMain
++		VoiceStop2 0
++		MesCls_08 1
++		/ResetMesSync1
+
+@@ sch09_187.scs
++		If $W($$SW_LANGUAGE) == 1, @label(skip_voiceplay)
+		$W(4325) = 30;
+		SetFlag 2581
+		$W(4328) = 2;
+		VoicePlay2 251, 0
++	@label(skip_voiceplay):
+	*@ref(ra):
++		If $W($$SW_LANGUAGE) == 1, @label(english)
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		Mes2VSetMesMsb 7275, $W(1500), 0, 6400
+		MesMain
++		Jump @label(end)
++	@label(english):
++		/InitMesSync1
++		/MesS2VMsbRA @ref(ra), 0, 7275, $W(1500), 0, 6400
++		/MesS2VMsbRA @ref(ra), 1, 251, $W($$LR_LIP_NAN), $$VID_NAN, 2006450
++		/MesSync
++		/ResetMesSync1
++	@label(end):
+
+@@ sch09_187.scs
++		If $W($$SW_LANGUAGE) == 1, @label(skip_voiceplay)
+		$W(4324) = 40;
+		SetFlag 2580
+		$W(4327) = 2;
+		VoicePlay 252, 0
++	@label(skip_voiceplay):
+	*@ref(ra):
++		If $W($$SW_LANGUAGE) == 1, @label(english)
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb 0, 6500
+		MesMain
++		Jump @label(end)
++	@label(english):
++		/InitMesSync1
++		/MesSMsbRA @ref(ra), 0, 0, 6500
++		/MesS2VMsbRA @ref(ra), 1, 252, $W($$LR_LIP_NAN), $$VID_NAN, 2006550
++		/MesSync
++		/ResetMesSync1
++	@label(end):
+
+@@ sch09_187.scs
++		If $W($$SW_LANGUAGE) == 1, @label(skip_voiceplay)
+		$W(4324) = 60;
+		SetFlag 2580
+		$W(4327) = 2;
+		VoicePlay 253, 0
++	@label(skip_voiceplay):
+	*@ref(ra):
++		If $W($$SW_LANGUAGE) == 1, @label(english)
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb 0, 6600
+		MesMain
++		Jump @label(end)
++	@label(english):
++		/InitMesSync1
++		/MesSMsbRA @ref(ra), 0, 0, 6600
++		/MesS2VMsbRA @ref(ra), 1, 253, $W($$LR_LIP_NAN), $$VID_NAN, 2006650
++		/MesSync
++		/ResetMesSync1
++	@label(end):

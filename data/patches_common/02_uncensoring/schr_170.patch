@@ -1,0 +1,17 @@
+@@ schr_170.scs
++		/Msb 00:1000000:翼を広げるように。\p;
++		/MesMsb 0, 1000000
+
++		/Msb 00:1000100:折原さんの身体を、\n;ねじ切り――\n;引き裂いた――\p;
++		/MesMsb 0, 1000100
+
+	*@ref(ra):
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb 0, 17500
+		MesMain
+
++		/Msb 00:1000200:一瞬前まで生きていた小柄な女の子は、肉塊へと変わり。\p;
++		/MesMsb 0, 1000200

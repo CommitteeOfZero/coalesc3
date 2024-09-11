@@ -1,0 +1,564 @@
+#Adds a system message in English to tell players DoZ has been unlocked
+@@ clrflg.scs
+        SystemMesSetMesMsb 2000
+        @ignore
+        @ignore
+        @ignore
+        @ignore
+        @ignore
++       If $W($$SW_LANGUAGE) != 1, @ref(label)
++       SystemMesInitTitle
++       SystemMesSetMesMsb 0
++       SystemMesSetMesMsb 2100
++       SystemMesSetMesMsb 100
++       SystemMesInit2 255
++       SystemMesFadeIn
++       SystemMesMain
++       SystemMesFadeOut
+        Jump @ref(label)
+
+#Changes the script call by the DoZ button that is a Blue Sky reflair in English to call DoZ
+@@ sboot_10.scs
++       FlagOffJump 4189, @label(no_doz)
++       ResetFlag 4189
++       If ($F(882) == 0) | ($W($$SW_LANGUAGE) != 1), @label(no_doz)
++       ScriptLoad 3, $$schzdoz_223
++       /CallFar 3, 1
++       SetFlag 1803
++       Halt
++   @label(no_doz):
+        ScriptLoad 3, 341
+        CallFarRL 3, 1, @ref(ra)
+    *@ref(ra):
+
+#Fix the shorcut to Blue Sky to NOT call DoZ
+@@ _startup.scs
+        $W(3507) = 17;
++       SetFlag 4189
+
+# DoZ scripting
+@@ schzdoz_223.scs
+    0:
++   @label(start):
++       $W(4300) = 0;
++	/CallFar 7, 7
++       SetFlag 1282
+
++       /SemitransparentNvlMode
++       /MesMsb 0, 1004100
++       /LoadBg 0, $$bg001_02_5, 1, 0, 0
++       /FadeBg 0, 500, 1000
++       BGMplayFL $$bgmex, 1
++       /MesMsb 0, 0
++       /MesMsb 0, 100
++       /MesMsb 0, 200
++       SetFlag 2483
++       /MesMsb 0, 300
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 400
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 500
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 600
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 700
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1000000
++       /LoadBgOnTop 0, 1, $$ev151_01, 1, 0, 0
++       /CrossfadeBg 0, 1, 1000
++       /MesMsb 0, 800
++       SetFlag 2483
++       /MesMsb 0, 900
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 1000
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 1100
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1000100
++       SetFlag 2483
++       /MesMsb 0, 1200
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 1300
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 1400
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1000200
++       SetFlag 2483
++       /MesMsb 0, 1500
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 1600
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 1700
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1000300
++       /LoadBgOnTop 0, 1, $$ev050_01, 1, 0, 0
++       /CrossfadeBg 0, 1, 1000
++       SetFlag 2483
++       /MesMsb 0, 1800
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 1900
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 2000
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1000400
++       /LoadBgOnTop 0, 1, -16777216, 1, 0, 0
++       /CrossfadeBg 0, 1, 1000
++       /LoadCha 0, 204 | (0 << 16), 2, 0
++       /InCha 0, 1000
++       /MesMsb 0, 2100
++       SetFlag 2483
++       /MesMsb 0, 2200
++       /CallFar 7, 153
++       SetFlag 1520
++       /LoadCha 0, 204 | (14 << 16), 2, 0
++       /InCha 0, 500
++       /MesMsb 0, 2300
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 2400
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 2500
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1000500
++       SetFlag 2483
++       /MesMsb 0, 2600
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 2700
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 2800
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 2900
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 3000
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1000600
++       SetFlag 2483
++       /MesMsb 0, 3100
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 3200
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 3300
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1000700
++       /OutCha 0, 500
++       /LoadBgOnTop 0, 1, $$ev050_01, 1, 0, 0
++       /CrossfadeBg 0, 1, 1000
++       SetFlag 2483
++       /MesMsb 0, 3400
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 3500
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1000800
++       /LoadBgOnTop 0, 1, $$bg108_01_3, 1, 0, 0
++       /CrossfadeBg 0, 1, 1000
++       /MesMsb 0, 3600
++       SetFlag 2483
++       /MesMsb 0, 3700
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 3800
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1000900
++       SetFlag 2483
++       /MesMsb 0, 3900
++       /CallFar 7, 153
++       SetFlag 1520
++       /LoadBgOnTop 0, 1, $$ev150_01, 1, 0, 0
++       /CrossfadeBg 0, 1, 1000
++       /MesMsb 0, 4000
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 4100
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 4200
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1001000
++       SetFlag 2483
++       /MesMsb 0, 4300
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 4400
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 4500
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1001100
++       SetFlag 2483
++       /MesMsb 0, 4600
++       /CallFar 7, 153
++       SetFlag 1520
++       /LoadBgOnTop 0, 1, $$ev086_01, 1, 0, 0
++       /CrossfadeBg 0, 1, 1000
++       /MesMsb 0, 4700
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1001200
++       SetFlag 2483
++       /MesMsb 0, 4800
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 4900
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1001300
++       SetFlag 2483
++       /MesMsb 0, 5000
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 5100
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 5200
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1001400
++       SetFlag 2483
++       /MesMsb 0, 5300
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 5400
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1001500
++       SetFlag 2483
++       /MesMsb 0, 5500
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 5600
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1001600
++       /LoadBgOnTop 0, 1, $$bg189_01_1, 1, 0, 0
++       /CrossfadeBg 0, 1, 1000
++       SetFlag 2483
++       /MesMsb 0, 5700
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 5800
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 5900
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 6000
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1001700
++       SetFlag 2483
++       /MesMsb 0, 6100
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 6200
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 6300
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 6400
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1001800
++       SetFlag 2483
++       /MesMsb 0, 6500
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 6600
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 6700
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1001900
++       SetFlag 2483
++       /MesMsb 0, 6800
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 6900
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 7000
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1002000
++       SetFlag 2483
++       /MesMsb 0, 7100
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 7200
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1002100
++       SetFlag 2483
++       /MesMsb 0, 7300
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 7400
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 7500
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1002200
++       /MesMsb 0, 7600
++       /MesMsb 0, 7700
++       SetFlag 2483
++       /MesMsb 0, 7800
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 7900
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1002300
++       /MesMsb 0, 8000
++       SetFlag 2483
++       /MesMsb 0, 8100
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 8200
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 8300
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1002400
++       /MesMsb 0, 8400
++       SetFlag 2483
++       /MesMsb 0, 8500
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 8600
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 8700
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 8800
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 8900
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1002500
++       /LoadBgOnTop 0, 1, $$ev052_02, 1, 0, 0
++       /CrossfadeBg 0, 1, 1000
++       SetFlag 2483
++       /MesMsb 0, 9000
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 9100
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 9200
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 9300
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1002600
++       SetFlag 2483
++       /MesMsb 0, 9400
++       /CallFar 7, 153
++       /MesMsb 0, 9500
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 9600
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1002700
++       SetFlag 2483
++       /MesMsb 0, 9700
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 9800
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 9900
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 10000
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 10100
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1002800
++       SetFlag 2483
++       /MesMsb 0, 10200
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 10300
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 10400
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1002900
++       /LoadBgOnTop 0, 1, $$bg002_01_1, 1, 0, 0
++       /CrossfadeBg 0, 1, 1000
++       SetFlag 2483
++       /MesMsb 0, 10500
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 10600
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 10700
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 10800
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1003000
++       SetFlag 2483
++       /MesMsb 0, 10900
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 11000
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1003100
++       SetFlag 2483
++       /MesMsb 0, 11100
++       /CallFar 7, 153
++       /MesMsb 0, 11200
++       /CallFar 7, 153
++       /MesMsb 0, 11300
++       /CallFar 7, 153
++       /MesMsb 0, 11400
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1003200
++       SetFlag 2483
++       /MesMsb 0, 11500
++       /CallFar 7, 153
++       /MesMsb 0, 11600
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1003300
++       BGMstop
++       /FadeBg 0, 500, 0
++       /ReleaseBg 0
++       /Wait 500
++       /LoadBg 0, $$bg108_01_2, 1, 0, 0
++       /FadeBg 0, 500, 1000
++       BGMplayFL 0, 1
++       SetFlag 2483
++       /MesMsb 0, 11700
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 11800
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1003400
++       SetFlag 2483
++       /MesMsb 0, 11900
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 12000
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1003500
++       SetFlag 2483
++       /MesMsb 0, 12100
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 12200
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 12300
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 12400
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1003600
++       /MesMsb 0, 12500
++       /MesMsb 0, 12600
++       SetFlag 2483
++       /MesMsb 0, 12700
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 12800
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 12900
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1003700
++       SetFlag 2483
++       /MesMsb 0, 13000
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 13100
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 13200
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1003800
++       SetFlag 2483
++       /MesMsb 0, 13300
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 13400
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1003900
++       /MesMsb 0, 13500
++       /MesMsb 0, 13600
++       /MesMsb 0, 13700
++       SetFlag 2483
++       /MesMsb 0, 13800
++       /CallFar 7, 153
++       /MesMsb 0, 13900
++       /CallFar 7, 153
++       /MesMsb 0, 14000
++       /CallFar 7, 153
++       /MesMsb 0, 14100
++       /CallFar 7, 153
++       SetFlag 1520
++       /MesMsb 0, 14200
++       MesMain
++       ResetFlag 2483
++       SetRevMesMsb 1004000
++       /MesMsb 0, 14300
++       /FadeBg 0, 500, 0
++       /ReleaseBg 0
++       /MesMsb 0, 14400
++       /AdvMode
++       BGMstop
++       /Wait 500
++       Return

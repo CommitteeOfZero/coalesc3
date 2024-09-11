@@ -1,0 +1,534 @@
+- pattern: 01 00
+  name: CreateSurface
+  operands: [expr, expr]
+  flags: [~new_createsurface]
+
+- pattern: 01 00 00
+  name: CreateAlphaSurface
+  operands: [expr, expr, expr]
+  flags: [new_createsurface]
+
+- pattern: 01 00 01
+  name: CreateSurface
+  operands: [expr, expr, expr]
+  flags: [new_createsurface]
+
+- pattern: 01 01
+  name: ReleaseSurface
+  operands: [expr]
+  flags: []
+
+- pattern: 01 02
+  name: LoadPic
+  operands: [expr, expr, expr]
+  flags: []
+
+- pattern: 01 05 03
+  name: CalcSinL
+  operands: [expr, expr, expr, expr]
+  flags: [mescls]
+
+- pattern: 01 05 04
+  name: CalcCosL
+  operands: [expr, expr, expr, expr]
+  flags: [mescls]
+
+- pattern: 01 05 05
+  name: CalcMove
+  operands: [expr, expr, expr, expr]
+  flags: [mescls]
+
+- pattern: 01 05 06
+  name: CalcAccel
+  operands: [expr, expr, expr, expr]
+  flags: [mescls]
+
+- pattern: 01 08 00
+  name: MesSync_00
+  operands: []
+  flags: []
+
+- pattern: 01 08 01
+  name: MesSync_01
+  operands: []
+  flags: []
+
+- pattern: 01 08 02
+  name: MesSync_02
+  operands: []
+  flags: []
+
+- pattern: 01 08 03
+  name: MesSync_03
+  operands: []
+  flags: []
+
+- pattern: 01 08 04
+  name: MesSync_04
+  operands: []
+  flags: []
+
+- pattern: 01 08 0A
+  name: MesSync_0A
+  operands: [expr]
+  flags: []
+
+- pattern: 01 08 0B
+  name: MesSync_0B
+  operands: []
+  flags: []
+
+- pattern: 01 08 0C
+  name: MesSync_0C
+  operands: []
+  flags: []
+
+- pattern: 01 08 0D
+  name: MesSync_0D
+  operands: []
+  flags: []
+
+- pattern: 01 08 0E
+  name: MesSync_0E
+  operands: []
+  flags: []
+
+- pattern: 01 08 14
+  name: MesSync_14
+  operands: []
+  flags: []
+
+- pattern: 01 09 00
+  name: MesSetSavePoint
+  operands: []
+  flags: [~return_labels]
+
+- pattern: 01 09 01
+  name: MesSSetSavePoint
+  operands: [expr]
+  flags: [~return_labels]
+
+- pattern: 01 09 00
+  name: MesSetSavePointRL
+  operands: [int16]
+  flags: [return_labels]
+
+- pattern: 01 09 01
+  name: MesSSetSavePointRL
+  operands: [int16, expr]
+  flags: [return_labels]
+
+- pattern: 01 09 02
+  name: MesSSetSavePoint
+  operands: [expr]
+  flags: [return_labels]
+
+- pattern: 01 0A 03
+  name: CalcSinL
+  operands: [expr, expr, expr, expr]
+  flags: [~mescls]
+
+- pattern: 01 0A 04
+  name: CalcCosL
+  operands: [expr, expr, expr, expr]
+  flags: [~mescls]
+
+- pattern: 01 0A 05
+  name: CalcMove
+  operands: [expr, expr, expr, expr]
+  flags: [~mescls]
+
+- pattern: 01 0A 06
+  name: CalcAccel
+  operands: [expr, expr, expr, expr]
+  flags: [~mescls]
+
+- pattern: 01 0A 00
+  name: MesCls
+  operands: [expr]
+  flags: [mescls]
+
+- pattern: 01 0A 01
+  name: MesClsAll
+  operands: []
+  flags: [mescls]
+
+- pattern: 01 0A 03
+  name: MesCls_03
+  operands: []
+  flags: [mescls]
+
+- pattern: 01 0A 05
+  name: MesCls_05
+  operands: []
+  flags: [mescls]
+
+- pattern: 01 0A 07
+  name: MesResetAll
+  operands: []
+  flags: [mescls]
+
+- pattern: 01 0A 08
+  name: MesCls_08
+  operands: [expr]
+  flags: [mescls]
+
+- pattern: 01 0B
+  name: MesVoiceWait
+  operands: []
+  flags: []
+
+- pattern: 01 0C 00
+  name: MesSetMesScx
+  operands: [expr, int16]
+  flags: []
+
+- pattern: 01 0C 03
+  name: Mes2VSetMesScx
+  operands: [expr, expr, expr, int16]
+  flags: []
+
+- pattern: 01 0C 08
+  name: MesSSetMesScx
+  operands: [expr, int16]
+  flags: []
+
+- pattern: 01 0C 0B
+  name: MesS2VSetMesScx
+  operands: [expr, expr, expr, int16]
+  flags: []
+
+- pattern: 01 0C 80
+  name: MesSetMesMsb
+  operands: [expr, expr]
+  flags: []
+
+- pattern: 01 0C 83
+  name: Mes2VSetMesMsb
+  operands: [expr, expr, expr, expr]
+  flags: []
+
+- pattern: 01 0C 88
+  name: MesSSetMesMsb
+  operands: [expr, expr]
+  flags: []
+
+- pattern: 01 0C 8B
+  name: MesS2VSetMesMsb
+  operands: [expr, expr, expr, expr]
+  flags: []
+
+- pattern: 01 0D 00
+  name: MesMain
+  operands: []
+  flags: []
+
+- pattern: 01 0E
+  name: SetMesModeFormat
+  operands: [expr, int16]
+  flags: []
+
+- pattern: 01 0F
+  name: SetNGmojiScx
+  operands: [int16, int16]
+  flags: []
+
+- pattern: 01 10 00
+  name: MesRevInit
+  operands: []
+  flags: []
+
+- pattern: 01 10 01
+  name: MesRevMain
+  operands: []
+  flags: []
+
+- pattern: 01 10 02
+  name: MesRevEnd
+  operands: []
+  flags: []
+
+- pattern: 01 10 03
+  name: MesRevChkLoad
+  operands: []
+  flags: []
+
+- pattern: 01 10 04
+  name: MesRevLoad
+  operands: []
+  flags: []
+
+- pattern: 01 10 05
+  name: MesRevVoiceStop
+  operands: []
+  flags: []
+
+- pattern: 01 11 00
+  name: MessWindowClose
+  operands: []
+  flags: []
+
+- pattern: 01 11 01
+  name: MessWindowOpen
+  operands: []
+  flags: []
+
+- pattern: 01 11 02
+  name: MessWindowOpenedWait
+  operands: []
+  flags: []
+
+- pattern: 01 11 03
+  name: MessWindowClosedWait
+  operands: []
+  flags: []
+
+#- pattern: 01 11 04
+#  name: MessWindow_04
+#  operands: [expr]
+#  flags: []
+
+- pattern: 01 11 05
+  name: MessWindowCloseEx
+  operands: [expr]
+  flags: []
+
+- pattern: 01 11 06
+  name: MessWindowOpenEx
+  operands: [expr]
+  flags: []
+
+- pattern: 01 11 07
+  name: MessWindowFastClose
+  operands: [expr]
+  flags: []
+
+- pattern: 01 12 00
+  name: SelInit
+  operands: [expr]
+  flags: [~return_labels]
+
+- pattern: 01 12 00
+  name: SelInitRL
+  operands: [int16, expr]
+  flags: [return_labels]
+
+- pattern: 01 12 01
+  name: SelScx
+  operands: [int16]
+  flags: []
+
+- pattern: 01 12 02
+  name: SelFlScx
+  operands: [int16, expr]
+  flags: []
+
+- pattern: 01 12 81
+  name: SelMsb
+  operands: [expr]
+  flags: []
+
+- pattern: 01 12 82
+  name: SelFlMsb
+  operands: [expr, expr]
+  flags: []
+
+- pattern: 01 13 00
+  name: Select_00
+  operands: []
+  flags: []
+
+- pattern: 01 13 01
+  name: Select_01
+  operands: []
+  flags: []
+
+- pattern: 01 13 02
+  name: Select_02
+  operands: [expr]
+  flags: []
+
+- pattern: 01 14 00
+  name: SysSelInit
+  operands: []
+  flags: []
+
+- pattern: 01 14 01
+  name: SysSelInit2
+  operands: []
+  flags: []
+
+- pattern: 01 15 04
+  name: SysSelectEnd
+  operands: []
+  flags: []
+
+- pattern: 01 20
+  name: SCcapture
+  operands: [expr]
+  flags: []
+
+- pattern: 01 21
+  name: SetTextTable
+  operands: [expr, int16]
+  flags: []
+
+#- pattern: 01 22 00
+#  name: PlayMovieNoBGM
+#  operands: [expr, expr]
+#  flags: [~new_playmovie]
+
+- pattern: 01 22 01
+  name: PlayMovie
+  operands: [expr, expr]
+  flags: [~new_playmovie]
+
+- pattern: 01 22 03
+  name: PlayMovieLoop
+  operands: [expr, expr]
+  flags: [~new_playmovie]
+
+- pattern: 01 22 05
+  name: PlayMovieLoopNoAudio
+  operands: [expr, expr]
+  flags: [~new_playmovie]
+
+- pattern: 01 22 09
+  name: PlayMovieMask
+  operands: [expr, expr]
+  flags: [~new_playmovie]
+
+- pattern: 01 22 0B
+  name: PlayMovieMaskLoop
+  operands: [expr, expr]
+  flags: [~new_playmovie]
+
+- pattern: 01 22 0D
+  name: PlayAlphaMovieLoopNoAudio
+  operands: [expr, expr]
+  flags: [~new_playmovie]
+
+#- pattern: 01 22 00 00
+#  name: PlayMovieNoBGM
+#  operands: [expr, expr]
+#  flags: [new_playmovie]
+
+- pattern: 01 22 01 00
+  name: PlayMovie
+  operands: [expr, expr]
+  flags: [new_playmovie]
+
+- pattern: 01 22 03 00
+  name: PlayMovieLoop
+  operands: [expr, expr]
+  flags: [new_playmovie]
+
+- pattern: 01 22 05 00
+  name: PlayMovieLoopNoAudio
+  operands: [expr, expr]
+  flags: [new_playmovie]
+
+- pattern: 01 22 09 00
+  name: PlayMovieMask
+  operands: [expr, expr]
+  flags: [new_playmovie]
+
+- pattern: 01 22 0B 00
+  name: PlayMovieMaskLoop
+  operands: [expr, expr]
+  flags: [new_playmovie]
+
+- pattern: 01 22 0D 00
+  name: PlayAlphaMovieLoopNoAudio
+  operands: [expr, expr]
+  flags: [new_playmovie]
+
+- pattern: 01 22 63
+  name: PlayMovieRecover
+  operands: [expr, expr, expr, expr]
+  flags: []
+
+- pattern: 01 23 00
+  name: PlayMovieWait
+  operands: []
+  flags: []
+
+- pattern: 01 23 02
+  name: EndMovie
+  operands: []
+  flags: []
+
+- pattern: 01 23 03
+  name: MovieMain
+  operands: []
+  flags: []
+
+- pattern: 01 24
+  name: LoadMovie
+  operands: [expr]
+  flags: []
+
+- pattern: 01 25 00
+  name: SetRevMesScx
+  operands: [int16]
+  flags: []
+
+- pattern: 01 25 03
+  name: SetRevSysMesScx
+  operands: [int16, expr, expr, expr]
+  flags: []
+
+- pattern: 01 25 80
+  name: SetRevMesMsb
+  operands: [expr]
+  flags: []
+
+- pattern: 01 25 81
+  name: SetRevMesVMsb
+  operands: [expr, expr, expr]
+  flags: []
+
+- pattern: 01 26 05 00
+  name: PlayMovieMemoryLoopNoAudio
+  operands: [expr]
+  flags: []
+
+- pattern: 01 26 63
+  name: PlayMovieMemoryRecover
+  operands: [expr, expr, expr]
+  flags: []
+
+- pattern: 01 27
+  name: Unk_01_27
+  operands: []
+  flags: [~movie_01_27]
+
+- pattern: 01 27 00
+  name: MovieRestart
+  operands: []
+  flags: [movie_01_27]
+
+- pattern: 01 27 01
+  name: MoviePause
+  operands: []
+  flags: [movie_01_27, ~game_chlcc]
+
+- pattern: 01 27 01 00
+  name: Unk_01_27_01_00
+  operands: [expr, expr]
+  flags: [game_chlcc]
+
+- pattern: 01 27 05 00
+  name: Unk_01_27_05_00
+  operands: [expr, expr]
+  flags: []
+
+- pattern: 01 28 00
+  name: Unk_01_28_00
+  operands: []
+  flags: []
+
+- pattern: 01 28 02
+  name: Unk_01_28_02
+  operands: []
+  flags: []

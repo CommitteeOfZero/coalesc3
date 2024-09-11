@@ -1,0 +1,370 @@
+@@ sch01_002.scs
++		If $W($$SW_LANGUAGE) != 1, @label(skip_tip_1)
++		SetDic2 152, 1
++		FlagOffJump 1, @label(skip_tip_1)
++		$W(2166) = 1;
++		Jump @label(after_tip_1)
++	@label(skip_tip_1):
++		$W(2166) = 0;
++	@label(after_tip_1):
+	*@ref(ra):
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb 0, 6100
+		MesMain
++		ResetFlag 1
++		$W(2166) = 0;
+
+@@ sch01_002.scs
++		If $W($$SW_LANGUAGE) != 1, @label(skip_tip_2)
++		SetDic2 154, 2
++		FlagOffJump 2, @label(skip_tip_2)
++		$W(2167) = 1;
++		Jump @label(after_tip_2)
++	@label(skip_tip_2):
++		$W(2167) = 0;
++	@label(after_tip_2):
+	*@ref(ra):
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb 0, 7300
+		MesMain
++		ResetFlag 1
++		$W(2166) = 0;
++		ResetFlag 2
++		$W(2167) = 0;
+
+@@ sch01_002.scs
++		If $W($$SW_LANGUAGE) != 1, @label(skip_tip_1)
++		SetDic2 156, 1
++		FlagOffJump 1, @label(skip_tip_1)
++		$W(2166) = 1;
++		Jump @label(after_tip_1)
++	@label(skip_tip_1):
++		$W(2166) = 0;
++	@label(after_tip_1):
+	*@ref(ra):
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb 0, 7400
+		MesMain
++		ResetFlag 1
++		$W(2166) = 0;
+
+@@ sch01_002.scs
++		If $W($$SW_LANGUAGE) != 1, @label(skip_tip_1)
++		SetDic2 158, 1
++		FlagOffJump 1, @label(skip_tip_1)
++		$W(2166) = 1;
++		Jump @label(after_tip_1)
++	@label(skip_tip_1):
++		$W(2166) = 0;
++	@label(after_tip_1):
+	*@ref(ra):
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb @ignore, 10200
+		MesMain
++		ResetFlag 1
++		$W(2166) = 0;
+
+@@ sch01_003.scs
++		If $W($$SW_LANGUAGE) != 1, @label(skip_tip_1)
++		SetDic2 149, 1
++		FlagOffJump 1, @label(skip_tip_1)
++		$W(2166) = 1;
++		Jump @label(after_tip_1)
++	@label(skip_tip_1):
++		$W(2166) = 0;
++	@label(after_tip_1):
+	*@ref(ra):
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb @ignore, 20900
+		MesMain
++		ResetFlag 1
++		$W(2166) = 0;
+
+@@ sch01_003.scs
++		If $W($$SW_LANGUAGE) != 1, @label(skip_tip_1)
++       SetDic2 160, 1
++       FlagOffJump 1, @label(skip_tip_1)
++       $W(2166) = 1;
++       Jump @label(after_tip_1)
++   @label(skip_tip_1):
++       $W(2166) = 0;
++   @label(after_tip_1):
+        Noah_01 @ignore, 18500
++       ResetFlag 1
++       $W(2166) = 0;
+
+@@ sch02_030.scs
++		If $W($$SW_LANGUAGE) != 1, @label(skip_tip_1)
++		SetDic2 85, 1
++		FlagOffJump 1, @label(skip_tip_1)
++		$W(2166) = 1;
++		Jump @label(after_tip_1)
++	@label(skip_tip_1):
++		$W(2166) = 0;
++	@label(after_tip_1):
+	*@ref(ra):
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb @ignore, 900
+		MesMain
++		ResetFlag 1
++		$W(2166) = 0;
+
+@@ sch01_006.scs
++		If $W($$SW_LANGUAGE) != 1, @label(skip_tip_1)
++		SetDic2 151, 1
++		FlagOffJump 1, @label(skip_tip_1)
++		$W(2166) = 1;
++		Jump @label(after_tip_1)
++	@label(skip_tip_1):
++		$W(2166) = 0;
++	@label(after_tip_1):
+	*@ref(ra):
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb @ignore, 18400
+		MesMain
++		ResetFlag 1
++		$W(2166) = 0;
+
+@@ sch01_006.scs
++		If $W($$SW_LANGUAGE) != 1, @label(skip_tip_1)
++		SetDic2 150, 1
++		FlagOffJump 1, @label(skip_tip_1)
++		$W(2166) = 1;
++		Jump @label(after_tip_1)
++	@label(skip_tip_1):
++		$W(2166) = 0;
++	@label(after_tip_1):
+	*@ref(ra):
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb @ignore, 19000
+		MesMain
++		ResetFlag 1
++		$W(2166) = 0;
+
+@@ sch01_011.scs
++		If $W($$SW_LANGUAGE) != 1, @label(skip_tip_1)
++		SetDic2 147, 1
++		FlagOffJump 1, @label(skip_tip_1)
++		$W(2166) = 1;
++		Jump @label(after_tip_1)
++	@label(skip_tip_1):
++		$W(2166) = 0;
++	@label(after_tip_1):
+	*@ref(ra):
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		Mes2VSetMesMsb @ignore, @ignore, @ignore, 2200
+		MesMain
++		ResetFlag 1
++		$W(2166) = 0;
+
+@@ sch01_021.scs
++		If $W($$SW_LANGUAGE) != 1, @label(skip_tip_1)
++		SetDic2 159, 1
++		FlagOffJump 1, @label(skip_tip_1)
++		$W(2166) = 1;
++		Jump @label(after_tip_1)
++	@label(skip_tip_1):
++		$W(2166) = 0;
++	@label(after_tip_1):
+		Noah_01 @ignore, 2700
++		ResetFlag 1
++		$W(2166) = 0;
+
+@@ sch02_035.scs
++		If $W($$SW_LANGUAGE) != 1, @label(skip_tip_1)
++		SetDic2 159, 1
++		FlagOffJump 1, @label(skip_tip_1)
++		$W(2166) = 1;
++		Jump @label(after_tip_1)
++	@label(skip_tip_1):
++		$W(2166) = 0;
++	@label(after_tip_1):
+		Noah_01 @ignore, 2600
++		ResetFlag 1
++		$W(2166) = 0;
+
+@@ sch02_042.scs
++		If $W($$SW_LANGUAGE) != 1, @label(skip_tip_1)
++		SetDic2 155, 1
++		FlagOffJump 1, @label(skip_tip_1)
++		$W(2166) = 1;
++		Jump @label(after_tip_1)
++	@label(skip_tip_1):
++		$W(2166) = 0;
++	@label(after_tip_1):
+	*@ref(ra):
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb @ignore, 4400
+		MesMain
++		ResetFlag 1
++		$W(2166) = 0;
+
+@@ sch02_043.scs
++        If $W($$SW_LANGUAGE) != 1, @label(skip_tip_1)
++        SetDic2 155, 1
++        FlagOffJump 1, @label(skip_tip_1)
++        $W(2166) = 1;
++        Jump @label(after_tip_1)
++    @label(skip_tip_1):
++        $W(2166) = 0;
++    @label(after_tip_1):
+    *@ref(ra):
+        MesSetSavePointRL @ref(ra)
+        MessWindowOpen
+        MessWindowOpenedWait
+        MesVoiceWait
+        MesSetMesMsb @ignore, 6000
+        MesMain
++        ResetFlag 1
++        $W(2166) = 0;
+
+@@ schy_158.scs
++        If $W($$SW_LANGUAGE) != 1, @label(skip_tip_1)
++        SetDic2 155, 1
++        FlagOffJump 1, @label(skip_tip_1)
++        $W(2166) = 1;
++        Jump @label(after_tip_1)
++    @label(skip_tip_1):
++        $W(2166) = 0;
++    @label(after_tip_1):
+    *@ref(ra):
+        MesSetSavePointRL @ref(ra)
+        MessWindowOpen
+        MessWindowOpenedWait
+        MesVoiceWait
+        MesSetMesMsb @ignore, 3400
+        MesMain
++        ResetFlag 1
++        $W(2166) = 0;
+
+@@ sch04_078.scs
++		If $W($$SW_LANGUAGE) != 1, @label(skip_tip_1)
++		SetDic2 157, 1
++		FlagOffJump 1, @label(skip_tip_1)
++		$W(2166) = 1;
++		Jump @label(after_tip_1)
++	@label(skip_tip_1):
++		$W(2166) = 0;
++	@label(after_tip_1):
+	*@ref(ra):
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		Mes2VSetMesMsb @ignore, @ignore, @ignore, 4200
+		MesMain
++		ResetFlag 1
++		$W(2166) = 0;
+
+@@ sch04_081.scs
++		If $W($$SW_LANGUAGE) != 1, @label(skip_tip_1)
++		SetDic2 148, 1
++		FlagOffJump 1, @label(skip_tip_1)
++		$W(2166) = 1;
++		Jump @label(after_tip_1)
++	@label(skip_tip_1):
++		$W(2166) = 0;
++	@label(after_tip_1):
+	*@ref(ra):
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		Mes2VSetMesMsb @ignore, @ignore, @ignore, 17400
+		MesMain
++		ResetFlag 1
++		$W(2166) = 0;
+
+@@ sch04_081.scs
++		If $W($$SW_LANGUAGE) != 1, @label(skip_tip_1)
++		SetDic2 153, 1
++		FlagOffJump 1, @label(skip_tip_1)
++		$W(2166) = 1;
++		Jump @label(after_tip_1)
++	@label(skip_tip_1):
++		$W(2166) = 0;
++	@label(after_tip_1):
+	*@ref(ra):
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb @ignore, 20100
+		MesMain
++		ResetFlag 1
++		$W(2166) = 0;
+
+@@ schs_160.scs
++		If $W($$SW_LANGUAGE) != 1, @label(skip_tip_1)
++		SetDic2 146, 1
++		FlagOffJump 1, @label(skip_tip_1)
++		$W(2166) = 1;
++		Jump @label(after_tip_1)
++	@label(skip_tip_1):
++		$W(2166) = 0;
++	@label(after_tip_1):
+		Noah_01 @ignore, 13800
++		ResetFlag 1
++		$W(2166) = 0;
+
+@@ sch02_046.scs
++		If $W($$SW_LANGUAGE) != 1, @label(skip_tip_1)
++		SetDic2 161, 1
++		FlagOffJump 1, @label(skip_tip_1)
++		$W(2166) = 1;
++		Jump @label(after_tip_1)
++	@label(skip_tip_1):
++		$W(2166) = 0;
++	@label(after_tip_1):
+		Noah_01 @ignore, 3400
++		ResetFlag 1
++		$W(2166) = 0;
+
+@@ sch03_052.scs
++		If $W($$SW_LANGUAGE) != 1, @label(skip_tip_1)
++		SetDic2 161, 1
++		FlagOffJump 1, @label(skip_tip_1)
++		$W(2166) = 1;
++		Jump @label(after_tip_1)
++	@label(skip_tip_1):
++		$W(2166) = 0;
++	@label(after_tip_1):
+	*@ref(ra):
+		MesSetSavePointRL @ref(ra)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		MesSetMesMsb @ignore, 3600
+		MesMain
++		ResetFlag 1
++		$W(2166) = 0;

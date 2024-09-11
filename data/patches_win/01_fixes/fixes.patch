@@ -1,0 +1,19 @@
+# Fix find the blue reset
+@@ schz_214.scs
++		If $W(3772) == 65, @label(ftb)
+		CallFarRL 6, 50, @ignore
+    %markers:
+		$W(4314) = 100;
+		$W(2190) = 1000;
+		BGMplay @ignore
++	@label(ftb):
+
+#Shogun -> Shougun CG in JP
+@@ sch06_112.scs
+-    BGload 1 << 7, 450
++    BGload 1 << 7, 450 * $W($$SW_LANGUAGE) + 999 * ($W($$SW_LANGUAGE) ^ 1)
+
+# Prevent crash in Pentium B integrated graphics
+@@ sch05_107.scs
+-		BGload 1 << 7, 3
++		BGsetLink 727, 728, 2

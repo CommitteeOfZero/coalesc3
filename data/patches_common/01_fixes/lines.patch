@@ -1,0 +1,108 @@
+# Remove a stray line
+@@ sch10_213.scs
+	*@ref(ra):
+-		MesSetSavePointRL @ref(ra)
+-		MessWindowOpen
+-		MessWindowOpenedWait
+-		MesVoiceWait
+-		MesSetMesMsb 0, 4400
+-		MesMain
+
+
+# Add missing lines
+@@ sch04_075.scs
+-		$W(4324) = 100;
+-		SetFlag 2580
+-		$W(4327) = 7;
+-		VoicePlay 2507, 0
+-		SetRevMesVMsb 2507, 7, 0
++		/Mes2V 2507, $W($$LR_LIP_SEI), 7, 0:〔星来〕「朝だよー！　ほら起きて！　起きなさーい！」\p;
+
+@@ sch04_075.scs
+-		$W(4324) = 100;
+-		SetFlag 2580
+-		$W(4327) = 7;
+-		VoicePlay 2508, 0
+-		SetRevMesVMsb 2508, 7, 400
++		/Mes2V 2508, $W($$LR_LIP_SEI), 7, 400:〔星来〕「起きたら、おはようのキスしてあげるからさ……って、あたしなに言ってんだろバカバカ今の忘れて！」\p;
+
+@@ sch04_075.scs
+-		$W(4324) = 100;
+-		SetFlag 2580
+-		$W(4327) = 7;
+-		VoicePlay 2509, 0
+	@ref(loop):
+-		FlagOnJump 1234, @ref(end)
+-		GetSystemStatus 1
+-		If $T(7), @ref(end)
+-		Wait 1
+-		Jump @ref(loop)
+	@ref(end):
+-		CallFarRL 6, 52, @ref(ra_callfar)
+	*@ref(ra_callfar):
+-		SetRevMesVMsb 2509, 7, 800
++		/Mes2V 2509, $W($$LR_LIP_SEI), 7, 800:〔星来〕「ちょっと！　いつまで寝てるんさ、このぼけなす！」\p;
+
+@@ sch04_075.scs
+-		$W(4324) = 100;
+-		SetFlag 2580
+-		$W(4327) = 7;
+-		VoicePlay 2510, 0
+	@ref(loop):
+-		FlagOnJump 1234, @ref(end)
+-		GetSystemStatus 1
+-		If $T(7), @ref(end)
+-		Wait 1
+-		Jump @ref(loop)
+	@ref(end):
+-		CallFarRL 6, 52, @ref(ra_callfar)
+	*@ref(ra_callfar):
+-		SetRevMesVMsb 2510, 7, 900
++		/Mes2V 2510, $W($$LR_LIP_SEI), 7, 900:〔星来〕「こうなったら、あたしの“サムライ☆コンデンサ”でぶん殴って起こし――」\p;
+
+@@ sch09_181.scs
+-		$W(4324) = 100;
+-		SetFlag 2580
+-		$W(4327) = 16;
+-		VoicePlay 7162, 0
+	@ref(_24):
+-		FlagOnJump 1234, @ref(_25)
+-		GetSystemStatus 1
+-		If $T(7), @ref(_25)
+-		Wait 1
+-		Jump @ref(_24)
+	@ref(_25):
+-		CallFarRL 6, 52, @ref(ra_106)
+	*@ref(ra_106):
+-		MessWindowCloseEx 0
+-		MessWindowClosedWait
+-		$F(1205) = 0;
+-		$T(63) = 0;
+	@ref(_26):
+-		$T(63) += 1;
+-		Mwait 1, 0
+-		FlagOnJump 1234, @ref(_27)
+-		@ignore
+-		If $T(63) < 1000 * 0, @ref(_26)
+	@ref(_27):
+-		ResetFlag 1205
+-		SetRevMesVMsb 7162, 16, 7200
++		/Mes2V 7162, 0, 16, 7200:「あなたがおかけになった電話番号は、現在使われておりません。番号をご確認の上、もう一度お掛け直しくだ――」\a:0;
++		/MesCls
++		/MessWindowCloseWait
+
+
+# Fix background voice line
+@@ sch09_187.scs
+-		CallFarRL 6, 52, @ref(ra)
+-	*@ref(ra):
+-		$W(4324) = 30;
+-		SetFlag 2580
+-		$W(4327) = 2;
+-		VoicePlay 251, 0
++		CallFarRL 6, 53, @ref(ra)
++	*@ref(ra):
++		$W(4325) = 30;
++		SetFlag 2581
++		$W(4328) = 2;
++		VoicePlay2 251, 0

@@ -1,0 +1,4 @@
+build/*
+out/
+lib/config.py
+lib/__pycache__
