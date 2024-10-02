@@ -16,4 +16,4 @@
 # Prevent crash in Pentium B integrated graphics
 @@ sch05_107.scs
 -		BGload 1 << 7, 3
-+		BGsetLink 727, 728, 2
++		BGsetLink 728, 729, 2
