@@ -58,6 +58,7 @@ shutil.copytree(raw_scs_dir, patch_scs_dir, dirs_exist_ok=True)
 patcher = ScriptPatcher(patch_scs_dir, build_dir, constants)
 def load_patches(root: Path) -> None:
 	for name in glob.glob("**/*.patch", root_dir=root, recursive=True):
+		print(root,"\\",name, sep='')
 		text = load_text(root / name)
 		patcher.add_patch(name, text)
 load_patches(data_dir / "patches_common")
