@@ -15,5 +15,17 @@
 
 # Prevent crash in Pentium B integrated graphics
 @@ sch05_107.scs
--		BGload 1 << 7, 3
-+		BGsetLink 728, 729, 2
+-        BGload 1 << 7, 3
+-        $W(7 * 40 + 4500) = 0 * -1;
+-        $W(7 * 40 + 4501) = 0 * -1;
+-        $W(7 * 40 + 4508) = 2 + 1;
+-        $T(54) = 3;
+-        CallFarRL 7, 39, @ref(rl)
+-    *@ref(rl):
+-        $W(7 * 40 + 4513) = 0;
++        BGload 1 << 6, 729
++        BGload 1 << 7, 728
++        BGsetLink 1 << 0, 1 << 6, 2
++        $W(2582 + 0) = 1920;
++        $W(2582 + 0 + 1) = 5232 * 2;
+		 SetFlag 2400 + 7
