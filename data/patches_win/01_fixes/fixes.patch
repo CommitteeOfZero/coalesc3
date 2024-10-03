@@ -11,7 +11,7 @@
 #Shogun -> Shougun CG in JP
 @@ sch06_112.scs
 -    BGload 1 << 7, 450
-+    BGload 1 << 7, 450 * $W($$SW_LANGUAGE) + 999 * ($W($$SW_LANGUAGE) ^ 1)
++    BGload 1 << 7, ($W($$SW_LANGUAGE) == 1) * 450 +  ($W($$SW_LANGUAGE) != 1) * 999
 
 # Prevent crash in Pentium B integrated graphics
 @@ sch05_107.scs
@@ -23,8 +23,8 @@
 -        CallFarRL 7, 39, @ref(rl)
 -    *@ref(rl):
 -        $W(7 * 40 + 4513) = 0;
-+        BGload 1 << 6, 729
-+        BGload 1 << 7, 728
++        BGload 1 << 6, ($W($$SW_LANGUAGE) == 1) * 729 + ($W($$SW_LANGUAGE) != 1) * 731
++        BGload 1 << 7, ($W($$SW_LANGUAGE) == 1) * 728 + ($W($$SW_LANGUAGE) != 1) * 730
 +        BGsetLink 1 << 0, 1 << 6, 2
 +        $W(2582 + 0) = 1920;
 +        $W(2582 + 0 + 1) = 5232 * 2;

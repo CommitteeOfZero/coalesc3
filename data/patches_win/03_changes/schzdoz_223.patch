@@ -1,4 +1,4 @@
 #Change the ID of the Blue Sky main menu in JP to be able to replace it without the DoZ button
 @@ _system.scs
 -    LoadPic 3, 2, 65
-+    LoadPic 3, 2, 65 * $W($$SW_LANGUAGE) + 67 * ($W($$SW_LANGUAGE) ^ 1)
++    LoadPic 3, 2, ($W($$SW_LANGUAGE) == 1) * 65 + ($W($$SW_LANGUAGE) != 1) * 67
