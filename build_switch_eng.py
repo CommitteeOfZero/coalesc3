@@ -64,7 +64,7 @@ def load_patches(root: Path) -> None:
 load_patches(data_dir / "patches_common")
 load_patches(data_dir / "patches_switch")
 txt_dir = data_dir / "txt_eng"
-TranslationProcessor(patcher, "10_translation/", txt_dir).run()
+TranslationProcessor(patcher, "10_translation/", txt_dir, False).run()
 patcher.run()
 
 compile_scripts(dst_script_dir, patch_scs_dir, flag_set)

@@ -6,14 +6,20 @@ from lib.ScriptPatcher import ScriptPatcher
 from lib.utils import load_mst
 
 class TranslationProcessor:
-	def __init__(self, patcher: ScriptPatcher, prefix: str, text_dir: Path):
+	def __init__(self, patcher: ScriptPatcher, prefix: str, text_dir: Path, isWindows: bool):
 		self.patcher = patcher
 		self.prefix = prefix
 		self.text_dir = text_dir
+		self.isWindows = isWindows
 
 	def run(self) -> None:
 		for name in glob.glob("**/*.mst", root_dir=self.text_dir, recursive=True):
-			script = os.path.basename(name).removesuffix(".mst")
+			if (self.isWindows and name == "System\\_system_nsw.mst"):
+				break
+			if (not self.isWindows and name == "System\\_system.mst"):
+				break
+			
+			script = os.path.basename(name).removesuffix(".mst").removesuffix("_nsw")
 			entries = load_mst(self.text_dir / name)
 			for index, text in entries.items():
 				self.process_entry(script, index, text)
