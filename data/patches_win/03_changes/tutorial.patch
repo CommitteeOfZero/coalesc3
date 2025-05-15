@@ -1,0 +1,24 @@
+# Add delusion trigger tutorial
+@@ sch01_005.scs
+    MesSetSavePointRL 164
+    MessWindowOpen
+    MessWindowOpenedWait
+    MesVoiceWait
+    Mes2VSetMesMsb 165, $W(1500), 0, 11100
+    MesMain
+    MessWindowCloseEx 0
+    MessWindowClosedWait
++   /LoadBg 7, 998, 100, 0, 0
++   /FadeBg 7, 1000, 1000
+
+@@ sch01_005.scs
+    MesSetSavePointRL 172
+	MessWindowOpen
+	MessWindowOpenedWait
+	MesVoiceWait
+	Mes2VSetMesMsb 168, $W(1500), 0, 11600
+	MesMain
+	MessWindowCloseEx 0
+	MessWindowClosedWait
++   /FadeBg 7, 1000, 0
++   /ReleaseBg 7
