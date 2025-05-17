@@ -86,6 +86,7 @@ def pack_cpk(cpk_path: str, src_dir: Path, entries: dict[int, str]) -> None:
 		writer.close()
 
 def unpack_cpk(dst_dir: Path, cpk_path: str, entries: dict[int, str]) -> None:
+	dst_dir.mkdir(parents=True, exist_ok=True)
 	with open(cpk_path, "rb") as cpk_fp:
 		reader = CpkReader(cpk_fp)
 		for entry in reader.entries:
