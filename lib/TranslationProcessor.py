@@ -14,10 +14,8 @@ class TranslationProcessor:
 
 	def run(self) -> None:
 		for name in glob.glob("**/*.mst", root_dir=self.text_dir, recursive=True):
-			if (self.isWindows and name == "System\\_system_nsw.mst"):
-				continue
-			if (not self.isWindows and name == "System\\_system.mst"):
-				continue
+			if (self.isWindows and os.path.basename(name) == "_system_nsw.mst"): continue
+			if (not self.isWindows and os.path.basename(name) == "_system.mst"): continue
 			
 			script = os.path.basename(name).removesuffix(".mst").removesuffix("_nsw")
 			entries = load_mst(self.text_dir / name)
