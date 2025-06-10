@@ -1,4 +1,4 @@
-[submodule "data/txt_eng"]
+[submodule "data/chaos_head/txt_eng"]
 	path = data/chaos_head/txt_eng
 	url = https://github.com/CommitteeOfZero/noah-textdumps.git
 [submodule "data/chaos_child/txt_eng"]
