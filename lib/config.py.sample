@@ -2,9 +2,20 @@ from pathlib import Path
 
 MGSSCRIPTTOOLS_PATH = "path/to/MagesScriptTool.exe"
 PATCHSCS_PATH = "path/to/PatchScs.exe"
+UNGELIFY_PATH = "path/to/ungelify.exe"
 
-BANK_PATH = "path/to/mgs-spec-bank"
+BANK_PATH = "path/to/mgs-spec-bank""
 
-SWITCH_JPN_RESOURCES_PATH = Path("path/to/jpn/romfs")
-SWITCH_ENG_RESOURCES_PATH = Path("path/to/eng/romfs")
-WINDOWS_RESOURCES_PATH = Path("path/to/steam/Data")
+SWITCH_JPN_RESOURCES_PATH = {
+    "chaos_head": Path("path/to/chaos_head/jpn/romfs")
+}
+
+SWITCH_ENG_RESOURCES_PATH = {
+    "chaos_head": Path("path/to/chaos_head/eng/romfs"),
+    "chaos_child": Path("path/to/chaos_child/eng/romfs")
+}
+
+WINDOWS_RESOURCES_PATH = {
+    "chaos_head": Path("path/to/chaos_head/steam/Data"),
+    "chaos_child": Path("path/to/chaos_child/steam/Data")
+}
