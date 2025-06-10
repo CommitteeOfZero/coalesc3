@@ -64,9 +64,6 @@ class ScriptPatcher:
 
 				entries = load_mst(mst_path, self.line_inc)
 
-				if script.startswith("cc_02_02"):
-					pass
-
 				if entries.keys() != language_table.keys() and \
 				   len(entries) == len(language_table) and \
 				   self.out_fmt != self.in_fmt:
