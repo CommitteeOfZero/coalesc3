@@ -1,3 +1,6 @@
 [submodule "data/chaos_child/txt_eng"]
 	path = data/chaos_child/txt_eng
 	url = https://github.com/CommitteeOfZero/cc-scripts.git
+[submodule "data/chaos_head/txt_eng"]
+	path = data/chaos_head/txt_eng
+	url = https://github.com/CommitteeOfZero/noah-textdumps.git
