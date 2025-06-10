@@ -76,7 +76,7 @@ class ScriptPatcher:
 						for index in list(filter(lambda x : x > old_index, language_table.keys())):
 							language_table[index - self.line_inc] = language_table.pop(index)
 				
-				if entries.keys() != language_table.keys():
+				if entries.keys() != language_table.keys() and self.out_fmt != self.in_fmt:
 					print(f"Warning: translation patch for { script } has a different number of lines "
 		                    "than expected. Please check manually.")
 					
