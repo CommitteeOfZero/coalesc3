@@ -1,0 +1,22 @@
+# Delusion Trigger tutorial
+@@ cc_01_02.scs
+		$W(2190) = 16;
+		CallFarRL 7, 1639, @ref(next)
+	*@ref(next):
+	*@ref(save):
+		MesSetSavePointRL @ref(save)
++		$W(38) = 896;
++		CallFarRL 6, 455, @ra(show)
++	*@ra(show):
++		$W(1022) = 16;
++		CallFarRL 6, 489, @ra(end)
++	*@ra(end):
++		$W(4548) = 14;
+
+@@ cc_01_02.scs
+		MesSetMesScx @ignore, 124
+		MesMain
+	*@ref(save):
+		MesSetSavePointRL @ref(save)
++		CallFarRL 6, 501, @ra(hide)
++	*@ra(hide):

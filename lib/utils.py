@@ -5,10 +5,12 @@ import shutil
 import subprocess
 import wave
 import yaml
+import re
+import glob
 
 from lib.config import (
 	MGSSCRIPTTOOLS_PATH,
-
+	UNGELIFY_PATH,
 	BANK_PATH,
 )
 from lib.cri.cpk.writer import (
@@ -48,7 +50,7 @@ def load_lines(path: str) -> list[str]:
 
 def load_cls(path: str) -> dict[int, str]:
 	names = load_lines(path)
-	return {index: name for index, name in enumerate(names)}
+	return { index: name for index, name in enumerate(names) }
 
 def save_mst(path: str, entries: dict[int, str]) -> None:
 	lines = (
@@ -57,10 +59,13 @@ def save_mst(path: str, entries: dict[int, str]) -> None:
 	)
 	save_lines(path, lines)
 
-def load_mst(path: str) -> dict[int, str]:
+def load_mst(path: str, line_inc: int = 100) -> dict[int, str]:
 	entries = {}
-	for line in load_lines(path):
-		index, entry = line.split(":", 1)
+	for num, line in enumerate(load_lines(path)):
+		entry: str
+		index: int
+		if not re.match(r"^[0-9]+:", line): index, entry = num * line_inc, line
+		else: index, entry = line.split(":", 1)
 		index = int(index)
 		if index in entries:
 			raise Exception(f"Duplicate MES index: {index}")
@@ -85,6 +90,14 @@ def pack_cpk(cpk_path: str, src_dir: Path, entries: dict[int, str]) -> None:
 				writer.write_file(index, name, file_fp.read())
 		writer.close()
 
+def pack_mpk(mpk_path: str, src_dir: Path, entries: dict[int, str]):
+	run_command(
+		UNGELIFY_PATH,
+		"replace",
+		mpk_path,
+		*map(lambda fl: src_dir / fl, entries.values())
+	)
+
 def unpack_cpk(dst_dir: Path, cpk_path: str, entries: dict[int, str]) -> None:
 	dst_dir.mkdir(parents=True, exist_ok=True)
 	with open(cpk_path, "rb") as cpk_fp:
@@ -94,27 +107,37 @@ def unpack_cpk(dst_dir: Path, cpk_path: str, entries: dict[int, str]) -> None:
 			with open(dst_dir / name, "wb") as file_fp:
 				file_fp.write(reader.read_file(entry.index))
 
-def compile_scripts(dst_dir: Path, src_dir: Path, flag_set: str) -> None:
+def unpack_mpk(dst_dir: Path, mpk_path: str, entries: dict[int, str]) -> None:
+	dst_dir.mkdir(parents=True, exist_ok=True)
+	run_command(
+		UNGELIFY_PATH,
+		"extract",
+		"-o", dst_dir,
+		mpk_path,
+		*entries.values()
+	)
+
+def compile_scripts(dst_dir: Path, src_dir: Path, flag_set: str, charset: str) -> None:
 	run_command(
 		MGSSCRIPTTOOLS_PATH,
 		"--mode", "Compile",
 		"--bank-directory", BANK_PATH,
 		"--flag-set", flag_set,
 		# "--instruction-sets", "base,chaos_head_noah",
-		"--charset", "chaos_head_noah-extended",
+		"--charset", charset,
 		# "--string-syntax", "ScsStrict",
 		"--uncompiled-directory", src_dir,
 		"--compiled-directory", dst_dir,
 	)
 
-def decompile_scripts(dst_dir: Path, src_dir: Path, flag_set: str) -> None:
+def decompile_scripts(dst_dir: Path, src_dir: Path, flag_set: str, charset: str) -> None:
 	run_command(
 		MGSSCRIPTTOOLS_PATH,
 		"--mode", "Decompile",
 		"--bank-directory", BANK_PATH,
 		"--flag-set", flag_set,
 		# "--instruction-sets", "base,chaos_head_noah",
-		"--charset", "chaos_head_noah-extended",
+		"--charset", charset,
 		# "--string-syntax", "ScsStrict",
 		"--uncompiled-directory", dst_dir,
 		"--compiled-directory", src_dir,

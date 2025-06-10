@@ -1,0 +1,127 @@
+# Hana screeching
+@@ macrosys2.scs
++		$W(38) = $$CC_HANA_001;
++		CallFarRL 6, 453, @ra(bg_1)
++	*@ra(bg_1):
++		$W(1022) = 8;
++		CallFarRL 6, 487, @ra(move_1)
++	*@ra(move_1):
+		VoicePlay2 $$cc_kh_03_kaz0041, @ignore
+		CallRL @ignore, @ref(voice_2)
+	*@ref(voice_2):
++		CallFarRL 6, 499, @ra(finish_1)
++	*@ra(finish_1):
+		FlagOffJump 449, @ignore
++		$W(38) = $$CC_HANA_002;
++		CallFarRL 6, 453, @ra(bg_2)
++	*@ra(bg_2):
++		$W(1022) = 8;
++		CallFarRL 6, 487, @ra(move_2)
++	*@ra(move_2):
+		VoicePlay2 $$cc_kh_03_kaz0042, @ignore
+		CallRL @ignore, @ref(voice_3)
+	*@ref(voice_3):
++		CallFarRL 6, 499, @ra(finish_2)
++	*@ra(finish_2):
+		FlagOffJump 449, @ignore
++		$W(38) = $$CC_HANA_003;
++		CallFarRL 6, 453, @ra(bg_3)
++	*@ra(bg_3):
++		$W(1022) = 8;
++		CallFarRL 6, 487, @ra(move_3)
++	*@ra(move_3):
+		VoicePlay2 $$cc_kh_03_kaz0043, @ignore
+		CallRL @ignore, @ref(voice_4)
+	*@ref(voice_4):
++		CallFarRL 6, 499, @ra(finish_3)
++	*@ra(finish_3):
+		FlagOffJump 449, @ignore
+		If $W(1151) == 0, @ignore
+	%markers:
++		$W(38) = $$CC_HANA_004;
++		CallFarRL 6, 453, @ra(bg_4)
++	*@ra(bg_4):
++		$W(1022) = 8;
++		CallFarRL 6, 487, @ra(move_4)
++	*@ra(move_4):
+		VoicePlay2 $$cc_kh_03_kaz0044, @ignore
+		CallRL @ignore, @ref(voice_5)
+	*@ref(voice_5):
++		CallFarRL 6, 499, @ra(finish_4)
++	*@ra(finish_4):
+		FlagOffJump 449, @ignore
++		$W(38) = $$CC_HANA_005;
++		CallFarRL 6, 453, @ra(bg_5)
++	*@ra(bg_5):
++		$W(1022) = 8;
++		CallFarRL 6, 487, @ra(move_5)
++	*@ra(move_5):
+		VoicePlay2 $$cc_kh_03_kaz0045, @ignore
+		CallRL @ignore, @ref(voice_6)
+	*@ref(voice_6):
++		CallFarRL 6, 499, @ra(finish_5)
++	*@ra(finish_5):
+		FlagOffJump 449, @ignore
++		$W(38) = $$CC_HANA_006;
++		CallFarRL 6, 453, @ra(bg_6)
++	*@ra(bg_6):
++		$W(1022) = 8;
++		CallFarRL 6, 487, @ra(move_6)
++	*@ra(move_6):
+		VoicePlay2 $$cc_kh_03_kaz0046, @ignore
+		CallRL @ignore, @ref(voice_7)
+	*@ref(voice_7):
++		CallFarRL 6, 499, @ra(finish_6)
++	*@ra(finish_6):
+		FlagOffJump 449, @ignore
++		$W(38) = $$CC_HANA_007;
++		CallFarRL 6, 453, @ra(bg_7)
++	*@ra(bg_7):
++		$W(1022) = 8;
++		CallFarRL 6, 487, @ra(move_7)
++	*@ra(move_7):
+		VoicePlay2 $$cc_kh_03_kaz0047, @ignore
+		CallRL @ignore, @ref(voice_8)
+	*@ref(voice_8):
++		CallFarRL 6, 499, @ra(finish_7)
++	*@ra(finish_7):
+		FlagOffJump 449, @ignore
+		If $W(1151) == 1, @ignore
+	%markers_:
++		GetDic 114, 108
++		$W(38) = $F(108) + $$CC_HANA_008_A;
++		CallFarRL 6, 453, @ra(bg_8)
++	*@ra(bg_8):
++		$W(1022) = 8;
++		CallFarRL 6, 487, @ra(move_8)
++	*@ra(move_8):
+		VoicePlay2 $$cc_kh_03_kaz0048, @ignore
+		CallRL @ignore, @ref(voice_9)
+	*@ref(voice_9):
++		CallFarRL 6, 499, @ra(finish_8)
++	*@ra(finish_8):
+		FlagOffJump 449, @ignore
++		GetDic 115, 108
++		$W(38) = $F(108) + $$CC_HANA_009_A;
++		CallFarRL 6, 453, @ra(bg_9)
++	*@ra(bg_9):
++		$W(1022) = 8;
++		CallFarRL 6, 487, @ra(move_9)
++	*@ra(move_9):
+		VoicePlay2 $$cc_kh_03_kaz0049, @ignore
+		CallRL @ignore, @ref(end)
+	*@ref(end):
++		CallFarRL 6, 499, @ra(finish_9)
++	*@ra(finish_9):
+		FlagOffJump 449, @ignore
+
+
+# Restoring textbox for Switch-only unvoiced lines
+@@ macrosys2.scs
+-		MessWindowFastClose @ignore
+-		$W(4362) = 44;
+		ResetFlag @ignore
+		SetFlag @ignore
+		Return
+	%markers:
+		ResetFlag @ignore

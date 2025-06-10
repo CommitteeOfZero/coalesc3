@@ -1,21 +1,21 @@
 # @@ main00.scs
 # -		Jump 1
 # #+		ScriptLoad 3, $$sch10_217
-# +		ScriptLoad 3, $$sch02_028
+# +		ScriptLoad 3, $$sch06_110
 # +		CallFarRL 3, 1, @ra(ra)
 # +	*@ra(ra):
 # +		SetFlag 1803
-# +		Halt    
+# +		Halt	
 
 # @@ _startup.scs
-#     SSEplay @ignore
-#     @ignore
+#	 SSEplay @ignore
+#	 @ignore
 # -   FlagOnJump 1931, @ignore
 
 # @@ _startup.scs
-#         FlagOnJump 1931, @ignore
-#     %markers:
-#         $W(2115) = 9;
+#		 FlagOnJump 1931, @ignore
+#	 %markers:
+#		 $W(2115) = 9;
 
 # @@ _startup.scs
 # -   ResetFlag 1930

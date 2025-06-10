@@ -1,0 +1,20 @@
+# Remove duplicate line
+# (moving the save point to the original line
+#  to maintain backwards save compatibility
+#  and make it load the correct line)
+@@ cc_02_02.scs
+	*@ref(original):
++	*@ref(duplicate):
+		MesSetSavePointRL @ref(original)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+		Mes2VSetMesScx @ignore, @ignore, @ignore, 523
+		MesMain
+-	*@ref(duplicate):
+-		MesSetSavePointRL @ref(duplicate)
+-		MessWindowOpen
+-		MessWindowOpenedWait
+-		MesVoiceWait
+-		Mes2VSetMesScx @ignore, @ignore, @ignore, @ignore
+-		MesMain

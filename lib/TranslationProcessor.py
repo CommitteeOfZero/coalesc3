@@ -6,19 +6,23 @@ from lib.ScriptPatcher import ScriptPatcher
 from lib.utils import load_mst
 
 class TranslationProcessor:
-	def __init__(self, patcher: ScriptPatcher, prefix: str, text_dir: Path, isWindows: bool):
+	def __init__(self, patcher: ScriptPatcher, prefix: str, text_dir: Path, game: str, platform: str, versioned: list[str]):
 		self.patcher = patcher
 		self.prefix = prefix
 		self.text_dir = text_dir
-		self.isWindows = isWindows
+		self.game = game
+		self.platform = platform
+		self.versioned = versioned
 
 	def run(self) -> None:
-		for name in glob.glob("**/*.mst", root_dir=self.text_dir, recursive=True):
-			if (self.isWindows and os.path.basename(name) == "_system_nsw.mst"): continue
-			if (not self.isWindows and os.path.basename(name) == "_system.mst"): continue
-			
-			script = os.path.basename(name).removesuffix(".mst").removesuffix("_nsw")
-			entries = load_mst(self.text_dir / name)
+		for name in glob.glob(f"**/*{ self.patcher.in_fmt }", root_dir=self.text_dir, recursive=True):
+			if any(os.path.basename(name).startswith(stem) for stem in self.versioned) and not os.path.basename(name).endswith(f"_{ self.platform[:3] }{ self.patcher.in_fmt }"):
+				continue
+			script = os.path.basename(name).removesuffix(self.patcher.in_fmt)
+			if self.game != "chaos_child" or self.platform != "windows" or os.path.basename(name) != "_startup_win.sct":
+				script = script.removesuffix(f"_{self.platform[:3]}")
+
+			entries = load_mst(self.text_dir / name, self.patcher.line_inc)
 			for index, text in entries.items():
 				self.process_entry(script, index, text)
 

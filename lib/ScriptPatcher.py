@@ -8,10 +8,13 @@ from lib.config import (
 from lib.utils import load_mst, save_mst, run_command
 
 class ScriptPatcher:
-	def __init__(self, scs_dir: Path, build_dir: Path, consts: dict[str, str]):
+	def __init__(self, scs_dir: Path, build_dir: Path, consts: dict[str, str], in_fmt: str, out_fmt: str, line_inc: int = 100):
 		self.scs_dir = scs_dir
 		self.build_dir = build_dir
 		self.consts = consts
+		self.in_fmt = in_fmt
+		self.out_fmt = out_fmt
+		self.line_inc = line_inc
 		self.scs_patches: list[(str, str)] = []
 		self.mst_patches: dict[str, dict[int, dict[int, str]]] = {}
 
@@ -50,8 +53,36 @@ class ScriptPatcher:
 	def _apply_mst_patches(self) -> None:
 		for script, script_table in self.mst_patches.items():
 			for language, language_table in script_table.items():
-				mst_path = self.scs_dir / f"mes{language:02}/{script}_{language:02}.mst"
-				entries = load_mst(mst_path)
+				mst_path: Path
+				match self.out_fmt:
+					case ".mst":
+						mst_path = self.scs_dir / f"mes{language:02}/{script}_{language:02}.mst"
+					case ".sct":
+						mst_path = self.scs_dir / f"{script}.sct"
+					case _:
+						raise Exception(f"Invalid out format \"{self.out_fmt}\"!")
+
+				entries = load_mst(mst_path, self.line_inc)
+
+				if script.startswith("cc_02_02"):
+					pass
+
+				if entries.keys() != language_table.keys() and \
+				   len(entries) == len(language_table) and \
+				   self.out_fmt != self.in_fmt:
+					assert self.out_fmt == ".mst", "Error: line numbering fix is only implemented for .sct -> .mst"
+					diffs = list(filter(lambda key : key % self.line_inc != 0, entries.keys()))
+					for diff in diffs:
+						offset = diff % self.line_inc
+						old_index = (diff - offset) + offset * 10
+						language_table[diff] = language_table.pop(old_index)
+						for index in list(filter(lambda x : x > old_index, language_table.keys())):
+							language_table[index - self.line_inc] = language_table.pop(index)
+				
+				if entries.keys() != language_table.keys():
+					print(f"Warning: translation patch for { script } has a different number of lines "
+		                    "than expected. Please check manually.")
+					
 				entries.update(language_table)
 				save_mst(mst_path, entries)
 
@@ -272,7 +303,7 @@ class PatchPreprocessor:
 
 	@macro()
 	def MesS2VMsb(self, args: str) -> str:
-		voice, anim, vid, mes_id = [x.strip() for x in args.split(",")]
+		window, voice, anim, vid, mes_id = [x.strip() for x in args.split(",")]
 		ra = self.next_ra()
 		return f"""
 *{ra}:

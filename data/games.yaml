@@ -1,0 +1,40 @@
+chaos_head:
+  platform:
+    switch:
+      flag_set: chaos_head_switch
+      charset: chaos_head_noah-extended
+      in_fmt: .mst
+      out_fmt: .mst
+      langs:
+        - eng
+        - jpn
+    windows:
+      flag_set: chaos_head_windows
+      charset: chaos_head_noah-extended
+      in_fmt: .mst
+      out_fmt: .mst
+      multilang: true
+      archive: .cpk
+  versioned:
+    - _system
+
+chaos_child:
+  platform:
+    switch:
+      flag_set: chaos_child_switch
+      charset: chaos_child-extended
+      in_fmt: .sct
+      out_fmt: .mst
+      line_inc: 100
+    windows:
+      flag_set: chaos_child_switch
+      charset: chaos_child-extended
+      in_fmt: .sct
+      out_fmt: .sct
+      line_inc: 1
+      archive: .mpk
+  versioned:
+    - _system
+    - _tips
+    - _startup
+    - zzz

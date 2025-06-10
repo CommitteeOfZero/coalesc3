@@ -1,0 +1,20 @@
+# Restoring textbox for unvoiced lines
+@@ macrosys2.scs
+		MessWindowFastClose @ignore
+-		$W(4362) = 44;
++		$W(4362) = 0;
+		ResetFlag @ignore
+		SetFlag @ignore
+		Return
+	%markers:
+		MessWindowFastClose @ignore
+
+# Slow down ESO2 chat messages
+@@ macrosys2.scs
+-	$T(63) = 90;
++	$T(63) = 256;
+
+@@ macrosys2.scs
+	SetSavePointMain
+-	$T(63) = 180;
++	$T(63) = 512;

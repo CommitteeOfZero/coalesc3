@@ -1,0 +1,13 @@
+sse000start.opus
+sse001curmov.opus
+sse002sel.opus
+sse003cancel.opus
+sse004error.opus
+sse005winopen.opus
+sse006winclose.opus
+sse007map_on1.opus
+sse008map_on2.opus
+sse009map_off.opus
+sse010mousou_posi.opus
+sse011mousou_nega.opus
+sse012mousou_neutral.opus

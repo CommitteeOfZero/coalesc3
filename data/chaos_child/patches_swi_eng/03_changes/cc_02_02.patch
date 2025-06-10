@@ -1,0 +1,22 @@
+# Mimic PC duplicate line removal patch
+# (retail Switch version has a fix, but by
+#  replicating it we can reuse the translation
+#  instead of needing a versioned script)
+@@ cc_02_02.scs
+	*@ref(original):
++	*@ref(duplicate):	
+		MesSetSavePointRL @ref(original)
+		MessWindowOpen
+		MessWindowOpenedWait
+		MesVoiceWait
+-		Mes2VSetMesMsb $$cc_02_02_ith0070a, @ref(anim), @ref(vid), @ref(mes_id)
++		Mes2VSetMesMsb $$cc_02_02_ith0070, @ref(anim), @ref(vid), @ref(mes_id)
+		MesMain
+-	*@ref(duplicate):
+-		MesSetSavePointRL @ref(duplicate)
+-		MessWindowOpen
+-		MessWindowOpenedWait
+-		MesVoiceWait
+-		Mes2VSetMesMsb @ignore, @ignore, @ignore, @ignore
+-		MesMain
+-		Jump @ignore

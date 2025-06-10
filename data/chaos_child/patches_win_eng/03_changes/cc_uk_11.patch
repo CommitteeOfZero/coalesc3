@@ -1,0 +1,5 @@
+# Uki route post credits video
+@@ cc_uk_11.scs
+-	CallFarRL 7, 1834, @ref(rl)
++	$W(61) = $$postcredits_001_b;
++	CallFarRL 7, 873, @ref(rl)

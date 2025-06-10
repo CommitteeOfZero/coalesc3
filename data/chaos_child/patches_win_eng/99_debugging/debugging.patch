@@ -1,0 +1,8 @@
+# @@ main00.scs
+# 		$W(1025) = 0;
+# -		ScriptLoad 3, 5
+# +		ScriptLoad 3, $$cc_kn_20
+# +		CallFarRL 3, 1, @ra(ra)
+# +	*@ra(ra):
+# +		SetFlag 1803
+# +		Halt
