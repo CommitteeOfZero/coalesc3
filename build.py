@@ -64,8 +64,14 @@ def main() -> None:
 	args = arg_parser.parse_args()
 
 	if (spec[args.game]["platform"][args.platform].get("multilang", False) and args.lang != "all"):
-		print(f"Error: Game '{ args.game }' for platform { args.platform } only supports 'all' language option.")
-		return;
+		print(f"Error: Game '{ args.game }' for platform '{ args.platform }' only supports 'all' language option.")
+		return
+	if (not spec[args.game]["platform"][args.platform].get("multilang", False) and args.lang == "all"):
+		print(f"Error: Game '{ args.game }' for platform '{ args.platform }' doesn't support multilanguage building.")
+		return
+	if (args.lang not in spec[args.game]["platform"][args.platform].get("langs", [])):
+		print(f"Error: Game '{ args.game }' for platform '{ args.platform }' doesn't support language '{ args.lang }'.")
+		return
 
 	flag_set = spec[args.game]["platform"][args.platform]["flag_set"]
 
