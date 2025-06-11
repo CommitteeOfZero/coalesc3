@@ -26,6 +26,8 @@ chaos_child:
       in_fmt: .sct
       out_fmt: .mst
       line_inc: 100
+      langs:
+        - eng
     windows:
       flag_set: chaos_child_switch
       charset: chaos_child-extended
@@ -33,6 +35,8 @@ chaos_child:
       out_fmt: .sct
       line_inc: 1
       archive: .mpk
+      langs:
+        - eng
   versioned:
     - _system
     - _tips
