@@ -15,6 +15,8 @@ chaos_head:
       out_fmt: .mst
       multilang: true
       archive: .cpk
+      langs:
+        - all
   versioned:
     - _system
 
