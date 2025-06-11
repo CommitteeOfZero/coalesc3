@@ -5,7 +5,7 @@
 				"style": null
 			},
 			"rasterization": {
-				"faux-italic": false
+				"font": "normal"
 			}
 		},
 		"glyphs": [
@@ -25,7 +25,7 @@
 				"style": "normal"
 			},
 			"rasterization": {
-				"faux-italic": false
+				"font": "normal"
 			}
 		},
 		"glyphs": [
@@ -29145,7 +29145,7 @@
 		"parameters": {
 			"encoding": null,
 			"rasterization": {
-				"faux-italic": false
+				"font": "normal"
 			}
 		},
 		"glyphs": [
@@ -29465,7 +29465,7 @@
 				"style": "normal"
 			},
 			"rasterization": {
-				"faux-italic": false
+				"font": "normal"
 			}
 		},
 		"glyphs": [
@@ -29483,11 +29483,27 @@
 			},
 			{
 				"units": [7491],
-				"text": "ï"
+				"text": "ê"
 			},
 			{
 				"units": [7492],
+				"text": "í"
+			},
+			{
+				"units": [7493],
+				"text": "ï"
+			},
+			{
+				"units": [7494],
+				"text": "ó"
+			},
+			{
+				"units": [7495],
 				"text": "—"
+			},
+			{
+				"units": [7496],
+				"text": "–"
 			}
 		]
 	},
@@ -29497,7 +29513,7 @@
 				"style": "italic"
 			},
 			"rasterization": {
-				"faux-italic": true
+				"font": "italic"
 			}
 		},
 		"glyphs": [
@@ -29827,11 +29843,23 @@
 			},
 			{
 				"units": [7633],
-				"text": "ï"
+				"text": "í"
 			},
 			{
 				"units": [7634],
+				"text": "ï"
+			},
+			{
+				"units": [7635],
+				"text": "ó"
+			},
+			{
+				"units": [7636],
 				"text": "—"
+			},
+			{
+				"units": [7637],
+				"text": "–"
 			}
 		]
 	}

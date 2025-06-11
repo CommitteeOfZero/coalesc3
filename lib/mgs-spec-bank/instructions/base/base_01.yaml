@@ -43,6 +43,12 @@
   operands: [expr, expr, expr, expr]
   flags: [mescls]
 
+# TODO: Make sense of it
+- pattern: 01 05 0A
+  name: Calc_0A
+  operands: [expr, expr, expr, expr, expr, expr]
+  flags: [mescls, new_calc]
+
 - pattern: 01 08 00
   name: MesSync_00
   operands: []
@@ -111,17 +117,47 @@
 - pattern: 01 09 00
   name: MesSetSavePointRL
   operands: [int16]
-  flags: [return_labels]
+  flags: [return_labels, ~new_messetid]
 
 - pattern: 01 09 01
   name: MesSSetSavePointRL
   operands: [int16, expr]
-  flags: [return_labels]
+  flags: [return_labels, ~new_messetid]
 
 - pattern: 01 09 02
   name: MesSSetSavePoint
   operands: [expr]
-  flags: [return_labels]
+  flags: [return_labels, ~new_messetid]
+
+- pattern: 01 09 80
+  name: MesSetSavePointRL
+  operands: [int16]
+  flags: [return_labels, new_messetid]
+
+- pattern: 01 09 81
+  name: MesSSetSavePointRL
+  operands: [int16, expr]
+  flags: [return_labels, new_messetid]
+
+- pattern: 01 09 82
+  name: MesSSetSavePoint
+  operands: [expr]
+  flags: [return_labels, new_messetid]
+
+- pattern: 01 09 00
+  name: MesSetIdRL
+  operands: [int16]
+  flags: [return_labels, new_messetid]
+
+- pattern: 01 09 01
+  name: MesSSetIdRL
+  operands: [expr]
+  flags: [return_labels, new_messetid]
+
+- pattern: 01 09 02
+  name: MesSetId
+  operands: [expr]
+  flags: [return_labels, new_messetid]
 
 - pattern: 01 0A 03
   name: CalcSinL
@@ -358,9 +394,44 @@
   operands: []
   flags: []
 
+- pattern: 01 14 02
+  name: SysSelAddMesScx
+  operands: [int16]
+  flags: []
+
+- pattern: 01 15 00
+  name: SysSelectInit
+  operands: [expr,expr]
+  flags: []
+
+- pattern: 01 15 01
+  name: SysSelect01
+  operands: []
+  flags: []
+
+- pattern: 01 15 02
+  name: SysSelect02
+  operands: [expr]
+  flags: []
+
+- pattern: 01 15 03
+  name: SysSelect03
+  operands: [expr]
+  flags: []
+
 - pattern: 01 15 04
   name: SysSelectEnd
   operands: []
+  flags: []
+
+- pattern: 01 15 05
+  name: SysSelectEnd05
+  operands: []
+  flags: []
+  
+- pattern: 01 1F
+  name: LoadFontWidths
+  operands: [expr,expr,expr]
   flags: []
 
 - pattern: 01 20
@@ -423,6 +494,11 @@
   operands: [expr, expr]
   flags: [new_playmovie]
 
+- pattern: 01 22 04 00
+  name: PlayMovie_04
+  operands: [expr, expr]
+  flags: [new_playmovie]
+
 - pattern: 01 22 05 00
   name: PlayMovieLoopNoAudio
   operands: [expr, expr]
@@ -435,6 +511,11 @@
 
 - pattern: 01 22 0B 00
   name: PlayMovieMaskLoop
+  operands: [expr, expr]
+  flags: [new_playmovie]
+
+- pattern: 01 22 0C 00
+  name: PlayMovie_0C
   operands: [expr, expr]
   flags: [new_playmovie]
 
@@ -524,11 +605,18 @@
   flags: []
 
 - pattern: 01 28 00
-  name: Unk_01_28_00
+  name: MovieMain_00
   operands: []
   flags: []
-
+- pattern: 01 28 01
+  name: MovieMain_01
+  operands: []
+  flags: []
 - pattern: 01 28 02
-  name: Unk_01_28_02
+  name: MovieMain_02
+  operands: []
+  flags: []
+- pattern: 01 28 03
+  name: MovieMain_03
   operands: []
   flags: []

@@ -223,6 +223,16 @@
   operands: []
   flags: []
 
+- pattern: 10 1C 00
+  name: ActorVoiceInit
+  operands: []
+  flags: []
+
+- pattern: 10 1C 01
+  name: ActorVoiceMain
+  operands: []
+  flags: []
+
 - pattern: 10 1D 00
   name: SoundMenuInit
   operands: []
@@ -431,7 +441,7 @@
 - pattern: 10 2D
   name: AchChkTitle
   operands: []
-  flags: []
+  flags: [achchktitle]
 
 - pattern: 10 2E
   name: Unk_10_2E
@@ -513,6 +523,11 @@
   operands: []
   flags: [new_titlemenu]
 
+- pattern: 10 34 05
+  name: TitleMenuChangeBGM
+  operands: []
+  flags: [new_titlemenu]
+
 - pattern: 10 36 00
   name: BGeffectSikaden
   operands: [expr]
@@ -521,7 +536,7 @@
 - pattern: 10 38
   name: EFFyuge
   operands: [expr, expr]
-  flags: []
+  flags: [effyuge]
 
 - pattern: 10 3B 00
   name: EndRollSetup

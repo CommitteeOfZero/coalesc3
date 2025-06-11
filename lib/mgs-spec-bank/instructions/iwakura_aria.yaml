@@ -1,0 +1,104 @@
+- pattern: 00 26 00
+  name: SSEplayEx
+  operands: [expr]
+  flags: [new_sseplay, game_ia]
+
+- pattern: 00 43 14
+  name: SystemMesInitMap
+  operands: []
+  flags: [game_ia]
+
+- pattern: 00 43 16
+  name: SystemMesInitMap2
+  operands: [expr]
+  flags: [game_ia]
+
+- pattern: 00 43 19
+  name: SystemMesMainMap
+  operands: []
+  flags: [game_ia]
+
+- pattern: 00 43 1A
+  name: SystemMesFadeInMap
+  operands: []
+  flags: [game_ia]
+
+- pattern: 00 43 1B
+  name: SystemMesFadeOutMap
+  operands: []
+  flags: [game_ia]
+
+- pattern: 00 43 97
+  name: SystemMesSetMesMap
+  operands: [expr]
+  flags: [game_ia]
+
+- pattern: 00 43 98
+  name: SystemMesSetSelMap
+  operands: [expr]
+  flags: [game_ia]
+
+- pattern: 10 22 28
+  name: AutoSave_28
+  operands: []
+  flags: [game_ia]
+
+- pattern: 20 01 00
+  name: MapInit
+  operands: [expr]
+  flags: [game_ia]
+
+- pattern: 20 01 10
+  name: MapSetDisp
+  operands: [expr]
+  flags: [game_ia]
+
+- pattern: 20 01 20
+  name: MapSetHide
+  operands: [expr]
+  flags: [game_ia]
+
+- pattern: 20 01 30
+  name: MapSetReq
+  operands: [expr]
+  flags: [game_ia]
+
+- pattern: 20 01 40
+  name: MapClearReq
+  operands: [expr]
+  flags: [game_ia]
+
+- pattern: 20 01 50
+  name: MapMain
+  operands: []
+  flags: [game_ia]
+
+- pattern: 20 01 60
+  name: MapSelect
+  operands: []
+  flags: [game_ia]
+
+- pattern: 20 02 00
+  name: SketchbookInit
+  operands: [expr]
+  flags: [game_ia]
+
+- pattern: 20 02 20
+  name: SketchbookDraw
+  operands: [expr]
+  flags: [game_ia]
+
+- pattern: 20 02 30
+  name: SketchbookFlickTo
+  operands: [expr]
+  flags: [game_ia]
+
+- pattern: 20 02 50
+  name: SketchbookSelect
+  operands: []
+  flags: [game_ia]
+
+# - pattern: 01 1A
+#   name: Unk_01_1A
+#   operands: [expr, expr, expr]
+#   flags: [game_ia]
