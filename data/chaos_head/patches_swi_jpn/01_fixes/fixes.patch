@@ -416,3 +416,334 @@
 		$W(6338) = 255;
 +		/Wait 300
 +		/ReleaseBg 5
+
+# Fix Shogun link post delay
+@@ sch01_003.scs
+		Noah_01 @ignore, 22000
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 800 * 3 / 50, 0
+		$W(7510) = 0;
+		$W(7511) = 0;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_3)
+	*@ref(link_3):
+		Noah_01 @ignore, 22100
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 600 * 3 / 50, 0
+		$W(7510) = 0;
+		$W(7511) = 0;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_4)
+	*@ref(link_4):
+		Noah_01 @ignore, 22200
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 400 * 3 / 50, 0
+		$W(7510) = 0;
+		$W(7511) = 0;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_5)
+	*@ref(link_5):
+		Noah_01 @ignore, 22300
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 300 * 3 / 50, 0
+		$W(7510) = 0;
+		$W(7511) = 0;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_6)
+	*@ref(link_6):
+		Noah_01 @ignore, 22400
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 200 * 3 / 50, 0
+		$W(7510) = 0;
+		$W(7511) = 0;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_7)
+	*@ref(link_7):
+		Noah_01 @ignore, 22500
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 0;
+		$W(7511) = 0;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_8)
+	*@ref(link_8):
+		Noah_01 @ignore, 22600
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 0;
+		$W(7511) = 0;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_9)
+	*@ref(link_9):
+		Noah_01 @ignore, 22700
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 0;
+		$W(7511) = 0;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_10)
+	*@ref(link_10):
+		Noah_01 @ignore, 22800
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 0;
+		$W(7511) = 0;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_11)
+	*@ref(link_11):
+		Noah_01 @ignore, 22900
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 0;
+		$W(7511) = 0;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_12)
+	*@ref(link_12):
+		Noah_01 @ignore, 23000
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 0;
+		$W(7511) = 0;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_13)
+	*@ref(link_13):
+		Noah_01 @ignore, 23100
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 0;
+		$W(7511) = 0;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_14)
+	*@ref(link_14):
+		Noah_01 @ignore, 23200
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 0;
+		$W(7511) = 0;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_15)
+	*@ref(link_15):
+		Noah_01 @ignore, 23300
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 0;
+		$W(7511) = 0;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_16)
+	*@ref(link_16):
+		Noah_01 @ignore, 23400
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 0;
+		$W(7511) = 0;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_17)
+	*@ref(link_17):
+		Noah_01 @ignore, 23500
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 0;
+		$W(7511) = 0;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_18)
+	*@ref(link_18):
+		Noah_01 @ignore, 23600
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 0;
+		$W(7511) = 0;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_19)
+	*@ref(link_19):
+		Noah_01 @ignore, 23700
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 0;
+		$W(7511) = 0;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_20)
+	*@ref(link_20):
+		Noah_01 @ignore, 23800
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 0;
+		$W(7511) = 0;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_21)
+	*@ref(link_21):
+		Noah_01 @ignore, 23900
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 0;
+		$W(7511) = 0;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_22)
+	*@ref(link_22):
+		Noah_01 @ignore, 24000
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+
+@@ sch01_003a.scs
+		Noah_01 @ignore, 7400
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 800 * 3 / 50, 0
+		$W(7510) = 1;
+		$W(7511) = 3;
+		$W(7512) = 300;
+		CallFarRL 7, 119, @ref(link_3)
+	*@ref(link_3):
+		Noah_01 @ignore, 7500
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 600 * 3 / 50, 0
+		$W(7510) = 1;
+		$W(7511) = 3;
+		$W(7512) = 200;
+		CallFarRL 7, 119, @ref(link_4)
+	*@ref(link_4):
+		Noah_01 @ignore, 7600
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 400 * 3 / 50, 0
+		$W(7510) = 1;
+		$W(7511) = 3;
+		$W(7512) = 200;
+		CallFarRL 7, 119, @ref(link_5)
+	*@ref(link_5):
+		Noah_01 @ignore, 7700
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 300 * 3 / 50, 0
+		$W(7510) = 1;
+		$W(7511) = 3;
+		$W(7512) = 100;
+		CallFarRL 7, 119, @ref(link_6)
+	*@ref(link_6):
+		Noah_01 @ignore, 7800
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 200 * 3 / 50, 0
+		$W(7510) = 1;
+		$W(7511) = 3;
+		$W(7512) = 100;
+		CallFarRL 7, 119, @ref(link_7)
+	*@ref(link_7):
+		Noah_01 @ignore, 7900
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 1;
+		$W(7511) = 3;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_8)
+	*@ref(link_8):
+		Noah_01 @ignore, 8000
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 1;
+		$W(7511) = 3;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_9)
+	*@ref(link_9):
+		Noah_01 @ignore, 8100
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 1;
+		$W(7511) = 3;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_10)
+	*@ref(link_10):
+		Noah_01 @ignore, 8200
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 1;
+		$W(7511) = 3;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_11)
+	*@ref(link_11):
+		Noah_01 @ignore, 8300
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 1;
+		$W(7511) = 3;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_12)
+	*@ref(link_12):
+		Noah_01 @ignore, 8400
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 1;
+		$W(7511) = 3;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_13)
+	*@ref(link_13):
+		Noah_01 @ignore, 8500
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 1;
+		$W(7511) = 3;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_14)
+	*@ref(link_14):
+		Noah_01 @ignore, 8600
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 1;
+		$W(7511) = 3;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_15)
+	*@ref(link_15):
+		Noah_01 @ignore, 8700
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 1;
+		$W(7511) = 3;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_16)
+	*@ref(link_16):
+		Noah_01 @ignore, 8800
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 1;
+		$W(7511) = 3;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_17)
+	*@ref(link_17):
+		Noah_01 @ignore, 8900
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 1;
+		$W(7511) = 3;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_18)
+	*@ref(link_18):
+		Noah_01 @ignore, 9000
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 1;
+		$W(7511) = 3;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_19)
+	*@ref(link_19):
+		Noah_01 @ignore, 9100
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 1;
+		$W(7511) = 3;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_20)
+	*@ref(link_20):
+		Noah_01 @ignore, 9200
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 1;
+		$W(7511) = 3;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_21)
+	*@ref(link_21):
+		Noah_01 @ignore, 9300
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
+		$W(7510) = 1;
+		$W(7511) = 3;
+		$W(7512) = 0;
+		CallFarRL 7, 119, @ref(link_22)
+	*@ref(link_22):
+		Noah_01 @ignore, 9400
+-		Mwait 1000 * 3 / 50, 0
++		Mwait 100 * 3 / 50, 0
