@@ -1,0 +1,5 @@
+#Change config per language for nametags
+@@ _system.scs
+-	LoadPic 152, 2, 6
++   LoadPic 152, 2, ($W($$SW_LANGUAGE) == 1) * 6 + ($W($$SW_LANGUAGE) != 1) * 68
+	LoadPic 149, 2, 26
