@@ -1,0 +1,17 @@
+# JP nametag positioning
+@@ _system.scs
+	dw 0
+	dw 0
+	dw 136
+	dw 544
+	dw 3
+-	dw 0
++   dw 1000
+-	dw 200
++   dw -491
+-	dw 666
++   dw 505
+-	dw 20
++   dw 32
+-	dw 20
++   dw 32

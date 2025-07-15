@@ -27,6 +27,12 @@ class TranslationProcessor:
 				self.process_entry(script, index, text)
 
 	def process_entry(self, script: str, index: int, text: str) -> None:
+		language: int = 1
+
+		if script.endswith("_00") or script.endswith("_01"):
+			language = int(script[-2:])
+			script = script[:-3]
+
 		if "\\lineRemove;" in text:
 			if text != "\\lineRemove;":
 				raise Exception(f"invalid translation line: {text}")
@@ -35,7 +41,7 @@ class TranslationProcessor:
 			return
 		parts = text.split("\\lineAdd;")
 		if len(parts) < 2:
-			self.patcher.add_mst_line(script, 1, index, text)
+			self.patcher.add_mst_line(script, language, index, text)
 			return
 		if index >= 10_000_000:
 			raise Exception
@@ -43,11 +49,11 @@ class TranslationProcessor:
 			raise Exception
 		if len(parts) > 11:
 			raise Exception
-		self.patcher.add_mst_line(script, 1, index, parts[0])
+		self.patcher.add_mst_line(script, language, index, parts[0])
 		new_indices = []
 		for i, part in enumerate(parts[1:]):
 			new_index = 30_000_000 + index + i
-			self.patcher.add_mst_line(script, 1, new_index, part)
+			self.patcher.add_mst_line(script, language, new_index, part)
 			new_indices.append(new_index)
 		self.extend_mes(script, index, new_indices)
 
