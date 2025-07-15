@@ -3,3 +3,9 @@
 -	LoadPic 152, 2, 6
 +   LoadPic 152, 2, ($W($$SW_LANGUAGE) == 1) * 6 + ($W($$SW_LANGUAGE) != 1) * 68
 	LoadPic 149, 2, 26
+
+@@ _system.scs
+	FlagOnJump 2301, 51
+	SetFlag 2301
+-	LoadPic 152, 2, 6
++   LoadPic 152, 2, ($W($$SW_LANGUAGE) == 1) * 6 + ($W($$SW_LANGUAGE) != 1) * 68
