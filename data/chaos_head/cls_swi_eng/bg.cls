@@ -725,3 +725,4 @@ z_chiyologo.webp
 z_mageslogo.webp
 z_nitrologo.webp
 z_warning.webp
+tutorial.webp
