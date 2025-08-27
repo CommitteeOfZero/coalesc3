@@ -4,3 +4,6 @@
 [submodule "data/chaos_head/txt_eng"]
 	path = data/chaos_head/txt_eng
 	url = https://github.com/CommitteeOfZero/noah-textdumps.git
+[submodule "data/chaos_head_lcc/txt_eng"]
+	path = data/chaos_head_lcc/txt_eng
+	url = https://github.com/CommitteeOfZero/chlcc-scripts.git
