@@ -1,6 +1,6 @@
 from pathlib import Path
 import re
-from typing import Optional
+from typing import Optional, Callable, Literal
 
 from lib.config import (
 	PATCHSCS_PATH,
@@ -8,15 +8,15 @@ from lib.config import (
 from lib.utils import load_mst, save_mst, run_command
 
 class ScriptPatcher:
-	def __init__(self, scs_dir: Path, build_dir: Path, consts: dict[str, str], in_fmt: str, out_fmt: str, line_inc: int = 100):
-		self.scs_dir = scs_dir
-		self.build_dir = build_dir
-		self.consts = consts
-		self.in_fmt = in_fmt
-		self.out_fmt = out_fmt
-		self.line_inc = line_inc
-		self.scs_patches: list[(str, str)] = []
-		self.mst_patches: dict[str, dict[int, dict[int, str]]] = {}
+	def __init__(self, scs_dir: Path, build_dir: Path, consts: dict[str, str], in_fmt: Literal[".mst", ".sct"], out_fmt: Literal[".mst", ".sct"], line_inc: Literal[1, 100] = 100):
+		self.scs_dir     : Path = scs_dir
+		self.build_dir   : Path = build_dir
+		self.consts      : dict[str, str] = consts
+		self.in_fmt      : Literal[".mst", ".sct"] = in_fmt
+		self.out_fmt     : Literal[".mst", ".sct"] = out_fmt
+		self.line_inc    : Literal[1, 100] = line_inc
+		self.scs_patches : list[tuple[str, str]] = []
+		self.mst_patches : dict[str, dict[int, dict[int, str]]] = {}
 
 	def add_patch(self, key: str, text: str) -> None:
 		text = PatchPreprocessor(self, text).run()
@@ -59,8 +59,6 @@ class ScriptPatcher:
 						mst_path = self.scs_dir / f"mes{language:02}/{script}_{language:02}.mst"
 					case ".sct":
 						mst_path = self.scs_dir / f"{script}.sct"
-					case _:
-						raise Exception(f"Invalid out format \"{self.out_fmt}\"!")
 
 				entries = load_mst(mst_path, self.line_inc)
 
@@ -83,10 +81,10 @@ class ScriptPatcher:
 				entries.update(language_table)
 				save_mst(mst_path, entries)
 
-MACRO_TABLE = {}
+MACRO_TABLE : dict[str, Callable[["PatchPreprocessor", str], str]] = {}
 
-def macro(name: Optional[str]=None):
-	def inner(fn):
+def macro(name: Optional[str] = None):
+	def inner(fn: Callable[["PatchPreprocessor", str], str]):
 		actual_name = name
 		if actual_name is None:
 			actual_name = fn.__name__
@@ -163,18 +161,21 @@ class PatchPreprocessor:
 			raise Exception(f"unrecognized macro: {name}")
 		return handler(self, args)
 
-	def next_label(self) -> int:
+	def next_label(self) -> str:
+		assert(self.label_count != None)
 		result = self.label_count
 		self.label_count += 1
 		return f"@label(auto_{result})"
 
-	def next_ra(self) -> int:
+	def next_ra(self) -> str:
+		assert(self.ra_count != None)
 		result = self.ra_count
 		self.ra_count += 1
 		return f"@ra(auto_{result})"
 
 	@macro()
 	def Msb(self, args: str) -> str:
+		assert(self.name)
 		script = self.name.removesuffix(".scs")
 		language, index, text = args.split(":", 2)
 		language = int(language, 10)
@@ -184,8 +185,7 @@ class PatchPreprocessor:
 
 	@macro()
 	def CallFar(self, args: str) -> str:
-		args = [x.strip() for x in args.split(",")]
-		buffer, label = args
+		buffer, label = (x.strip() for x in args.split(","))
 		ra = self.next_ra()
 		return f"""
 	CallFarRL {buffer}, {label}, {ra}
@@ -230,7 +230,19 @@ class PatchPreprocessor:
 	MesSetMesMsb {vid}, {mes_id}
 	MesMain
 """
-
+	
+	@macro()
+	def MesScx(self, args: str) -> str:
+		vid, mes_id = [x.strip() for x in args.split(",")]
+		return f"""
+	MesSetSavePoint
+	MessWindowOpen
+	MessWindowOpenedWait
+	MesVoiceWait
+	MesSetMesScx {vid}, {mes_id}
+	MesMain
+"""
+		
 	@macro()
 	def MesMsb(self, args: str) -> str:
 		vid, mes_id = [x.strip() for x in args.split(",")]
@@ -444,7 +456,7 @@ class PatchPreprocessor:
 	@macro()
 	def LoadBgAlpha(self, args: str) -> str:
 		buf, bg, pri, x, y, alpha = [x.strip() for x in args.split(",")]
-		after = self.next_label()
+		self.next_label()
 		return f"""
 	/ReleaseBg {buf}
 	BGload 1 << ({buf}), {bg}

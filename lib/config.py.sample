@@ -19,3 +19,7 @@ WINDOWS_RESOURCES_PATH = {
     "chaos_head": Path("path/to/chaos_head/steam/Data"),
     "chaos_child": Path("path/to/chaos_child/steam/USRDIR")
 }
+
+PS3_RESOURCES_PATH = {
+    "chaos_head_LCC": Path("path/to/chaos_head/ps3/USRDIR")
+}

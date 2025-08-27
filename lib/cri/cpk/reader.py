@@ -1,7 +1,6 @@
 from dataclasses import dataclass
 from io import BytesIO
-import pprint
-from typing import BinaryIO
+from typing import BinaryIO, cast
 
 from lib.codecutils import (
     read_any_bytes,
@@ -45,25 +44,46 @@ class Reader:
 
         if header["ItocSize"] == 0:
             raise NotImplementedError
-        if header["EID"]:
-            raise NotImplementedError
-        [itoc] = self._read_span_table(
-            header["ItocOffset"], header["ItocSize"], b"ITOC"
-        ).rows
-        itoc_l = decode_table(itoc["DataL"])
-        itoc_h = decode_table(itoc["DataH"])
 
-        staging = []
-        for table in (itoc_l, itoc_h):
-            for row in table.rows:
-                staging.append(
-                    _StagingEntry(
-                        id_=row["ID"],
-                        encoded_size=row["FileSize"],
-                        size=row["ExtractSize"],
-                    ),
-                )
-        staging.sort(key=lambda x: x.id_)
+        staging : list[_StagingEntry] = []
+        match header["CpkMode"]:
+            case 0:
+                [itoc] = self._read_span_table(
+                    header["ItocOffset"], header["ItocSize"], b"ITOC"
+                ).rows
+                itoc_l = decode_table(itoc["DataL"])
+                itoc_h = decode_table(itoc["DataH"])
+
+                for table in (itoc_l, itoc_h):
+                    for row in table.rows:
+                        staging.append(
+                            _StagingEntry(
+                                id_ = row["ID"],
+                                encoded_size = row["FileSize"],
+                                size = row["ExtractSize"],
+                            )
+                        )
+
+                staging.sort(key = lambda x : x.id_)
+
+            case 2:
+                toc = self._read_span_table(header["TocOffset"], header["TocSize"], b"TOC ").rows
+                itoc = sorted(self._read_span_table(header["ItocOffset"], header["ItocSize"], b"ITOC").rows, key = lambda row : row["TocIndex"])
+
+                toc = tuple(zip(*sorted(zip(itoc, toc), key = lambda x : x[0]['ID'])))[1]
+
+                for i, row in enumerate(toc):
+                    staging.append(
+                        _StagingEntry(
+                            id_ = i,
+                            encoded_size = row["FileSize"],
+                            size = row["ExtractSize"]
+                        )
+                    )
+
+            case _:
+                raise NotImplementedError
+
 
         ranges: list[_Range] = []
         entries: list[Entry] = []

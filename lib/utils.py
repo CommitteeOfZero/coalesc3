@@ -1,12 +1,9 @@
-import array
 import os
 from pathlib import Path
 import shutil
 import subprocess
-import wave
 import yaml
 import re
-import glob
 
 from lib.config import (
 	MGSSCRIPTTOOLS_PATH,
@@ -23,47 +20,52 @@ def clean_tree(path: str) -> None:
 	if os.path.exists(path):
 		shutil.rmtree(path)
 
-def run_command(*args: list[str]) -> None:
+def run_command(*args: str | Path) -> None:
 	subprocess.run(args, check=True)
 
-def run_command_silent(*args: list[str]) -> None:
+def run_command_silent(args: list[str]) -> None:
 	process = subprocess.run(args, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 	if process.returncode != 0:
 		print(process.stdout.decode("utf-8", errors="replace"), end="")
 		print(process.stderr.decode("utf-8", errors="replace"), end="")
 	process.check_returncode()
 
-def save_text(path: str, text: str) -> None:
+def save_text(path: Path, text: str) -> None:
 	with open(path, "w", encoding="utf-8") as f:
 		f.write(text)
 
-def load_text(path: str) -> str:
+def load_text(path: Path) -> str:
 	with open(path, encoding="utf-8-sig") as f:
 		return f.read()
 
-def save_lines(path: str, lines: list[str]) -> None:
+def save_lines(path: Path, lines: list[str]) -> None:
 	text = "".join(f"{line}\n" for line in lines)
 	save_text(path, text)
 
-def load_lines(path: str) -> list[str]:
+def load_lines(path: Path) -> list[str]:
 	return load_text(path).splitlines()
 
-def load_cls(path: str) -> dict[int, str]:
+def load_cls(path: Path) -> dict[int, str]:
 	names = load_lines(path)
 	return { index: name for index, name in enumerate(names) }
 
-def save_mst(path: str, entries: dict[int, str]) -> None:
-	lines = (
-		f"{index}:{entries[index]}"
-		for index in sorted(entries.keys())
-	)
+def save_mst(path: Path, entries: dict[int, str]) -> None:
+	lines = [f"{index}:{entries[index]}" for index in sorted(entries.keys())]
 	save_lines(path, lines)
 
-def load_mst(path: str, line_inc: int = 100) -> dict[int, str]:
-	entries = {}
-	for num, line in enumerate(load_lines(path)):
-		entry: str
-		index: int
+def load_mst(path: Path, line_inc: int = 100, comments : list[str] = [], disable_italics : bool = False) -> dict[int, str]:
+	entries : dict[int, str] = {}
+
+	lines = load_lines(path)
+
+	if disable_italics:
+		for i in range(len(lines)):
+			for instance in re.finditer(r"<i>(.*?)</i>", lines[i]):
+				lines[i] = lines[i].replace(instance.group(), f"\\c:1;{ instance.groups()[0].replace("\\c:0;", "\\c:1;") }\\c:0;")
+
+	lines = filter(lambda line : not any(line.startswith(tag) for tag in comments), lines)
+
+	for num, line in enumerate(lines):
 		if not re.match(r"^[0-9]+:", line): index, entry = num * line_inc, line
 		else: index, entry = line.split(":", 1)
 		index = int(index)
@@ -72,10 +74,10 @@ def load_mst(path: str, line_inc: int = 100) -> dict[int, str]:
 		entries[index] = entry
 	return entries
 
-def load_yaml(path: str):
+def load_yaml(path: Path):
 	return yaml.safe_load(load_text(path))
 
-def pack_cpk(cpk_path: str, src_dir: Path, entries: dict[int, str]) -> None:
+def pack_cpk(cpk_path: Path, src_dir: Path, entries: dict[int, str]) -> None:
 	with open(cpk_path, "wb") as cpk_fp:
 		writer = CpkWriter(
 			cpk_fp,
@@ -90,7 +92,7 @@ def pack_cpk(cpk_path: str, src_dir: Path, entries: dict[int, str]) -> None:
 				writer.write_file(index, name, file_fp.read())
 		writer.close()
 
-def pack_mpk(mpk_path: str, src_dir: Path, entries: dict[int, str]):
+def pack_mpk(mpk_path: Path, src_dir: Path, entries: dict[int, str]):
 	run_command(
 		UNGELIFY_PATH,
 		"replace",

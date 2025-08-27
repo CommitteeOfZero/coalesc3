@@ -44,3 +44,18 @@ chaos_child:
     - _tips
     - _startup
     - zzz
+
+chaos_head_lcc:
+  platform:
+    ps3:
+      flag_set: chaos_head_lcc_ps3
+      charset: chaos_head_lcc-extended
+      in_fmt: .sct
+      out_fmt: .sct
+      line_inc: 1
+      archive: .cpk
+      langs:
+        - eng
+  comments:
+    - "//"
+    - "JP:"
