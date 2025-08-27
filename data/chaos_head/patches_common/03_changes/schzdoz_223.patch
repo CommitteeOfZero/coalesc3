@@ -10,7 +10,7 @@
 +       SystemMesInitTitle
 +       SystemMesSetMesMsb 0
 +       SystemMesSetMesMsb 2100
-+       SystemMesSetMesMsb 1100
++       SystemMesSetMesMsb 100
 +       SystemMesInit2 255
 +       SystemMesFadeIn
 +       SystemMesMain
