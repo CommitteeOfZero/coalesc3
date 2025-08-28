@@ -7,3 +7,6 @@
 [submodule "data/chaos_head_lcc/txt_eng"]
 	path = data/chaos_head_lcc/txt_eng
 	url = https://github.com/CommitteeOfZero/chlcc-scripts.git
+[submodule "data/chaos_child_lcc/txt_eng"]
+	path = data/chaos_child_lcc/txt_eng
+	url = https://github.com/CommitteeOfZero/cclcc-scripts.git
