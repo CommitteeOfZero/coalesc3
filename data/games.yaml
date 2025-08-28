@@ -54,8 +54,21 @@ chaos_head_lcc:
       out_fmt: .sct
       line_inc: 1
       archive: .cpk
+      save_type: ip
       langs:
         - eng
   comments:
     - "//"
     - "JP:"
+
+chaos_child_lcc:
+  platform:
+    ps4:
+      flag_set: chaos_child_lcc_ps4
+      charset: chaos_child_lcc-extended
+      in_fmt: .sct
+      out_fmt: .sct
+      line_inc: 1
+      save_type: ra
+      langs:
+        - eng

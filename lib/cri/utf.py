@@ -146,7 +146,7 @@ class _Writer:
         self._fp.seek(tmp)
 
     def _write_columns(self) -> None:
-        constants = []
+        constants : list[Any] = []
         for column in self._table.spec.columns:
             constant = None
             for row in self._table.rows:
@@ -275,7 +275,7 @@ class _Reader:
 
         self._read_columns()
         name = self._read_chars(self._name_offset)
-        rows = []
+        rows : list[dict[str, Any]] = []
         for _ in range(self._row_count):
             rows.append(self._read_row())
         return Table(
@@ -314,7 +314,7 @@ class _Reader:
         return Column(name, kind), constant
 
     def _read_row(self) -> dict[str, Any]:
-        row = {}
+        row : dict[str, Any] = {}
         for column, constant in zip(self._columns, self._constants):
             kind = column.kind
             value = constant
@@ -389,7 +389,7 @@ class _Storage(IntEnum):
         return f"{cls_name}.{self.name}"
 
 
-_default_values = {
+_default_values : dict[Kind, Any] = {
     Kind.U1: 0,
     Kind.S1: 0,
     Kind.U2: 0,

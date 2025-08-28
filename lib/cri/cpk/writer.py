@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 import os
-from typing import BinaryIO
+from typing import BinaryIO, Any
 
 from lib.codecutils import (
     write_bytes,
@@ -32,10 +32,10 @@ class Writer:
         self._fp = fp
         self._config = config
 
-        self._ids = set()
-        self._names = set()
+        self._ids : set[int] = set()
+        self._names : set[str] = set()
 
-        self._staging_toc = []
+        self._staging_toc : list[_StagingTocEntry] = []
         self._fp.seek(BODY_OFFSET)
         self._align()
         self._content_offset = self._fp.tell()
@@ -65,8 +65,8 @@ class Writer:
     def close(self) -> None:
         total_size = 0
         self._staging_toc.sort(key=lambda x: x.name)
-        staging_itoc = []
-        utf_toc = []
+        staging_itoc : list[_StagingItocEntry]= []
+        utf_toc : list[dict[str, Any]] = []
         for entry in self._staging_toc:
             total_size += entry.size
             staging_itoc.append(
@@ -88,7 +88,7 @@ class Writer:
             )
 
         staging_itoc.sort(key=lambda x: x.id_)
-        utf_itoc = []
+        utf_itoc : list[dict[str, Any]] = []
         for entry in staging_itoc:
             utf_itoc.append(
                 {

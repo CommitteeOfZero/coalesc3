@@ -8,7 +8,7 @@ from lib.config import (
 from lib.utils import load_mst, save_mst, run_command
 
 class ScriptPatcher:
-	def __init__(self, scs_dir: Path, build_dir: Path, consts: dict[str, str], in_fmt: Literal[".mst", ".sct"], out_fmt: Literal[".mst", ".sct"], line_inc: Literal[1, 100] = 100):
+	def __init__(self, scs_dir: Path, build_dir: Path, consts: dict[str, str], in_fmt: Literal[".mst", ".sct"], out_fmt: Literal[".mst", ".sct"], line_inc: Literal[1, 100] = 100, save_type: Literal["ip", "ra"] = "ra"):
 		self.scs_dir     : Path = scs_dir
 		self.build_dir   : Path = build_dir
 		self.consts      : dict[str, str] = consts
@@ -17,6 +17,7 @@ class ScriptPatcher:
 		self.line_inc    : Literal[1, 100] = line_inc
 		self.scs_patches : list[tuple[str, str]] = []
 		self.mst_patches : dict[str, dict[int, dict[int, str]]] = {}
+		self.save_type   : Literal["ip", "ra"] = save_type
 
 	def add_patch(self, key: str, text: str) -> None:
 		text = PatchPreprocessor(self, text).run()
@@ -232,10 +233,10 @@ class PatchPreprocessor:
 """
 	
 	@macro()
-	def MesScx(self, args: str) -> str:
-		vid, mes_id = [x.strip() for x in args.split(",")]
+	def MesScxRA(self, args: str) -> str:
+		ra, vid, mes_id = [x.strip() for x in args.split(",")]
 		return f"""
-	MesSetSavePoint
+	MesSetSavePointRL {ra}
 	MessWindowOpen
 	MessWindowOpenedWait
 	MesVoiceWait

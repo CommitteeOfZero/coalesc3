@@ -9,7 +9,8 @@ from lib.config import (
     SWITCH_ENG_RESOURCES_PATH,
 	SWITCH_JPN_RESOURCES_PATH,
 	WINDOWS_RESOURCES_PATH,
-	PS3_RESOURCES_PATH
+	PS3_RESOURCES_PATH,
+	PS4_RESOURCES_PATH
 )
 
 from lib.ScriptPatcher import ScriptPatcher
@@ -53,7 +54,7 @@ def main() -> None:
 	arg_parser.add_argument(
 		metavar="PLATFORM",
 		dest="platform",
-		choices=("switch", "windows", "ps3"),
+		choices=("switch", "windows", "ps3", "ps4"),
 		help="Platform to build patch for."
 	)
 
@@ -97,8 +98,11 @@ def main() -> None:
 					src_script_dir = SWITCH_JPN_RESOURCES_PATH[args.game] / "script"
 				case _:
 					raise Exception("Unsupported language.")
-		case "windows" | "ps3":
-			src_script_dir = src_dir / "script"
+		case "windows" | "ps3" | "ps4":
+			if spec[args.game]["platform"][args.platform].get("archive", None):
+				src_script_dir = src_dir / "script"
+			else:
+				src_script_dir = PS4_RESOURCES_PATH[args.game] / "script"
 		case _:
 			raise Exception("Unsupported platform.")
 
@@ -118,6 +122,8 @@ def main() -> None:
 				archive_path = WINDOWS_RESOURCES_PATH[args.game] / f"{ arc_name }{ archive_type }"
 			case "ps3":
 				archive_path = PS3_RESOURCES_PATH[args.game] / f"{ arc_name }{ archive_type }"
+			case "ps4":
+				archive_path = PS4_RESOURCES_PATH[args.game] / f"{ arc_name }{ archive_type }"
 			case _:
 				assert(False and "Unreachable")
 
@@ -161,12 +167,12 @@ def main() -> None:
 	
 	line_inc : Literal[1, 100] = spec[args.game]["platform"][args.platform].get("line_inc", 100)
 
-	if spec[args.game]["platform"][args.platform].get("archive", None) not in [".cpk", ".mpk"]:
+	if spec[args.game]["platform"][args.platform].get("archive", None) not in [".cpk", ".mpk", None]:
 		raise Exception("Unsupported archive format.")
 
 	archive : Literal[".cpk", ".mpk"] | None = spec[args.game]["platform"][args.platform].get("archive", None)
 
-	if args.platform in ["windows", "ps3"]:
+	if archive:
 		match archive:
 			case ".cpk":
 				unpack_archive(src_script_dir, "script")
@@ -175,8 +181,8 @@ def main() -> None:
 					unpack_archive(src_script_dir / "mes01", "mes01")
 			case ".mpk":
 				unpack_archive(src_script_dir, "script")
-			case None:
-				raise Exception("Missing archive format.")
+			case _:
+				assert_never(archive)
 
 	constants : dict[str, str] = load_yaml(data_dir / args.game / "consts.yaml") or dict()
 
@@ -187,7 +193,7 @@ def main() -> None:
 	if not raw_scs_dir.exists() or args.clean:
 		decompile_scripts(raw_scs_dir, src_script_dir, flag_set, spec[args.game]["platform"][args.platform]["charset"])
 
-	if (args.game == "chaos_head" and args.lang != "jpn"):
+	if args.game == "chaos_head" and args.lang != "jpn":
 		with open(raw_scs_dir / "schzdoz_223.scs", "w", encoding="utf-8") as f:
 			f.write("0:\n")
 		with open(raw_scs_dir / "schzdoz_223.sct", "w", encoding="utf-8") as f:
@@ -203,7 +209,8 @@ def main() -> None:
 		constants,
 		in_fmt,
 		out_fmt,
-		line_inc
+		line_inc,
+		spec[args.game]["platform"][args.platform].get("save_type", "ra")
 	)
 	
 	def load_patches(root: Path) -> None:
@@ -235,20 +242,19 @@ def main() -> None:
 
 	out_dir.mkdir(parents=True, exist_ok=True)
 
-	match args.platform:
-		case "switch":
-			shutil.copytree(dst_script_dir, out_dir / "script", dirs_exist_ok=True)
-		case "windows" | "ps3":
-			assert(archive)
-			match archive:
-				case ".cpk":
-					repack_archive("script", dst_script_dir)
-					if patcher.in_fmt == ".mst":
-						repack_archive("mes00", dst_script_dir / "mes00")
-						repack_archive("mes01", dst_script_dir / "mes01")
-				case ".mpk":
-					repack_archive("script", dst_script_dir)
-
+	if archive:
+		match archive:
+			case ".cpk":
+				repack_archive("script", dst_script_dir)
+				if patcher.in_fmt == ".mst":
+					repack_archive("mes00", dst_script_dir / "mes00")
+					repack_archive("mes01", dst_script_dir / "mes01")
+			case ".mpk":
+				repack_archive("script", dst_script_dir)
+			case _:
+				assert_never(archive)
+	else:
+		shutil.copytree(dst_script_dir, out_dir / "script", dirs_exist_ok=True)
 
 if __name__ == "__main__":
 	main()

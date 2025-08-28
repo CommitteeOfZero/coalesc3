@@ -21,5 +21,9 @@ WINDOWS_RESOURCES_PATH = {
 }
 
 PS3_RESOURCES_PATH = {
-    "chaos_head_LCC": Path("path/to/chaos_head/ps3/USRDIR")
+    "chaos_head_lcc": Path("path/to/chaos_head_lcc/ps3/USRDIR")
+}
+
+PS4_RESOURCES_PATH = {
+    "chaos_child_lcc": Path("path/to/chaos_child_lcc/ps4/USRDIR")
 }

@@ -5,6 +5,8 @@ from pathlib import Path
 from lib.ScriptPatcher import ScriptPatcher
 from lib.utils import load_mst
 
+from typing import assert_never
+
 class TranslationProcessor:
 	def __init__(self, patcher: ScriptPatcher, prefix: str, text_dir: Path, game: str, platform: str, versioned: list[str], comments: list[str]):
 		self.patcher = patcher
@@ -20,7 +22,9 @@ class TranslationProcessor:
 			if any(os.path.basename(name).startswith(stem) for stem in self.versioned) and not os.path.basename(name).endswith(f"_{ self.platform[:3] }{ self.patcher.in_fmt }"):
 				continue
 			script = os.path.basename(name).removesuffix(self.patcher.in_fmt)
-			if self.game != "chaos_child" or self.platform != "windows" or os.path.basename(name) != "_startup_win.sct":
+			if self.game not in ["chaos_child", "chaos_child_lcc"] or \
+			   self.platform not in ["windows", "ps4"] or \
+			   os.path.basename(name) not in ["_startup_win.sct", "_startup_ps4.sct", "_Startup_PSV.sct"]:
 				script = script.removesuffix(f"_{self.platform[:3]}")
 
 			entries = load_mst(self.text_dir / name, self.patcher.line_inc, self.comments, self.game == "chaos_head_lcc")
@@ -81,34 +85,40 @@ class TranslationProcessor:
 	def extend_mes(self, script: str, index: int, new_indices: list[int]):
 		patch = ""
 
-		match self.patcher.in_fmt:
-			case ".mst":
+		match self.patcher.save_type:
+			case "ra":
 				patch += f"""@@ {script}.scs
 +\t\t$W($$COZ_SAVEPOINT) = 0;
 \t*@ref(ra):
-+\t\tIf $W($$SW_LANGUAGE) != 1, @label(start)
-"""
+{ "+\t\tIf $W($$SW_LANGUAGE) != 1, @label(start)\n" if self.patcher.out_fmt == ".mst" else "" }"""
 
 				for new_index in new_indices:
 					patch += f"""+\t\tIf $W($$COZ_SAVEPOINT) == {new_index}, @label(_{new_index})
 """
 
+				insts : tuple[str, str]
+				match self.patcher.out_fmt:
+					case ".mst": insts = ("MesSetMesMsb", "/MesMsbRA")
+					case ".sct": insts = ("MesSetMesScx", "/MesScxRA")
+					
 				patch += f"""+\t@label(start):
 \t\tMesSetSavePointRL @ref(ra)
 \t\tMessWindowOpen
 \t\tMessWindowOpenedWait
 \t\tMesVoiceWait
-\t\tMesSetMesMsb 0, {index}
+\t\t{insts[0]} 0, {index}
 \t\tMesMain
-+\t\tIf $W($$SW_LANGUAGE) != 1, @label(end)
-"""
+{ "+\t\tIf $W($$SW_LANGUAGE) != 1, @label(end)" if self.patcher.out_fmt == ".mst" else "" }"""
 
 				for new_index in new_indices:
 					patch += f"""+\t\t$W($$COZ_SAVEPOINT) = {new_index};
 +\t@label(_{new_index}):
-+\t\t/MesMsbRA @ref(ra), 0, {new_index}
++\t\t{insts[1]} @ref(ra), 0, {new_index}
 """
-			case ".sct":
+				patch += f"""+\t@label(end):
+"""
+				
+			case "ip":
 				patch += f"""@@ {script}.scs
 \t\tMesSetSavePoint
 \t\tMessWindowOpen
@@ -118,8 +128,10 @@ class TranslationProcessor:
 \t\tMesMain
 """
 				for new_index in new_indices:
-					patch += f"""+\t/MesScx 0, {new_index}
-"""
+					patch += f"+\t/MesScx 0, {new_index}\n"
+
+			case _:
+				assert_never(self.patcher.save_type)
 
 		key = f"{self.prefix}{script}:{index}"
 		self.patcher.add_patch(key, patch)

@@ -1,6 +1,6 @@
 from dataclasses import dataclass
 from io import BytesIO
-from typing import BinaryIO, cast
+from typing import BinaryIO
 
 from lib.codecutils import (
     read_any_bytes,
