@@ -254,6 +254,18 @@ class PatchPreprocessor:
 """
 
 	@macro()
+	def MesScx(self, args: str) -> str:
+		vid, mes_id = [x.strip() for x in args.split(",")]
+		return f"""
+	MesSetSavePoint
+	MessWindowOpen
+	MessWindowOpenedWait
+	MesVoiceWait
+	MesSetMesScx {vid}, {mes_id}
+	MesMain
+"""
+
+	@macro()
 	def Mes2VMsbRA(self, args: str) -> str:
 		ra, voice, anim, vid, mes_id = [x.strip() for x in args.split(",")]
 		return f"""
