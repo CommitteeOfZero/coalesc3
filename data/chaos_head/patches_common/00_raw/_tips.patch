@@ -3274,9 +3274,9 @@
 +		StringID 84000
 +		StringID 84100
 +		dw 1
-+       StringId 84200
-+       StringId 84300
-+       StringId 84400
-+       StringId 84500
-+       StringId 84600
++       StringID 84200
++       StringID 84300
++       StringID 84400
++       StringID 84500
++       StringID 84600
 +       dw 255

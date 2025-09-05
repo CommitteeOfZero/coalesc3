@@ -108,7 +108,7 @@ class TranslationProcessor:
 \t\tMesVoiceWait
 \t\t{insts[0]} 0, {index}
 \t\tMesMain
-{ "+\t\tIf $W($$SW_LANGUAGE) != 1, @label(end)" if self.patcher.out_fmt == ".mst" else "" }"""
+{ "+\t\tIf $W($$SW_LANGUAGE) != 1, @label(end)\n" if self.patcher.out_fmt == ".mst" else "" }"""
 
 				for new_index in new_indices:
 					patch += f"""+\t\t$W($$COZ_SAVEPOINT) = {new_index};
