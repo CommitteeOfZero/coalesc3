@@ -5,6 +5,8 @@ import subprocess
 import yaml
 import re
 
+from typing import Callable, assert_never
+
 from lib.config import (
 	MGSSCRIPTTOOLS_PATH,
 	UNGELIFY_PATH,
@@ -15,6 +17,7 @@ from lib.cri.cpk.writer import (
 	Writer as CpkWriter,
 )
 from lib.cri.cpk.reader import Reader as CpkReader
+from lib.types import BuildInfo, ArchiveFormat, ScriptFormat
 
 def clean_tree(path: str) -> None:
 	if os.path.exists(path):
@@ -145,3 +148,47 @@ def decompile_scripts(dst_dir: Path, src_dir: Path, flag_set: str, charset: str)
 		"--compiled-directory", src_dir,
 	)
 
+def get_custom_cls_loader(partial : Path) -> Callable[[str], dict[int, str]]:
+	def inner(name: str) -> dict[int, str]:
+		return load_cls(partial / f"{ name }.cls")
+	return inner
+
+def get_archive_unpacker(src_script_dir : Path, custom_cls_loader : Callable[[str], dict[int, str]], build_info : BuildInfo) -> Callable[[Path, str], None]:
+	def inner(dst_dir: Path, arc_name: str) -> None:
+		if os.path.exists(dst_dir) and not build_info.clean: return
+
+		archive_path : Path = src_script_dir / f"{ arc_name }{ build_info.archive }"
+		entries = custom_cls_loader(arc_name)
+
+		match build_info.archive:
+			case ArchiveFormat.MPK:
+				unpack_mpk(dst_dir, archive_path, entries)
+			case ArchiveFormat.CPK:
+				unpack_cpk(dst_dir, archive_path, entries)
+				if build_info.in_fmt != ScriptFormat.MST or arc_name != "script": return
+
+				for lang in build_info.langs:
+					unpack_cpk(dst_dir / f"mes{+lang:02}", src_script_dir / f"mes{+lang:02}.cpk", custom_cls_loader(f"mes{+lang:02}"))
+			case None:
+				assert False, "Unreachable"
+			case _:
+				assert_never(build_info.archive)
+	return inner
+
+def get_archive_repacker(src_script_dir : Path, out_dir : Path, custom_cls_loader : Callable[[str], dict[int, str]], build_info : BuildInfo) -> Callable[[str, Path], None]:
+	def inner(arc_name: str, src_dir: Path) -> None:
+		match build_info.archive:
+			case ArchiveFormat.MPK:
+				run_command("cp", src_script_dir / "script.mpk", out_dir / "enscript.mpk")
+				pack_mpk(out_dir / f"enscript.mpk", src_dir, custom_cls_loader(arc_name))
+			case ArchiveFormat.CPK:
+				pack_cpk(out_dir / f"c0{ arc_name }.cpk", src_dir, custom_cls_loader(arc_name))
+				if build_info.in_fmt != ScriptFormat.MST or arc_name != "script": return
+
+				for lang in build_info.langs :
+					pack_cpk(out_dir / f"mes{+lang:02}.cpk", src_dir / f"mes{+lang:02}", custom_cls_loader(f"mes{+lang:02}"))
+			case None:
+				assert False, "Unreachable"
+			case _:
+				assert_never(build_info.archive)
+	return inner

@@ -46,10 +46,13 @@ class ArgumentParserHandler:
         
         platform_spec = get_platform_spec(spec[args.game]["platforms"], args.platform)
 
-        if args.lang == "all" and not platform_spec["multilang"]:
+        if args.lang != "all" and platform_spec["multilang"]:
             raise ArgumentError(None, f"Game '{ args.game }' for platform '{ args.platform }' only supports the 'all' language option.")
         
-        if args.lang not in platform_spec["langs"]:
+        if args.lang == "all" and not platform_spec["multilang"]:
+            raise ArgumentError(None, f"Game '{ args.game }' for platform '{ args.platform }' does not support multilanguage building.")
+
+        if args.lang != "all" and args.lang not in platform_spec["langs"]:
             raise ArgumentError(None, f"Game '{ args.game }' for platform '{ args.platform }' doesn't support language '{ args.lang }'.")
 
         return args
