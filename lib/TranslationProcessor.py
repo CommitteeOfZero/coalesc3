@@ -4,6 +4,7 @@ from pathlib import Path
 
 from lib.ScriptPatcher import ScriptPatcher
 from lib.utils import load_mst
+from lib.types import SaveMethod, ScriptFormat
 
 from typing import assert_never
 
@@ -19,22 +20,22 @@ class TranslationProcessor:
 
 	def run(self) -> None:
 		for name in glob.glob(f"**/*{ self.patcher.in_fmt }", root_dir=self.text_dir, recursive=True):
-			if any(os.path.basename(name).startswith(stem) for stem in self.versioned) and not os.path.basename(name).endswith(f"_{ self.platform[:3] }{ self.patcher.in_fmt }"):
+			if any(os.path.basename(name).startswith(stem) for stem in self.versioned) and not os.path.basename(name).endswith(f"_{ self.platform }{ self.patcher.in_fmt }"):
 				continue
-			script = os.path.basename(name).removesuffix(self.patcher.in_fmt)
+			script = os.path.basename(name).removesuffix(str(self.patcher.in_fmt))
 			if self.game not in ["chaos_child", "chaos_child_lcc"] or \
 			   self.platform not in ["windows", "ps4"] or \
 			   os.path.basename(name) not in ["_startup_win.sct", "_startup_ps4.sct", "_Startup_PSV.sct"]:
-				script = script.removesuffix(f"_{self.platform[:3]}")
+				script = script.removesuffix(f"_{self.platform}")
 
-			entries = load_mst(self.text_dir / name, self.patcher.line_inc, self.comments, self.game == "chaos_head_lcc")
+			entries = load_mst(self.text_dir / name, self.patcher.line_inc, self.comments)
 			for index, text in entries.items():
 				self.process_entry(script, index, text, len(entries))
 
 	def process_entry(self, script: str, index: int, text: str, num_entries: int) -> None:
 		language: int = 1
 
-		if self.patcher.in_fmt == ".mst" and (script.endswith("_00") or script.endswith("_01")):
+		if self.patcher.in_fmt == ScriptFormat.MST and (script.endswith("_00") or script.endswith("_01")):
 			language = int(script[-2:])
 			script = script[:-3]
 
@@ -62,6 +63,8 @@ class TranslationProcessor:
 					new_index = num_entries + len(self.patcher.mst_patches[script][language]) - index - 1
 				case 100:
 					new_index = 30_000_000 + index + i
+				case _:
+					assert_never(self.patcher.line_inc)
 			
 			self.patcher.add_mst_line(script, language, new_index, part)
 			new_indices.append(new_index)
@@ -86,11 +89,11 @@ class TranslationProcessor:
 		patch = ""
 
 		match self.patcher.save_type:
-			case "ra":
+			case SaveMethod.RA:
 				patch += f"""@@ {script}.scs
 +\t\t$W($$COZ_SAVEPOINT) = 0;
 \t*@ref(ra):
-{ "+\t\tIf $W($$SW_LANGUAGE) != 1, @label(start)\n" if self.patcher.out_fmt == ".mst" else "" }"""
+{ "+\t\tIf $W($$SW_LANGUAGE) != 1, @label(start)\n" if self.patcher.out_fmt == ScriptFormat.MST else "" }"""
 
 				for new_index in new_indices:
 					patch += f"""+\t\tIf $W($$COZ_SAVEPOINT) == {new_index}, @label(_{new_index})
@@ -98,8 +101,8 @@ class TranslationProcessor:
 
 				insts : tuple[str, str]
 				match self.patcher.out_fmt:
-					case ".mst": insts = ("MesSetMesMsb", "/MesMsbRA")
-					case ".sct": insts = ("MesSetMesScx", "/MesScxRA")
+					case ScriptFormat.MST: insts = ("MesSetMesMsb", "/MesMsbRA")
+					case ScriptFormat.SCT: insts = ("MesSetMesScx", "/MesScxRA")
 					
 				patch += f"""+\t@label(start):
 \t\tMesSetSavePointRL @ref(ra)
@@ -108,7 +111,7 @@ class TranslationProcessor:
 \t\tMesVoiceWait
 \t\t{insts[0]} 0, {index}
 \t\tMesMain
-{ "+\t\tIf $W($$SW_LANGUAGE) != 1, @label(end)\n" if self.patcher.out_fmt == ".mst" else "" }"""
+{ "+\t\tIf $W($$SW_LANGUAGE) != 1, @label(end)\n" if self.patcher.out_fmt == ScriptFormat.MST else "" }"""
 
 				for new_index in new_indices:
 					patch += f"""+\t\t$W($$COZ_SAVEPOINT) = {new_index};
@@ -118,7 +121,7 @@ class TranslationProcessor:
 				patch += f"""+\t@label(end):
 """
 				
-			case "ip":
+			case SaveMethod.IP:
 				patch += f"""@@ {script}.scs
 \t\tMesSetSavePoint
 \t\tMessWindowOpen

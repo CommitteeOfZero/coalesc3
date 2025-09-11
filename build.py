@@ -1,17 +1,11 @@
 import glob, shutil, os
+import sys
 
-from argparse import ArgumentParser
 from pathlib import Path
 
-from typing import Literal, assert_never
+from typing import assert_never
 
-from lib.config import (
-    SWITCH_ENG_RESOURCES_PATH,
-	SWITCH_JPN_RESOURCES_PATH,
-	WINDOWS_RESOURCES_PATH,
-	PS3_RESOURCES_PATH,
-	PS4_RESOURCES_PATH
-)
+from lib.config import RESOURCES_PATH
 
 from lib.ScriptPatcher import ScriptPatcher
 from lib.TranslationProcessor import TranslationProcessor
@@ -28,172 +22,93 @@ from lib.utils import (
 	decompile_scripts,
 )
 
+from lib.schema import YAML_SCHEMA
+from lib.args import ArgumentParserHandler
+from lib.types import BuildInfo, ArchiveFormat, ScriptFormat, Language
+
 def main() -> None:
 	data_dir = Path("data")
 
-	spec = load_yaml(data_dir / "games.yaml")
+	_spec = YAML_SCHEMA.validate(load_yaml(data_dir / "games.yaml"))
+	_args = ArgumentParserHandler().validate_against_spec(_spec)
 
-	arg_parser = ArgumentParser()
+	build_info = BuildInfo.from_validated(_spec, _args)
 
-	arg_parser.add_argument(
-		"--clean",
-		action="store_const",
-		const=True,
-		dest="clean",
-		default=False,
-		help="Clear cache and build from scratch."
-	)
+	lang_suffix = "" if build_info.selected == "all" else f"_{ build_info.selected }"
 
-	arg_parser.add_argument(
-		metavar="GAME",
-		dest="game",
-		choices=spec.keys(),
-		help="Game to build patch for."
-	)
+	build_dir = Path(f"build/{ build_info.game }/{ build_info.platform }{ lang_suffix }")
+	out_dir = Path(f"out/{ build_info.game }/{ build_info.platform }{ lang_suffix }")
 
-	arg_parser.add_argument(
-		metavar="PLATFORM",
-		dest="platform",
-		choices=("switch", "windows", "ps3", "ps4"),
-		help="Platform to build patch for."
-	)
-
-	arg_parser.add_argument(
-		metavar="LANG",
-		dest="lang",
-		choices=("eng", "jpn", "all"),
-		help="Language to build patch for."
-	)
-
-	args = arg_parser.parse_args()
-
-	if spec[args.game]["platform"][args.platform].get("multilang", False) and args.lang != "all":
-		print(f"Error: Game '{ args.game }' for platform '{ args.platform }' only supports 'all' language option.")
-		return
-	if not spec[args.game]["platform"][args.platform].get("multilang", False) and args.lang == "all":
-		print(f"Error: Game '{ args.game }' for platform '{ args.platform }' doesn't support multilanguage building.")
-		return
-	if args.lang not in spec[args.game]["platform"][args.platform].get("langs", []):
-		print(f"Error: Game '{ args.game }' for platform '{ args.platform }' doesn't support language '{ args.lang }'.")
-		return
-
-	flag_set = spec[args.game]["platform"][args.platform]["flag_set"]
-
-	lang_suffix = "" if spec[args.game]["platform"][args.platform].get("multilang", False) else f"_{ args.lang }"
-
-	build_dir = Path(f"build/{ args.game }/{ args.platform }{ lang_suffix }")
-	out_dir = Path(f"out/{ args.game }/{ args.platform }{ lang_suffix }")
-
-	src_dir = build_dir / "src"
 	dst_dir = build_dir / "dst"
 
 	src_script_dir: Path 
 
-	match args.platform:
-		case "switch":
-			match args.lang:
-				case "eng":
-					src_script_dir = SWITCH_ENG_RESOURCES_PATH[args.game] / "script"
-				case "jpn":
-					src_script_dir = SWITCH_JPN_RESOURCES_PATH[args.game] / "script"
-				case _:
-					raise Exception("Unsupported language.")
-		case "windows" | "ps3" | "ps4":
-			if spec[args.game]["platform"][args.platform].get("archive", None):
-				src_script_dir = src_dir / "script"
-			else:
-				src_script_dir = PS4_RESOURCES_PATH[args.game] / "script"
-		case _:
-			raise Exception("Unsupported platform.")
+	try:
+		match RESOURCES_PATH[build_info.game][build_info.platform]:
+			case Path() as path:
+				if build_info.selected != "all":
+					raise TypeError(f"Expected 'dict[Language, Path]' for game '{ build_info.game }', platform '{ build_info.platform }', language '{ build_info.selected } config, got 'Path' instead")
+				src_script_dir = path
+			case dict() as lang_dict:
+				if build_info.selected == "all":
+					raise TypeError(f"Expected 'Path' for game '{ build_info.game }', platform '{ build_info.platform }', language '{ build_info.selected } config, got 'dict[Language, Path]' instead")
+				src_script_dir = lang_dict[build_info.selected]
+	except TypeError as err:
+		print(f"[ERROR]\t { err = }")
+		sys.exit(1)
 
 	raw_scs_dir = build_dir / "scs"
 	patch_scs_dir = build_dir / "scs-patched"
 	dst_script_dir = dst_dir / "script"
 
 	def load_custom_cls(name: str) -> dict[int, str]:
-		return load_cls(data_dir / args.game / f"cls_{ args.platform[:3] }{ lang_suffix }/{name}.cls")
+		return load_cls(data_dir / build_info.game / f"cls_{ build_info.platform }{ lang_suffix }" / f"{ name }.cls")
 
-	def unpack_archive(dst_dir: Path, arc_name: str) -> None:
-		archive_type : Literal[".mpk", ".cpk"] = spec[args.game]["platform"][args.platform]["archive"]
-		archive_path : Path
+	def unpack_archive(dst_dir: Path, arc_name: str, build_info : BuildInfo) -> None:
+		if os.path.exists(dst_dir) and not build_info.clean: return
 
-		match args.platform:
-			case "windows":
-				archive_path = WINDOWS_RESOURCES_PATH[args.game] / f"{ arc_name }{ archive_type }"
-			case "ps3":
-				archive_path = PS3_RESOURCES_PATH[args.game] / f"{ arc_name }{ archive_type }"
-			case "ps4":
-				archive_path = PS4_RESOURCES_PATH[args.game] / f"{ arc_name }{ archive_type }"
-			case _:
-				assert(False and "Unreachable")
-
+		archive_path : Path = src_script_dir / f"{ arc_name }{ build_info.archive }"
 		entries = load_custom_cls(arc_name)
-		if os.path.exists(dst_dir) and not args.clean: return
-		match archive_type:
-			case ".mpk":
-				unpack_mpk(dst_dir, str(archive_path), entries)
-			case ".cpk":
-				unpack_cpk(dst_dir, str(archive_path), entries)
-			case _:
-				assert_never(archive_type)
 
-	def repack_archive(arc_name: str, src_dir: Path) -> None:
-		archive_type : Literal[".mpk", ".cpk"] = spec[args.game]["platform"][args.platform]["archive"]
-		match archive_type:
-			case ".mpk":
-				run_command("cp", WINDOWS_RESOURCES_PATH[args.game] / "script.mpk", out_dir / "enscript.mpk")
+		match build_info.archive:
+			case ArchiveFormat.MPK:
+				unpack_mpk(dst_dir, archive_path, entries)
+				if build_info.in_fmt != ScriptFormat.MST: return
+
+				for lang in build_info.langs:
+					unpack_mpk(dst_dir, src_script_dir / f"mes{ +lang:02 }", load_custom_cls(f"mes{ +lang:02 }"))
+			case ArchiveFormat.CPK:
+				unpack_cpk(dst_dir, archive_path, entries)
+			case None:
+				assert False, "Unreachable"
+			case _:
+				assert_never(build_info.archive)
+
+	def repack_archive(arc_name: str, src_dir: Path, build_info : BuildInfo) -> None:
+		match build_info.archive:
+			case ArchiveFormat.MPK:
+				run_command("cp", src_script_dir / "script.mpk", out_dir / "enscript.mpk")
 				pack_mpk(out_dir / f"enscript.mpk", src_dir, load_custom_cls(arc_name))
-			case ".cpk":
+			case ArchiveFormat.CPK:
 				pack_cpk(out_dir / f"c0{ arc_name }.cpk", src_dir, load_custom_cls(arc_name))
+			case None:
+				assert False, "Unreachable"
 			case _:
-				assert_never(archive_type)
+				assert_never(build_info.archive)
 
-	if not spec[args.game]["platform"][args.platform].get("in_fmt", None):
-		raise Exception("Missing script format.")
-	if spec[args.game]["platform"][args.platform]["in_fmt"] not in [".mst", ".sct"]:
-		raise Exception("Unsupported script format.")
-	
-	in_fmt : Literal[".mst", ".sct"] = spec[args.game]["platform"][args.platform]["in_fmt"]
 
-	if not spec[args.game]["platform"][args.platform].get("out_fmt", None):
-		raise Exception("Missing script format.")
-	if spec[args.game]["platform"][args.platform]["out_fmt"] not in [".mst", ".sct"]:
-		raise Exception("Unsupported script format.")
+	if build_info.archive: unpack_archive(src_script_dir, "script", build_info)
 
-	out_fmt : Literal[".mst", ".sct"] = spec[args.game]["platform"][args.platform]["out_fmt"]
-
-	if spec[args.game]["platform"][args.platform].get("line_inc", 100) not in [1, 100]:
-		raise Exception(f"\"line_inc\" must be one of: [1, 100]")
-	
-	line_inc : Literal[1, 100] = spec[args.game]["platform"][args.platform].get("line_inc", 100)
-
-	if spec[args.game]["platform"][args.platform].get("archive", None) not in [".cpk", ".mpk", None]:
-		raise Exception("Unsupported archive format.")
-
-	archive : Literal[".cpk", ".mpk"] | None = spec[args.game]["platform"][args.platform].get("archive", None)
-
-	if archive:
-		match archive:
-			case ".cpk":
-				unpack_archive(src_script_dir, "script")
-				if in_fmt == ".mst":
-					unpack_archive(src_script_dir / "mes00", "mes00")
-					unpack_archive(src_script_dir / "mes01", "mes01")
-			case ".mpk":
-				unpack_archive(src_script_dir, "script")
-			case _:
-				assert_never(archive)
-
-	constants : dict[str, str] = load_yaml(data_dir / args.game / "consts.yaml") or dict()
+	constants : dict[str, str] = load_yaml(data_dir / build_info.game / "consts.yaml") or dict()
 
 	for arc_name in ["bg", "bgm", "mask", "movie", "script", "se", "voice"]:
 		for index, name in load_custom_cls(arc_name).items():
 			constants[name.split(".", 1)[0]] = str(index)
 
-	if not raw_scs_dir.exists() or args.clean:
-		decompile_scripts(raw_scs_dir, src_script_dir, flag_set, spec[args.game]["platform"][args.platform]["charset"])
+	if not raw_scs_dir.exists() or build_info.clean:
+		decompile_scripts(raw_scs_dir, src_script_dir, build_info.flag_set, build_info.charset)
 
-	if args.game == "chaos_head" and args.lang != "jpn":
+	if build_info.game == "chaos_head" and build_info.selected != Language.JAPANESE:
 		with open(raw_scs_dir / "schzdoz_223.scs", "w", encoding="utf-8") as f:
 			f.write("0:\n")
 		with open(raw_scs_dir / "schzdoz_223.sct", "w", encoding="utf-8") as f:
@@ -207,10 +122,10 @@ def main() -> None:
 		patch_scs_dir,
 		build_dir,
 		constants,
-		in_fmt,
-		out_fmt,
-		line_inc,
-		spec[args.game]["platform"][args.platform].get("save_type", "ra")
+		build_info.in_fmt,
+		build_info.out_fmt,
+		build_info.line_inc,
+		build_info.save_method
 	)
 	
 	def load_patches(root: Path) -> None:
@@ -219,42 +134,41 @@ def main() -> None:
 			text = load_text(root / name)
 			patcher.add_patch(name, text)
 
-	if args.lang != "jpn":
-		load_patches(data_dir / args.game / "patches_common")
+	if build_info.selected != Language.JAPANESE:
+		load_patches(data_dir / build_info.game / "patches_common")
 	
-	load_patches(data_dir / args.game / f"patches_{ args.platform[:3] }{ lang_suffix }")
+	load_patches(data_dir / build_info.game / f"patches_{ build_info.platform }{ lang_suffix }")
 
-	if args.lang == "eng" or spec[args.game]["platform"][args.platform].get("multilang", False):
-		txt_dir = data_dir / args.game / "txt_eng"
+	if build_info.selected != Language.JAPANESE or build_info.selected == "all":
+		txt_dir = data_dir / build_info.game / "txt_eng"
 		TranslationProcessor(
 			patcher,
 			"10_translation/",
 			txt_dir,
-			args.game,
-			args.platform,
-			spec[args.game].get("versioned", []),
-			spec[args.game].get("comments", [])
+			build_info.game,
+			build_info.platform,
+			build_info.versioned,
+			build_info.comments
 		).run()
 
 	patcher.run()
 
-	compile_scripts(dst_script_dir, patch_scs_dir, flag_set, spec[args.game]["platform"][args.platform]["charset"])
+	compile_scripts(dst_script_dir, patch_scs_dir, build_info.flag_set, build_info.charset)
 
 	out_dir.mkdir(parents=True, exist_ok=True)
 
-	if archive:
-		match archive:
-			case ".cpk":
-				repack_archive("script", dst_script_dir)
-				if patcher.in_fmt == ".mst":
-					repack_archive("mes00", dst_script_dir / "mes00")
-					repack_archive("mes01", dst_script_dir / "mes01")
-			case ".mpk":
-				repack_archive("script", dst_script_dir)
-			case _:
-				assert_never(archive)
-	else:
-		shutil.copytree(dst_script_dir, out_dir / "script", dirs_exist_ok=True)
+	match build_info.archive:
+		case ArchiveFormat.CPK:
+			repack_archive("script", dst_script_dir, build_info)
+			if patcher.in_fmt == ".mst":
+				repack_archive("mes00", dst_script_dir / "mes00", build_info)
+				repack_archive("mes01", dst_script_dir / "mes01", build_info)
+		case ArchiveFormat.MPK:
+			repack_archive("script", dst_script_dir, build_info)
+		case None:
+			shutil.copytree(dst_script_dir, out_dir / "script", dirs_exist_ok=True)
+		case _:
+			assert_never(build_info.archive)
 
 if __name__ == "__main__":
 	main()

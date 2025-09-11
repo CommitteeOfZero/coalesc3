@@ -1,29 +1,39 @@
 from pathlib import Path
+from lib.types import SupportedGame, Language
 
-MGSSCRIPTTOOLS_PATH = "path/to/MagesScriptTool.exe"
-PATCHSCS_PATH = "path/to/PatchScs.exe"
-UNGELIFY_PATH = "path/to/ungelify.exe"
+from typing import Final
 
-BANK_PATH = "path/to/mgs-spec-bank"
+MGSSCRIPTTOOLS_PATH : Final = Path("path/to/MagesScriptTool.exe")
+PATCHSCS_PATH : Final = Path("path/to/PatchScs.exe")
+UNGELIFY_PATH : Final = Path("path/to/ungelify.exe")
 
-SWITCH_JPN_RESOURCES_PATH = {
-    "chaos_head": Path("path/to/chaos_head/jpn/romfs")
-}
+BANK_PATH : Final = Path("path/to/mgs-spec-bank")
 
-SWITCH_ENG_RESOURCES_PATH = {
-    "chaos_head": Path("path/to/chaos_head/eng/romfs"),
-    "chaos_child": Path("path/to/chaos_child/eng/romfs")
-}
-
-WINDOWS_RESOURCES_PATH = {
-    "chaos_head": Path("path/to/chaos_head/steam/Data"),
-    "chaos_child": Path("path/to/chaos_child/steam/USRDIR")
-}
-
-PS3_RESOURCES_PATH = {
-    "chaos_head_lcc": Path("path/to/chaos_head_lcc/ps3/USRDIR")
-}
-
-PS4_RESOURCES_PATH = {
-    "chaos_child_lcc": Path("path/to/chaos_child_lcc/ps4/USRDIR")
+RESOURCES_PATH : Final[dict[SupportedGame, dict[str, Path | dict[Language, Path]]]] = {
+    SupportedGame.CHAOS_HEAD : {
+        "switch" : {
+            Language.JAPANESE : Path("path/to/chaos_head/jpn/romfs"),
+            Language.ENGLISH : Path("path/to/chaos_head/eng/romfs")
+        },
+        # Multilang
+        "windows" : Path("path/to/chaos_head/steam/Data")
+    },
+    SupportedGame.CHAOS_CHILD : {
+        "switch": {
+            Language.ENGLISH : Path("path/to/chaos_child/eng/romfs")
+        },
+        "windows": {
+            Language.ENGLISH : Path("path/to/chaos_child/steam/USRDIR")
+        }
+    },
+    SupportedGame.CHAOS_HEAD_LCC : {
+        "ps3" : {
+            Language.ENGLISH : Path("path/to/chaos_head_lcc/ps3/USRDIR")
+        },
+    },
+    SupportedGame.CHAOS_CHILD_LCC : {
+        "ps4" : {
+            Language.ENGLISH : Path("path/to/chaos_child_lcc/ps4/USRDIR")
+        }
+    }
 }

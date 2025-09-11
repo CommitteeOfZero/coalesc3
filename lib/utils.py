@@ -100,7 +100,7 @@ def pack_mpk(mpk_path: Path, src_dir: Path, entries: dict[int, str]):
 		*map(lambda fl: src_dir / fl, entries.values())
 	)
 
-def unpack_cpk(dst_dir: Path, cpk_path: str, entries: dict[int, str]) -> None:
+def unpack_cpk(dst_dir: Path, cpk_path: Path, entries: dict[int, str]) -> None:
 	dst_dir.mkdir(parents=True, exist_ok=True)
 	with open(cpk_path, "rb") as cpk_fp:
 		reader = CpkReader(cpk_fp)
@@ -109,7 +109,7 @@ def unpack_cpk(dst_dir: Path, cpk_path: str, entries: dict[int, str]) -> None:
 			with open(dst_dir / name, "wb") as file_fp:
 				file_fp.write(reader.read_file(entry.index))
 
-def unpack_mpk(dst_dir: Path, mpk_path: str, entries: dict[int, str]) -> None:
+def unpack_mpk(dst_dir: Path, mpk_path: Path, entries: dict[int, str]) -> None:
 	dst_dir.mkdir(parents=True, exist_ok=True)
 	run_command(
 		UNGELIFY_PATH,

@@ -1,42 +1,47 @@
 chaos_head:
-  platform:
-    switch:
+  platforms:
+    - name: switch
       flag_set: chaos_head_switch
       charset: chaos_head_noah-extended
-      in_fmt: .mst
-      out_fmt: .mst
+      in_fmt: mst
+      out_fmt: mst
+      save_method: ra
       langs:
-        - eng
         - jpn
-    windows:
+        - eng
+    - name: windows
       flag_set: chaos_head_windows
       charset: chaos_head_noah-extended
-      in_fmt: .mst
-      out_fmt: .mst
+      in_fmt: mst
+      out_fmt: mst
+      save_method: ra
       multilang: true
-      archive: .cpk
+      archive: cpk
       langs:
-        - all
+        - jpn
+        - eng
   versioned:
     - _system
 
 chaos_child:
-  platform:
-    switch:
+  platforms:
+    - name: switch
       flag_set: chaos_child_switch
       charset: chaos_child-extended
-      in_fmt: .sct
-      out_fmt: .mst
+      in_fmt: sct
+      out_fmt: mst
       line_inc: 100
+      save_method: ra
       langs:
         - eng
-    windows:
+    - name: windows
       flag_set: chaos_child_switch
       charset: chaos_child-extended
-      in_fmt: .sct
-      out_fmt: .sct
+      in_fmt: sct
+      out_fmt: sct
       line_inc: 1
-      archive: .mpk
+      save_method: ra
+      archive: mpk
       langs:
         - eng
   versioned:
@@ -46,15 +51,15 @@ chaos_child:
     - zzz
 
 chaos_head_lcc:
-  platform:
-    ps3:
+  platforms:
+    - name: ps3
       flag_set: chaos_head_lcc_ps3
       charset: chaos_head_lcc-extended
-      in_fmt: .sct
-      out_fmt: .sct
+      in_fmt: sct
+      out_fmt: sct
       line_inc: 1
-      archive: .cpk
-      save_type: ip
+      archive: cpk
+      save_method: ip
       langs:
         - eng
   comments:
@@ -62,13 +67,13 @@ chaos_head_lcc:
     - "JP:"
 
 chaos_child_lcc:
-  platform:
-    ps4:
+  platforms:
+    - name: ps4
       flag_set: chaos_child_lcc_ps4
       charset: chaos_child_lcc-extended
-      in_fmt: .sct
-      out_fmt: .sct
+      in_fmt: sct
+      out_fmt: sct
       line_inc: 1
-      save_type: ra
+      save_method: ra
       langs:
         - eng
