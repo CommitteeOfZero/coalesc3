@@ -2,7 +2,7 @@ from pathlib import Path
 import re
 from typing import Optional, Callable, Self
 
-from lib.config import (
+from config import (
 	PATCHSCS_PATH,
 )
 from lib.utils import load_mst, save_mst, run_command

@@ -1,6 +1,6 @@
 build/*
 out/
-lib/config.py
+config.py
 __pycache__
 .vscode/
 sc3_to_scs.py

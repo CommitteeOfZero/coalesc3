@@ -3,7 +3,7 @@ import sys
 
 from pathlib import Path
 from argparse import Namespace, ArgumentError
-from lib.config import RESOURCES_PATH
+from config import RESOURCES_PATH
 
 from lib.ScriptPatcher import ScriptPatcher
 from lib.TranslationProcessor import TranslationProcessor

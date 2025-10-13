@@ -7,7 +7,7 @@ import re
 
 from typing import Callable, assert_never
 
-from lib.config import (
+from config import (
 	MGSSCRIPTTOOLS_PATH,
 	UNGELIFY_PATH,
 	BANK_PATH,
