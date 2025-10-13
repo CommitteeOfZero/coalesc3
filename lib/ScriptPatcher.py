@@ -1,23 +1,21 @@
 from pathlib import Path
 import re
-from typing import Optional, Callable, Literal
+from typing import Optional, Callable, Self
 
 from lib.config import (
 	PATCHSCS_PATH,
 )
 from lib.utils import load_mst, save_mst, run_command
+from lib.types import ScriptFormat, BuildInfo
 
 class ScriptPatcher:
-	def __init__(self, scs_dir: Path, build_dir: Path, consts: dict[str, str], in_fmt: Literal[".mst", ".sct"], out_fmt: Literal[".mst", ".sct"], line_inc: Literal[1, 100] = 100, save_type: Literal["ip", "ra"] = "ra"):
+	def __init__(self : Self, scs_dir: Path, build_dir: Path, consts: dict[str, str], build_info : BuildInfo):
 		self.scs_dir     : Path = scs_dir
 		self.build_dir   : Path = build_dir
 		self.consts      : dict[str, str] = consts
-		self.in_fmt      : Literal[".mst", ".sct"] = in_fmt
-		self.out_fmt     : Literal[".mst", ".sct"] = out_fmt
-		self.line_inc    : Literal[1, 100] = line_inc
+		self.build_info  : BuildInfo = build_info
 		self.scs_patches : list[tuple[str, str]] = []
 		self.mst_patches : dict[str, dict[int, dict[int, str]]] = {}
-		self.save_type   : Literal["ip", "ra"] = save_type
 
 	def add_patch(self, key: str, text: str) -> None:
 		text = PatchPreprocessor(self, text).run()
@@ -55,27 +53,27 @@ class ScriptPatcher:
 		for script, script_table in self.mst_patches.items():
 			for language, language_table in script_table.items():
 				mst_path: Path
-				match self.out_fmt:
-					case ".mst":
+				match self.build_info.out_fmt:
+					case ScriptFormat.MST:
 						mst_path = self.scs_dir / f"mes{language:02}/{script}_{language:02}.mst"
-					case ".sct":
+					case ScriptFormat.SCT:
 						mst_path = self.scs_dir / f"{script}.sct"
 
-				entries = load_mst(mst_path, self.line_inc)
+				entries = load_mst(mst_path, self.build_info.line_inc)
 
 				if entries.keys() != language_table.keys() and \
 				   len(entries) == len(language_table) and \
-				   self.out_fmt != self.in_fmt:
-					assert self.out_fmt == ".mst", "Error: line numbering fix is only implemented for .sct -> .mst"
-					diffs = list(filter(lambda key : key % self.line_inc != 0, entries.keys()))
+				   self.build_info.out_fmt != self.build_info.in_fmt:
+					assert self.build_info.out_fmt == ScriptFormat.MST, "Error: line numbering fix is only implemented for .sct -> .mst"
+					diffs = list(filter(lambda key : key % self.build_info.line_inc != 0, entries.keys()))
 					for diff in diffs:
-						offset = diff % self.line_inc
+						offset = diff % self.build_info.line_inc
 						old_index = (diff - offset) + offset * 10
 						language_table[diff] = language_table.pop(old_index)
 						for index in list(filter(lambda x : x > old_index, language_table.keys())):
-							language_table[index - self.line_inc] = language_table.pop(index)
+							language_table[index - self.build_info.line_inc] = language_table.pop(index)
 				
-				if entries.keys() != language_table.keys() and self.out_fmt != self.in_fmt:
+				if entries.keys() != language_table.keys() and self.build_info.out_fmt != self.build_info.in_fmt:
 					print(f"Warning: translation patch for { script } has a different number of lines "
 		                    "than expected. Please check manually.")
 					
