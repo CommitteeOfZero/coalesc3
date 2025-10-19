@@ -106,7 +106,7 @@ def main() -> None:
 	load_patches(data_dir / build_info.game / f"patches_{ build_info.platform }{ lang_suffix }")
 
 	if build_info.selected != Language.JAPANESE or build_info.selected == "all":
-		txt_dir = data_dir / build_info.game / f"txt_{ build_info.selected }"
+		txt_dir = data_dir / build_info.game / f"txt_{ build_info.selected if build_info.selected != "all" else "eng" }"
 		TranslationProcessor(
 			patcher,
 			"10_translation/",
