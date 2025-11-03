@@ -1,8 +1,12 @@
 # @@ main00.scs
 # 	    $W(1025) = 0;
 # -	    ScriptLoad 3, 5
-# +		ScriptLoad 3, $$cc_02_02
+# +	    Jump 11
 # +    	CallFarRL 3, 1, @ra(ra)
 # +	*@ra(ra):
 # +		SetFlag 1803
 # +		Halt    
+
+# @@ main00.scs
+# -	If $W(1025) == 1, 15
+# +	Jump 15

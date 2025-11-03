@@ -85,3 +85,7 @@ trigger_out.webm
 trigger_positive.webm
 trigger_wait.webm
 trigger_wait_short.webm
+postcredits_001_a.webm
+postcredits_001_b.webm
+postcredits_002_a.webm
+postcredits_002_b.webm

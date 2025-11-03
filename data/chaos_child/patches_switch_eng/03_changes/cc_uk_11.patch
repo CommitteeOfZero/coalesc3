@@ -1,0 +1,9 @@
+# Uki route post credits video
+@@ cc_uk_11.scs
+        Jump @ref(finish)
+    %markers:
+-       CallFarRL 6, 1359, @ignore
++       $W(61) = $$postcredits_001_b;
++       CallFarRL 7, 870, @ra(new)
++   *@ra(new):
++       Jump @ref(finish)

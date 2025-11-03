@@ -1,0 +1,9 @@
+# Hana route post credits video
+@@ cc_kh_12.scs
+		Jump @ref(finish)
+	%markers:
+-		CallFarRL 7, 202, @ignore
++		$W(61) = $$postcredits_002_b;
++		CallFarRL 7, 870, @ra(new)
++	*@ra(new):
++		Jump @ref(finish)
