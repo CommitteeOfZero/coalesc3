@@ -1,7 +1,7 @@
 # @@ main00.scs
 # 	    $W(1025) = 0;
 # -	    ScriptLoad 3, 5
-# +	    Jump 11
+# +	    ScriptLoad 3, $$cc_02_08
 # +    	CallFarRL 3, 1, @ra(ra)
 # +	*@ra(ra):
 # +		SetFlag 1803

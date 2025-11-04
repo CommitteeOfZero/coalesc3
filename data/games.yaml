@@ -49,6 +49,8 @@ chaos_child:
     - _tips
     - _startup
     - zzz
+    - cc_02_08
+    - cc_01_07
 
 chaos_head_lcc:
   platforms:
