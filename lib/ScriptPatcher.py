@@ -6,7 +6,7 @@ from config import (
 	PATCHSCS_PATH,
 )
 from lib.utils import load_mst, save_mst, run_command
-from lib.types import ScriptFormat, BuildInfo
+from lib.types import ScriptFormat, BuildInfo, SaveMethod
 
 class ScriptPatcher:
 	def __init__(self : Self, scs_dir: Path, build_dir: Path, consts: dict[str, str], build_info : BuildInfo):
@@ -459,26 +459,40 @@ class PatchPreprocessor:
 	@macro()
 	def ReleaseBg(self, args: str) -> str:
 		buf, = [x.strip() for x in args.split(",")]
-		return f"""
-	$T(47) = 1 << ({buf});
-	/CallFar 6, 4
-"""
+		if self.patcher.build_info.save_method == SaveMethod.RA:
+			return f"""
+		$T(47) = 1 << ({buf});
+		/CallFar 6, 4
+	"""
+		else:
+			return f"""
+		ResetFlag 2400 + ({buf})
+	"""
 
 	@macro()
 	def LoadBgAlpha(self, args: str) -> str:
 		buf, bg, pri, x, y, alpha = [x.strip() for x in args.split(",")]
 		self.next_label()
-		return f"""
-	/ReleaseBg {buf}
-	BGload 1 << ({buf}), {bg}
-	$W(({buf}) * 40 + 4500) = ({x}) * -1;
-	$W(({buf}) * 40 + 4501) = ({y}) * -1;
-	$W(({buf}) * 40 + 4508) = ({pri});
-	$T(54) = ({bg});
-	/CallFar 7, 39
-	$W(({buf}) * 40 + 4513) = {alpha} * 255 / 1000;
-	SetFlag 2400 + ({buf})
-"""
+		if self.patcher.build_info.save_method == SaveMethod.RA:
+			return f"""
+		/ReleaseBg {buf}
+		BGload 1 << ({buf}), {bg}
+		$W(({buf}) * 40 + 4500) = ({x}) * -1;
+		$W(({buf}) * 40 + 4501) = ({y}) * -1;
+		$W(({buf}) * 40 + 4508) = ({pri});
+		$T(54) = ({bg});
+		/CallFar 7, 39
+		$W(({buf}) * 40 + 4513) = {alpha} * 255 / 1000;
+		SetFlag 2400 + ({buf})
+	"""
+		else:
+			return f"""
+		/ReleaseBg {buf}
+		BGload 1 << ({buf}), {bg}
+		$T(54) = ({bg});
+		CallFar 6, 9
+		SetFlag 2400 + ({buf})
+	"""
 
 	@macro()
 	def LoadBg(self, args: str) -> str:
