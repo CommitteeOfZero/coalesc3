@@ -4,7 +4,7 @@
 	MessWindowOpen
 	MessWindowOpenedWait
 	MesVoiceWait
-	MesSetMesScx 0, 16
+	MesSetMesScx 0, 14
 	MesMain
 +   /LoadBg 2, 427, 91, 0, 0
 +   /FadeBg 2, 1000, 1000
@@ -14,7 +14,7 @@
 	MessWindowOpen
 	MessWindowOpenedWait
 	MesVoiceWait
-	MesSetMesScx 0, 26
+	MesSetMesScx 0, 16
 	MesMain
 +   /FadeBg 2, 1000, 0
 +   /ReleaseBg 2
