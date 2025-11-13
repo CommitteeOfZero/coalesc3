@@ -179,7 +179,7 @@ def get_archive_repacker(src_script_dir : Path, out_dir : Path, custom_cls_loade
 	def inner(arc_name: str, src_dir: Path) -> None:
 		match build_info.archive:
 			case ArchiveFormat.MPK:
-				run_command("cp", src_script_dir / "script.mpk", out_dir / "enscript.mpk")
+				shutil.copy(src_script_dir / "script.mpk", out_dir / "enscript.mpk")
 				pack_mpk(out_dir / f"enscript.mpk", src_dir, custom_cls_loader(arc_name))
 			case ArchiveFormat.CPK:
 				pack_cpk(out_dir / f"c0{ arc_name }.cpk", src_dir, custom_cls_loader(arc_name))
