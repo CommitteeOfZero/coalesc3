@@ -818,3 +818,4 @@ CC_HANA_008_A.webp
 CC_HANA_008_B.webp
 CC_HANA_009_A.webp
 CC_HANA_009_B.webp
+tutorial.webp
