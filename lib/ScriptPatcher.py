@@ -1,12 +1,12 @@
 from pathlib import Path
 import re
-from typing import Optional, Callable, Self
+from typing import Optional, Callable, Self, assert_never
 
 from config import (
 	PATCHSCS_PATH,
 )
 from lib.utils import load_mst, save_mst, run_command
-from lib.types import ScriptFormat, BuildInfo
+from lib.types import ScriptFormat, BuildInfo, SaveMethod
 
 class ScriptPatcher:
 	def __init__(self : Self, scs_dir: Path, build_dir: Path, consts: dict[str, str], build_info : BuildInfo):
@@ -459,16 +459,28 @@ class PatchPreprocessor:
 	@macro()
 	def ReleaseBg(self, args: str) -> str:
 		buf, = [x.strip() for x in args.split(",")]
-		return f"""
+		match self.patcher.build_info.save_method:
+			case SaveMethod.RA:
+				return f"""
 	$T(47) = 1 << ({buf});
 	/CallFar 6, 4
 """
+			case SaveMethod.IP:
+				return f"""
+	$T(47) = ({ buf });
+	CallFar 6, 6
+"""
+			case _:
+				assert_never(self.patcher.build_info.save_method)
+			
 
 	@macro()
 	def LoadBgAlpha(self, args: str) -> str:
 		buf, bg, pri, x, y, alpha = [x.strip() for x in args.split(",")]
 		self.next_label()
-		return f"""
+		match self.patcher.build_info.save_method:
+			case SaveMethod.RA:
+				return f"""
 	/ReleaseBg {buf}
 	BGload 1 << ({buf}), {bg}
 	$W(({buf}) * 40 + 4500) = ({x}) * -1;
@@ -479,6 +491,18 @@ class PatchPreprocessor:
 	$W(({buf}) * 40 + 4513) = {alpha} * 255 / 1000;
 	SetFlag 2400 + ({buf})
 """
+			case SaveMethod.IP:
+				return f"""
+	/ReleaseBg ({ buf })
+	BGload 1 << ({ buf }), ({ bg })
+	$W(({ buf }) * 20 + 2400) = ({ x });
+	$W(({ buf }) * 20 + 2401) = ({ y });
+	$W(({ buf }) * 20 + 2408) = ({ pri });
+	$W(({ buf }) * 20 + 2413) = ({ alpha }) * 255 / 1000;
+	SetFlag 2400 + ({buf})
+"""
+			case _:
+				assert_never(self.patcher.build_info.save_method)
 
 	@macro()
 	def LoadBg(self, args: str) -> str:
@@ -513,7 +537,9 @@ class PatchPreprocessor:
 		buf, time, alpha = [x.strip() for x in args.split(",")]
 		_loop = self.next_label()
 		_loop_end = self.next_label()
-		return f"""
+		match self.patcher.build_info.save_method:
+			case SaveMethod.RA:
+				return f"""
 	If ({time}) * 3 / 50 <= 0, {_loop_end}
 	$T(63) = ({alpha}) * 255 / 1000 - $W(({buf}) * 40 + 4513);
 	$T(64) = 0;
@@ -526,6 +552,23 @@ class PatchPreprocessor:
 	$W(({buf}) * 40 + 4513) = ({alpha}) * 255 / 1000;
 	$W(({buf}) * 10 + 2408) = 0;
 """
+			case SaveMethod.IP:
+				return f"""
+	$W(2) = (({ time }) * 3) / 50;
+	If $W(2) <= 0, { _loop_end }
+	$W(1) = 0;
+	$W(3) = ({ alpha }) * 255 / 1000 - $W(({ buf }) * 20 + 2413);
+{ _loop }:
+	$W(1) ++;
+	CalcMove ({ buf }) * 10 + 1208, $W(3), $W(1), $W(2)
+	Mwait 1, 0
+	If $W(1) < $W(2), { _loop }
+{ _loop_end }:
+	$W(({ buf }) * 20 + 2413) = $W(3);
+	$W(({ buf }) * 10 + 1208) = 0;
+"""
+			case _:
+				assert_never(self.patcher.build_info.save_method)
 
 	@macro()
 	def AsyncMoveBg(self, args: str) -> str:
