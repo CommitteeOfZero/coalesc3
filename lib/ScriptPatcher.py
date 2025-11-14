@@ -463,7 +463,6 @@ class PatchPreprocessor:
 			case SaveMethod.RA:
 				return f"""
 	$T(47) = 1 << ({buf});
-	/CallFar 6, 4
 """
 			case SaveMethod.IP:
 				return f"""
@@ -486,8 +485,6 @@ class PatchPreprocessor:
 	$W(({buf}) * 40 + 4500) = ({x}) * -1;
 	$W(({buf}) * 40 + 4501) = ({y}) * -1;
 	$W(({buf}) * 40 + 4508) = ({pri});
-	$T(54) = ({bg});
-	/CallFar 7, 39
 	$W(({buf}) * 40 + 4513) = {alpha} * 255 / 1000;
 	SetFlag 2400 + ({buf})
 """
