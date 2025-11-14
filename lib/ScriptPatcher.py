@@ -185,11 +185,20 @@ class PatchPreprocessor:
 	@macro()
 	def CallFar(self, args: str) -> str:
 		buffer, label = (x.strip() for x in args.split(","))
-		ra = self.next_ra()
-		return f"""
+		
+		match self.patcher.build_info.save_method:
+			case SaveMethod.RA:
+				ra = self.next_ra()
+				return f"""
 	CallFarRL {buffer}, {label}, {ra}
 *{ra}:
 """
+			case SaveMethod.IP:
+				return f"""
+	CallFar ({ buffer }), ({ label })
+"""
+			case _:
+				assert_never(self.patcher.build_info.save_method)
 
 	@macro()
 	def NvlMode(self, args: str) -> str:
@@ -459,19 +468,24 @@ class PatchPreprocessor:
 	@macro()
 	def ReleaseBg(self, args: str) -> str:
 		buf, = [x.strip() for x in args.split(",")]
+		patch : str
+
 		match self.patcher.build_info.save_method:
 			case SaveMethod.RA:
-				return f"""
+				patch = f"""
 	$T(47) = 1 << ({buf});
 """
 			case SaveMethod.IP:
-				return f"""
+				patch = f"""
 	$T(47) = ({ buf });
-	CallFar 6, 6
 """
 			case _:
 				assert_never(self.patcher.build_info.save_method)
-			
+
+		patch += """
+	/CallFar 6, $$RELEASE_BG_LABEL
+"""			
+		return patch
 
 	@macro()
 	def LoadBgAlpha(self, args: str) -> str:
