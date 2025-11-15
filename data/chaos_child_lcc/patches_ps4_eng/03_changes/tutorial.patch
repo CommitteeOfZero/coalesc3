@@ -1,0 +1,74 @@
+# Yui Delusion Trigger tutorial
+@@ CLYU01.scs
+		$W(2190) = 32;
+		BGMstop
+		CallFarRL 7, 438, @ref(next)
+	*@ref(next):
+	*@ref(save):
+		MesSetSavePointRL @ref(save)
++		/LoadBg 5, 550, 80, 0, 0
++   	/FadeBg 5, 250, 1000
+
+@@ CLYU01.scs
+		MesSetMesScx @ignore, 121
+		MesMain
+	*@ref(save):
+		MesSetSavePointRL @ref(save)
++		/FadeBg 5, 250, 0
++   	/ReleaseBg 5
+
+# Nono Delusion Trigger tutorial
+@@ CLKN01.scs
+		CallFarRL 7, 433, @ref(next)
+	*@ref(next):
+	*@ref(save):
+		MesSetSavePointRL @ref(save)
++		/LoadBg 5, 550, 80, 0, 0
++   	/FadeBg 5, 250, 1000
+
+@@ CLKN01.scs
+		Mes2VSetMesScx @ignore, @ignore, @ignore, 339
+		MesMain
+		ResetFlag 2414
+		CHAloadAtlas 16, 132314
+		CharaLayerLoad
+		CallFarRL 6, 281, @ref(next)
+	*@ref(next):
+	*@ref(save):
+		MesSetSavePointRL @ref(save)
++		/FadeBg 5, 250, 0
++   	/ReleaseBg 5
+
+# Hana Delusion Trigger tutorial
+@@ CLKA05.scs
+		CallFarRL 7, 430, @ref(next)
+	*@ref(next):
+	*@ref(save):
+		MesSetSavePointRL @ref(save)
++		/LoadBg 5, 550, 80, 0, 0
++   	/FadeBg 5, 250, 1000
+
+@@ CLKA05.scs
+		MesSetMesScx 0, 63
+		MesMain
+	*@ref(save):
+		MesSetSavePointRL @ref(save)
++		/FadeBg 5, 250, 0
++   	/ReleaseBg 5
+
+# Hinae Delusion Trigger tutorial
+@@ CLAH01.scs
+		CallFarRL 7, 426, @ref(next)
+	*@ref(next):
+	*@ref(save):
+		MesSetSavePointRL @ref(save)
++		/LoadBg 5, 550, 80, 0, 0
++   	/FadeBg 5, 250, 1000
+
+@@ CLAH01.scs
+		MesMain
+		SEplay 548, 0
+	*@ref(save):
+		MesSetSavePointRL @ref(save)
++		/FadeBg 5, 250, 0
++   	/ReleaseBg 5
