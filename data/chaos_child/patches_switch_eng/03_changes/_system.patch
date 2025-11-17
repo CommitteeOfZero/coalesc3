@@ -1,0 +1,4 @@
+#Move textbox down
+@@ _system.scs
+-   dw 518
++   dw 526
