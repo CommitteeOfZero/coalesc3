@@ -18,7 +18,7 @@ YAML_SCHEMA = Schema(
                 "save_method": Use(SaveMethod),
                 "langs": [Use(Language)],
                 Optional("multilang", default = False): bool,
-                Optional("raw"): list[And(str, len)]
+                Optional("raw", default = list()): list[And(str, len)]
             }],
             Optional("versioned", default = list()): [And(str, len)],
             Optional("comments", default = list()): [And(str, len)]
