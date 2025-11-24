@@ -34,6 +34,8 @@ chaos_child:
       save_method: ra
       langs:
         - eng
+      raw:
+        - _system.sct
     - name: windows
       flag_set: chaos_child_switch
       charset: chaos_child-extended

@@ -50,6 +50,7 @@ class BuildInfo:
     langs       : list[Language]
     versioned   : list[str]
     comments    : list[str]
+    raw         : list[str]
     clean       : bool
 
     @staticmethod

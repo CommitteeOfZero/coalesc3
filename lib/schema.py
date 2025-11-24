@@ -1,6 +1,8 @@
+from schema import Schema, And, Use, Optional, Or # type: ignore
+
 from .types import *
 
-from schema import Schema, And, Use, Optional, Or # type: ignore
+# TODO: Add comments to each field
 
 YAML_SCHEMA = Schema(
     {
@@ -15,7 +17,8 @@ YAML_SCHEMA = Schema(
                 Optional("archive", default = None): Use(ArchiveFormat),
                 "save_method": Use(SaveMethod),
                 "langs": [Use(Language)],
-                Optional("multilang", default = False): bool
+                Optional("multilang", default = False): bool,
+                Optional("raw", default = list()): list[And(str, len)]
             }],
             Optional("versioned", default = list()): [And(str, len)],
             Optional("comments", default = list()): [And(str, len)]
