@@ -50,6 +50,7 @@ chaos_child:
     - _system
     - _tips
     - _startup
+    - clrflg
     - zzz
     - cc_02_08
     - cc_01_07
