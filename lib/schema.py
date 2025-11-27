@@ -11,6 +11,7 @@ YAML_SCHEMA = Schema(
                 "name": And(str, len),
                 "flag_set": And(str, len),
                 "charset": And(str, len),
+                Optional("string_unit_encoding", default = StringUnitEncoding.UInt16) : Use(StringUnitEncoding),
                 "in_fmt": Use(ScriptFormat),
                 "out_fmt": Use(ScriptFormat),
                 Optional("line_inc", default = 100): Or(1, 100), # type: ignore

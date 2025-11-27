@@ -75,7 +75,7 @@ def main() -> None:
 			constants[name.split(".", 1)[0]] = str(index)
 
 	if not raw_scs_dir.exists() or build_info.clean:
-		decompile_scripts(raw_scs_dir, src_dir if build_info.archive else src_script_dir / "script", build_info.flag_set, build_info.charset)
+		decompile_scripts(raw_scs_dir, src_dir if build_info.archive else src_script_dir / "script", build_info.flag_set, build_info.charset, build_info.string_unit_encoding)
 
 	if build_info.game == "chaos_head" and build_info.selected != Language.JAPANESE:
 		with open(raw_scs_dir / "schzdoz_223.scs", "w", encoding="utf-8") as f:
@@ -121,7 +121,7 @@ def main() -> None:
 
 		shutil.copyfile(txt_dir / raw,  patch_scs_dir / dst, follow_symlinks=True)
 
-	compile_scripts(dst_dir, patch_scs_dir, build_info.flag_set, build_info.charset)
+	compile_scripts(dst_dir, patch_scs_dir, build_info.flag_set, build_info.charset, build_info.string_unit_encoding)
 
 	out_dir.mkdir(parents=True, exist_ok=True)
 

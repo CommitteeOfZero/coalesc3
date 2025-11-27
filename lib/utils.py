@@ -17,7 +17,7 @@ from lib.cri.cpk.writer import (
 	Writer as CpkWriter,
 )
 from lib.cri.cpk.reader import Reader as CpkReader
-from lib.types import BuildInfo, ArchiveFormat, ScriptFormat
+from lib.types import BuildInfo, ArchiveFormat, ScriptFormat, StringUnitEncoding
 
 def clean_tree(path: str) -> None:
 	if os.path.exists(path):
@@ -122,7 +122,7 @@ def unpack_mpk(dst_dir: Path, mpk_path: Path, entries: dict[int, str]) -> None:
 		*entries.values()
 	)
 
-def compile_scripts(dst_dir: Path, src_dir: Path, flag_set: str, charset: str) -> None:
+def compile_scripts(dst_dir: Path, src_dir: Path, flag_set: str, charset: str, string_unit_encoding: StringUnitEncoding) -> None:
 	run_command(
 		MGSSCRIPTTOOLS_PATH,
 		"--mode", "Compile",
@@ -133,9 +133,10 @@ def compile_scripts(dst_dir: Path, src_dir: Path, flag_set: str, charset: str) -
 		# "--string-syntax", "ScsStrict",
 		"--uncompiled-directory", src_dir,
 		"--compiled-directory", dst_dir,
+		"--string-unit-encoding", string_unit_encoding
 	)
 
-def decompile_scripts(dst_dir: Path, src_dir: Path, flag_set: str, charset: str) -> None:
+def decompile_scripts(dst_dir: Path, src_dir: Path, flag_set: str, charset: str, string_unit_encoding: StringUnitEncoding) -> None:
 	run_command(
 		MGSSCRIPTTOOLS_PATH,
 		"--mode", "Decompile",
@@ -146,6 +147,7 @@ def decompile_scripts(dst_dir: Path, src_dir: Path, flag_set: str, charset: str)
 		# "--string-syntax", "ScsStrict",
 		"--uncompiled-directory", dst_dir,
 		"--compiled-directory", src_dir,
+		"--string-unit-encoding", string_unit_encoding
 	)
 
 def get_custom_cls_loader(partial : Path) -> Callable[[str], dict[int, str]]:
