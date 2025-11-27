@@ -67,6 +67,15 @@ chaos_head_lcc:
       save_method: ip
       langs:
         - eng
+    - name: switch
+      flag_set: iwakura_aria_switch
+      charset: chaos_head_lcc-switch
+      in_fmt: sct
+      out_fmt: mst
+      line_inc: 100
+      save_method: ra
+      langs:
+        - eng
   comments:
     - "//"
     - "JP:"
@@ -79,6 +88,15 @@ chaos_child_lcc:
       in_fmt: sct
       out_fmt: sct
       line_inc: 1
+      save_method: ra
+      langs:
+        - eng
+    - name: switch
+      flag_set: iwakura_aria_switch
+      charset: chaos_head_lcc-switch
+      in_fmt: sct
+      out_fmt: mst
+      line_inc: 100
       save_method: ra
       langs:
         - eng
