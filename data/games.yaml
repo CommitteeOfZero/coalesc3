@@ -104,6 +104,19 @@ chaos_child_lcc:
         - jpn
   versioned:
     - _startup
+    - _startup_ps4
     - _system
     - _tips
     - CLAA06
+    - CLRFLG
+    - clrflg_cclcc
+    - macrosys
+    - macrosys1_cclcc
+    - macrosys2
+    - macrosys2_cclcc
+    - MAIN00
+    - main00_cclcc
+    - MAIN90
+    - main90_cclcc
+    - mstart
+    - mstart_cclcc
