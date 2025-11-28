@@ -76,7 +76,7 @@ chaos_head_lcc:
       line_inc: 100
       save_method: ra
       langs:
-        - eng
+        - jpn
   comments:
     - "//"
     - "JP:"
@@ -101,6 +101,9 @@ chaos_child_lcc:
       line_inc: 100
       save_method: ra
       langs:
-        - eng
+        - jpn
   versioned:
+    - _startup
+    - _system
+    - _tips
     - CLAA06
