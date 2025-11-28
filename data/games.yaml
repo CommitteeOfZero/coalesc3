@@ -112,7 +112,7 @@ chaos_child_lcc:
       langs:
         - eng
     - name: switch
-      flag_set: iwakura_aria_switch
+      flag_set: choas_child_lcc_switch
       charset: lcc_double_pack
       string_unit_encoding: UInt32
       in_fmt: sct
