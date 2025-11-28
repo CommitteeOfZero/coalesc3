@@ -77,6 +77,25 @@ chaos_head_lcc:
       save_method: ra
       langs:
         - jpn
+  versioned:
+    - _anime
+    - _Startup
+    - _startup
+    - _system
+    - _tips
+    - anime
+    - CLRFLG
+    - clrflg_chlcc
+    - macrosys
+    - macrosys1_chlcc
+    - macrosys2
+    - macrosys2_chlcc
+    - MAIN00
+    - main00_chlcc
+    - MAIN90
+    - main90_chlcc
+    - mstart
+    - mstart_chlcc
   comments:
     - "//"
     - "JP:"
