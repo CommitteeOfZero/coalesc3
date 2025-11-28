@@ -5,7 +5,7 @@ import re
 
 from lib.ScriptPatcher import ScriptPatcher
 from lib.utils import load_mst
-from lib.types import SaveMethod, ScriptFormat
+from lib.types import SaveMethod, ScriptFormat, Language
 
 from typing import assert_never
 
@@ -89,7 +89,7 @@ class TranslationProcessor:
 
 		match self.patcher.build_info.save_method:
 			case SaveMethod.RA:
-				if lang != Language.JPN:
+				if lang != Language.JAPANESE:
 					patch += f"""@@ {script}.scs
 +\t\t$W($$COZ_SAVEPOINT) = 0;
 \t*@ref(ra):
@@ -113,7 +113,7 @@ class TranslationProcessor:
 \t\tMesMain
 { "+\t\tIf $W($$SW_LANGUAGE) != 1, @label(end)\n" if self.patcher.build_info.out_fmt == ScriptFormat.MST else "" }"""
 
-				if lang != Language.JPN:
+				if lang != Language.JAPANESE:
 					for new_index in new_indices:
 						patch += f"""+\t\t$W($$COZ_SAVEPOINT) = {new_index};
 +\t@label(_{new_index}):
