@@ -36,8 +36,8 @@ class SupportedGame(StrEnum):
     CHAOS_CHILD_LCC = auto()
 
 class StringUnitEncoding(StrEnum):
-    UInt16 = auto()
-    UInt32 = auto()
+    UInt16 = "UInt16"
+    UInt32 = "UInt32"
 
 @dataclass(kw_only = True)
 class BuildInfo:
