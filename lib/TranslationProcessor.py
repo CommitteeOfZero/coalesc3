@@ -67,7 +67,7 @@ class TranslationProcessor:
 			
 			self.patcher.add_mst_line(script, language, new_index, part)
 			new_indices.append(new_index)
-		self.extend_mes(script, index, new_indices)
+		self.extend_mes(script, index, new_indices, self.patcher.build_info.selected)
 
 	def remove_mes(self, script: str, index: int):
 		patch = f"""@@ {script}.scs
@@ -84,18 +84,19 @@ class TranslationProcessor:
 		key = f"{self.prefix}{script}:{index}"
 		self.patcher.add_patch(key, patch)
 
-	def extend_mes(self, script: str, index: int, new_indices: list[int]):
+	def extend_mes(self, script: str, index: int, new_indices: list[int], lang: Language):
 		patch = ""
 
 		match self.patcher.build_info.save_method:
 			case SaveMethod.RA:
-				patch += f"""@@ {script}.scs
+				if lang != Language.JPN:
+					patch += f"""@@ {script}.scs
 +\t\t$W($$COZ_SAVEPOINT) = 0;
 \t*@ref(ra):
 { "+\t\tIf $W($$SW_LANGUAGE) != 1, @label(start)\n" if self.patcher.build_info.out_fmt == ScriptFormat.MST else "" }"""
 
-				for new_index in new_indices:
-					patch += f"""+\t\tIf $W($$COZ_SAVEPOINT) == {new_index}, @label(_{new_index})
+					for new_index in new_indices:
+						patch += f"""+\t\tIf $W($$COZ_SAVEPOINT) == {new_index}, @label(_{new_index})
 """
 
 				insts : tuple[str, str]
@@ -112,12 +113,13 @@ class TranslationProcessor:
 \t\tMesMain
 { "+\t\tIf $W($$SW_LANGUAGE) != 1, @label(end)\n" if self.patcher.build_info.out_fmt == ScriptFormat.MST else "" }"""
 
-				for new_index in new_indices:
-					patch += f"""+\t\t$W($$COZ_SAVEPOINT) = {new_index};
+				if lang != Language.JPN:
+					for new_index in new_indices:
+						patch += f"""+\t\t$W($$COZ_SAVEPOINT) = {new_index};
 +\t@label(_{new_index}):
 +\t\t{insts[1]} @ref(ra), 0, {new_index}
 """
-				patch += f"""+\t@label(end):
+					patch += f"""+\t@label(end):
 """
 				
 			case SaveMethod.IP:
