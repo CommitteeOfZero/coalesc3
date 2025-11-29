@@ -8,4 +8,6 @@ First, you need to install python3, and pip install PyYAML.
 
 Then, you need to create a `config.py` file based on  `config.py.sample`, and change the paths for your own setup.
 
+Also, do not forget to `git config core.symlinks true`.
+
 Finally, run `python build.py`. The command has a help option if you need it.
