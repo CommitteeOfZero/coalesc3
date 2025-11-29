@@ -53,6 +53,7 @@ class BuildInfo:
     save_method : SaveMethod
     selected    : Language | Literal["all"]
     langs       : list[Language]
+    language_suffix : bool
     versioned   : list[str]
     comments    : list[str]
     raw         : list[str]

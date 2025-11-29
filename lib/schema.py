@@ -18,6 +18,7 @@ YAML_SCHEMA = Schema(
                 Optional("archive", default = None): Use(ArchiveFormat),
                 "save_method": Use(SaveMethod),
                 "langs": [Use(Language)],
+                Optional("language_suffix", default=True): bool,
                 Optional("multilang", default = False): bool,
                 Optional("raw", default = list()): list[And(str, len)]
             }],

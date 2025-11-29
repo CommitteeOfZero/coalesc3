@@ -119,6 +119,7 @@ chaos_child_lcc:
       out_fmt: mst
       line_inc: 100
       save_method: ra
+      language_suffix: false
       langs:
         - jpn
   versioned:
@@ -127,6 +128,7 @@ chaos_child_lcc:
     - _system
     - _tips
     - CLAA06
+    - claa06
     - CLRFLG
     - clrflg_cclcc
     - macrosys
