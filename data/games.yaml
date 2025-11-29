@@ -75,6 +75,7 @@ chaos_head_lcc:
       out_fmt: mst
       line_inc: 100
       save_method: ra
+      language_suffix: false
       langs:
         - jpn
   versioned:
