@@ -69,7 +69,7 @@ chaos_head_lcc:
         - eng
     - name: switch
       flag_set: chaos_head_lcc_switch
-      charset: lcc_double_pack
+      charset: lcc_double_pack-extended
       string_unit_encoding: UInt32
       in_fmt: sct
       out_fmt: mst
@@ -113,7 +113,7 @@ chaos_child_lcc:
         - eng
     - name: switch
       flag_set: chaos_child_lcc_switch
-      charset: lcc_double_pack
+      charset: lcc_double_pack-extended
       string_unit_encoding: UInt32
       in_fmt: sct
       out_fmt: mst
