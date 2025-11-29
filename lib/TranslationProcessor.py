@@ -105,7 +105,8 @@ class TranslationProcessor:
 					case ScriptFormat.SCT: insts = ("MesSetMesScx", "/MesScxRA")
 				
 				if lang != Language.JAPANESE:
-					patch += f"+\t@label(start):"
+					patch += f"""+\t@label(start):
+"""
 				
 				patch += f"""\t\tMesSetSavePointRL @ref(ra)
 \t\tMessWindowOpen
@@ -118,7 +119,8 @@ class TranslationProcessor:
 				for new_index in new_indices:
 					if lang != Language.JAPANESE:
 						patch += f"""+\t\t$W($$COZ_SAVEPOINT) = {new_index};
-+\t@label(_{new_index}):"""
++\t@label(_{new_index}):
+"""
 
 					patch += f"""+\t\t{insts[1]} @ref(ra), 0, {new_index}
 """
