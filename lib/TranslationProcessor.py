@@ -129,8 +129,7 @@ class TranslationProcessor:
 """
 				
 			case SaveMethod.IP:
-				patch += f"""@@ {script}.scs
-\t\tMesSetSavePoint
+				patch += f"""\t\tMesSetSavePoint
 \t\tMessWindowOpen
 \t\tMessWindowOpenedWait
 \t\tMesVoiceWait
