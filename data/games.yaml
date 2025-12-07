@@ -67,6 +67,36 @@ chaos_head_lcc:
       save_method: ip
       langs:
         - eng
+    - name: switch
+      flag_set: chaos_head_lcc_switch
+      charset: lcc_double_pack-extended
+      string_unit_encoding: UInt32
+      in_fmt: sct
+      out_fmt: mst
+      line_inc: 100
+      save_method: ra
+      language_suffix: false
+      langs:
+        - jpn
+  versioned:
+    - _anime
+    - _Startup
+    - _startup
+    - _system
+    - _tips
+    - anime
+    - CLRFLG
+    - clrflg_chlcc
+    - macrosys
+    - macrosys1_chlcc
+    - macrosys2
+    - macrosys2_chlcc
+    - MAIN00
+    - main00_chlcc
+    - MAIN90
+    - main90_chlcc
+    - mstart
+    - mstart_chlcc
   comments:
     - "//"
     - "JP:"
@@ -82,3 +112,33 @@ chaos_child_lcc:
       save_method: ra
       langs:
         - eng
+    - name: switch
+      flag_set: chaos_child_lcc_switch
+      charset: lcc_double_pack-extended
+      string_unit_encoding: UInt32
+      in_fmt: sct
+      out_fmt: mst
+      line_inc: 100
+      save_method: ra
+      language_suffix: false
+      langs:
+        - jpn
+  versioned:
+    - _startup
+    - _startup_ps4
+    - _system
+    - _tips
+    - CLAA06
+    - claa06
+    - CLRFLG
+    - clrflg_cclcc
+    - macrosys
+    - macrosys1_cclcc
+    - macrosys2
+    - macrosys2_cclcc
+    - MAIN00
+    - main00_cclcc
+    - MAIN90
+    - main90_cclcc
+    - mstart
+    - mstart_cclcc

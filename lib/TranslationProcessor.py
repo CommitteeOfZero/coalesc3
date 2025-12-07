@@ -5,9 +5,9 @@ import re
 
 from lib.ScriptPatcher import ScriptPatcher
 from lib.utils import load_mst
-from lib.types import SaveMethod, ScriptFormat
+from lib.types import SaveMethod, ScriptFormat, Language
 
-from typing import assert_never
+from typing import assert_never, Literal
 
 class TranslationProcessor:
 	def __init__(self, patcher: ScriptPatcher, prefix: str, text_dir: Path):
@@ -32,7 +32,7 @@ class TranslationProcessor:
 				self.process_entry(script, index, text, len(entries))
 
 	def process_entry(self, script: str, index: int, text: str, num_entries: int) -> None:
-		language: int = 1
+		language: int = +self.patcher.build_info.selected
 
 		if self.patcher.build_info.in_fmt == ScriptFormat.MST and re.match(r"_[0-9]{2}$", script):
 			language = int(script[-2:])
@@ -67,7 +67,7 @@ class TranslationProcessor:
 			
 			self.patcher.add_mst_line(script, language, new_index, part)
 			new_indices.append(new_index)
-		self.extend_mes(script, index, new_indices)
+		self.extend_mes(script, index, new_indices, self.patcher.build_info.selected)
 
 	def remove_mes(self, script: str, index: int):
 		patch = f"""@@ {script}.scs
@@ -84,45 +84,52 @@ class TranslationProcessor:
 		key = f"{self.prefix}{script}:{index}"
 		self.patcher.add_patch(key, patch)
 
-	def extend_mes(self, script: str, index: int, new_indices: list[int]):
-		patch = ""
+	def extend_mes(self, script: str, index: int, new_indices: list[int], lang: Language | Literal["all"]):
+		patch = f"""@@ {script}.scs
+"""
 
 		match self.patcher.build_info.save_method:
 			case SaveMethod.RA:
-				patch += f"""@@ {script}.scs
-+\t\t$W($$COZ_SAVEPOINT) = 0;
+				if lang != Language.JAPANESE:
+					patch += f"""+\t\t$W($$COZ_SAVEPOINT) = 0;
 \t*@ref(ra):
 { "+\t\tIf $W($$SW_LANGUAGE) != 1, @label(start)\n" if self.patcher.build_info.out_fmt == ScriptFormat.MST else "" }"""
 
-				for new_index in new_indices:
-					patch += f"""+\t\tIf $W($$COZ_SAVEPOINT) == {new_index}, @label(_{new_index})
+					for new_index in new_indices:
+						patch += f"""+\t\tIf $W($$COZ_SAVEPOINT) == {new_index}, @label(_{new_index})
 """
 
 				insts : tuple[str, str]
 				match self.patcher.build_info.out_fmt:
 					case ScriptFormat.MST: insts = ("MesSetMesMsb", "/MesMsbRA")
 					case ScriptFormat.SCT: insts = ("MesSetMesScx", "/MesScxRA")
-					
-				patch += f"""+\t@label(start):
-\t\tMesSetSavePointRL @ref(ra)
+				
+				if lang != Language.JAPANESE:
+					patch += f"""+\t@label(start):
+"""
+				
+				patch += f"""\t\tMesSetSavePointRL @ref(ra)
 \t\tMessWindowOpen
 \t\tMessWindowOpenedWait
 \t\tMesVoiceWait
 \t\t{insts[0]} 0, {index}
 \t\tMesMain
-{ "+\t\tIf $W($$SW_LANGUAGE) != 1, @label(end)\n" if self.patcher.build_info.out_fmt == ScriptFormat.MST else "" }"""
+{ "+\t\tIf $W($$SW_LANGUAGE) != 1, @label(end)\n" if self.patcher.build_info.out_fmt == ScriptFormat.MST and lang != Language.JAPANESE else "" }"""
 
 				for new_index in new_indices:
-					patch += f"""+\t\t$W($$COZ_SAVEPOINT) = {new_index};
+					if lang != Language.JAPANESE:
+						patch += f"""+\t\t$W($$COZ_SAVEPOINT) = {new_index};
 +\t@label(_{new_index}):
-+\t\t{insts[1]} @ref(ra), 0, {new_index}
 """
-				patch += f"""+\t@label(end):
+
+					patch += f"""+\t\t{insts[1]} @ref(ra), 0, {new_index}
+"""
+					if lang != Language.JAPANESE:
+						patch += f"""+\t@label(end):
 """
 				
 			case SaveMethod.IP:
-				patch += f"""@@ {script}.scs
-\t\tMesSetSavePoint
+				patch += f"""\t\tMesSetSavePoint
 \t\tMessWindowOpen
 \t\tMessWindowOpenedWait
 \t\tMesVoiceWait

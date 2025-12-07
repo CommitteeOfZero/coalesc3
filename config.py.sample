@@ -27,11 +27,17 @@ RESOURCES_PATH : Final[dict[SupportedGame, dict[str, Path | dict[Language, Path]
         }
     },
     SupportedGame.CHAOS_HEAD_LCC : {
+        "switch": {
+            Language.JAPANESE : Path("path/to/chaos_head_lcc/jpn/romfs")
+        },
         "ps3" : {
             Language.ENGLISH : Path("path/to/chaos_head_lcc/ps3/USRDIR")
         },
     },
     SupportedGame.CHAOS_CHILD_LCC : {
+        "switch": {
+            Language.JAPANESE : Path("path/to/chaos_child_lcc/jpn/romfs")
+        },
         "ps4" : {
             Language.ENGLISH : Path("path/to/chaos_child_lcc/ps4/USRDIR")
         }

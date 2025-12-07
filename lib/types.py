@@ -35,12 +35,17 @@ class SupportedGame(StrEnum):
     CHAOS_HEAD_LCC = auto()
     CHAOS_CHILD_LCC = auto()
 
+class StringUnitEncoding(StrEnum):
+    UInt16 = "UInt16"
+    UInt32 = "UInt32"
+
 @dataclass(kw_only = True)
 class BuildInfo:
     game        : SupportedGame
     platform    : str
     flag_set    : str
     charset     : str
+    string_unit_encoding : StringUnitEncoding
     in_fmt      : ScriptFormat
     out_fmt     : ScriptFormat
     line_inc    : Literal[1, 100]
@@ -48,6 +53,7 @@ class BuildInfo:
     save_method : SaveMethod
     selected    : Language | Literal["all"]
     langs       : list[Language]
+    language_suffix : bool
     versioned   : list[str]
     comments    : list[str]
     raw         : list[str]

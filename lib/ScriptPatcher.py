@@ -55,7 +55,7 @@ class ScriptPatcher:
 				mst_path: Path
 				match self.build_info.out_fmt:
 					case ScriptFormat.MST:
-						mst_path = self.scs_dir / f"mes{language:02}/{script}_{language:02}.mst"
+						mst_path = self.scs_dir / f"mes{language:02}/{script}{ f"_{language:02}" if self.build_info.language_suffix else "" }.mst"
 					case ScriptFormat.SCT:
 						mst_path = self.scs_dir / f"{script}.sct"
 
