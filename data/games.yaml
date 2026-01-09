@@ -151,7 +151,7 @@ steins_gate_hd:
       in_fmt: sct
       out_fmt: sct
       line_inc: 1
-      save_method: ip
+      save_method: ra
       archive: mpk
       langs:
         - eng

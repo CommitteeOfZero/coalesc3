@@ -32,7 +32,7 @@ class TranslationProcessor:
 				self.process_entry(script, index, text, len(entries))
 
 	def process_entry(self, script: str, index: int, text: str, num_entries: int) -> None:
-		assert self.patcher.build_info.selected != "all", "Multilang games must have their languages processed indiviually"
+		assert self.patcher.build_info.selected != "all", "Multilang games must have their languages processed individually"
 
 		language: int = +self.patcher.build_info.selected
 
