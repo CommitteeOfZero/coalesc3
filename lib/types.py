@@ -34,6 +34,7 @@ class SupportedGame(StrEnum):
     CHAOS_CHILD = auto()
     CHAOS_HEAD_LCC = auto()
     CHAOS_CHILD_LCC = auto()
+    STEINS_GATE_HD = auto()
 
 class StringUnitEncoding(StrEnum):
     UInt16 = "UInt16"

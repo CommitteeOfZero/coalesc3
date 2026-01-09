@@ -142,3 +142,16 @@ chaos_child_lcc:
     - main90_cclcc
     - mstart
     - mstart_cclcc
+
+steins_gate_hd:
+  platforms:
+    - name: windows
+      flag_set: steins_gate_hd
+      charset: steins_gate_hd
+      in_fmt: sct
+      out_fmt: sct
+      line_inc: 1
+      save_method: ip
+      archive: mpk
+      langs:
+        - eng

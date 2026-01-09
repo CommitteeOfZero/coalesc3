@@ -10,3 +10,7 @@
 [submodule "data/chaos_child_lcc/txt_eng"]
 	path = data/chaos_child_lcc/txt_eng
 	url = https://github.com/CommitteeOfZero/cclcc-scripts.git
+[submodule "data/steins_gate_hd/txt_eng"]
+	path = data/steins_gate_hd/txt_eng
+	url = https://github.com/CommitteeOfZero/sg-textdumps.git
+	branch = coz-steam-update-sct
