@@ -62,7 +62,7 @@ class TranslationProcessor:
 
 			match self.patcher.build_info.line_inc:
 				case 1:
-					new_index = num_entries + len(self.patcher.mst_patches[script][language]) - index - 1
+					new_index = num_entries + len(self.patcher.mst_patches[script][language]) - index - 1 + i
 				case 100:
 					new_index = 30_000_000 + index + i
 				case _:
