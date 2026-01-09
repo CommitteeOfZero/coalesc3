@@ -127,8 +127,8 @@ class TranslationProcessor:
 
 					patch += f"""+\t\t{insts[1]} @ref(ra), 0, {new_index}
 """
-					if lang != Language.JAPANESE:
-						patch += f"""+\t@label(end):
+				if self.patcher.build_info.out_fmt == ScriptFormat.MST and lang != Language.JAPANESE:
+					patch += f"""+\t@label(end):
 """
 				
 			case SaveMethod.IP:
