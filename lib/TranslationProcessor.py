@@ -56,7 +56,7 @@ class TranslationProcessor:
 			raise Exception
 		self.patcher.add_mst_line(script, language, index, parts[0])
 		new_indices : list[int] = []
-		voiced : bool = re.match(r"([0-9]+:)〔", parts[0]) is not None
+		voiced : bool = re.match(r"([0-9]+:)?〔", parts[0]) is not None
 		for i, part in enumerate(parts[1:]):
 			new_index : int
 
