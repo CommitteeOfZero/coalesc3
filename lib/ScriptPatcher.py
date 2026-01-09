@@ -31,7 +31,7 @@ class ScriptPatcher:
 		language_table = script_table[language]
 
 		if index in language_table:
-			raise Exception(f"line ID conflict: {language:02}:{index}")
+			raise Exception(f"line ID conflict: {script}:{language:02}:{index}")
 		language_table[index] = text
 
 	def run(self) -> None:
