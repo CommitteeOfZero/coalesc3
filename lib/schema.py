@@ -3,7 +3,7 @@
 The current model allows a per-platform configuration for each supported game.
 """
 
-from schema import Schema, And, Use, Optional, Or
+from schema import Schema, And, Use, Optional
 
 from .types import *
 
@@ -23,8 +23,6 @@ YAML_SCHEMA = Schema(
                 "in_fmt": Use(ScriptFormat),
                 # The script format being output (.mst or .sct, platform dependent).
                 "out_fmt": Use(ScriptFormat),
-                # The incrementation used for line IDs (1 for .sct, 100 for .mst).
-                Optional("line_inc", default = 100): Or(1, 100), # type: ignore
                 # Archive format being used both for the scripts being extracted, as well as
                 # the output ones (either cpk, mpk, or none).
                 Optional("archive", default = None): Use(ArchiveFormat),
@@ -34,7 +32,7 @@ YAML_SCHEMA = Schema(
                 "langs": [Use(Language)],
                 # Whether files are expected to have a trailing numeric identifier for the respective language.
                 # Game-specific, present in later titles.
-                Optional("language_suffix", default=True): bool,
+                Optional("language_suffix", default = True): bool,
                 # Whether the game allows switching between different languages.
                 Optional("multilang", default = False): bool,
                 # List of files to be replaced as a last step.

@@ -30,7 +30,6 @@ chaos_child:
       charset: chaos_child-extended
       in_fmt: sct
       out_fmt: mst
-      line_inc: 100
       save_method: ra
       langs:
         - eng
@@ -41,7 +40,6 @@ chaos_child:
       charset: chaos_child-extended
       in_fmt: sct
       out_fmt: sct
-      line_inc: 1
       save_method: ra
       archive: mpk
       langs:
@@ -62,7 +60,6 @@ chaos_head_lcc:
       charset: chaos_head_lcc-extended
       in_fmt: sct
       out_fmt: sct
-      line_inc: 1
       archive: cpk
       save_method: ip
       langs:
@@ -73,7 +70,6 @@ chaos_head_lcc:
       string_unit_encoding: UInt32
       in_fmt: sct
       out_fmt: mst
-      line_inc: 100
       save_method: ra
       language_suffix: false
       langs:
@@ -108,7 +104,6 @@ chaos_child_lcc:
       charset: chaos_child_lcc-extended
       in_fmt: sct
       out_fmt: sct
-      line_inc: 1
       save_method: ra
       langs:
         - eng
@@ -118,7 +113,6 @@ chaos_child_lcc:
       string_unit_encoding: UInt32
       in_fmt: sct
       out_fmt: mst
-      line_inc: 100
       save_method: ra
       language_suffix: false
       langs:

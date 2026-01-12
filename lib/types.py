@@ -5,7 +5,7 @@
 from enum import StrEnum, auto
 from dataclasses import dataclass
 
-from typing import Self, Literal, Any
+from typing import Self, Literal, Any, cast, assert_never
 
 from argparse import Namespace
 
@@ -128,6 +128,15 @@ class BuildInfo:
         initializer["game"] = SupportedGame(args.game)
         initializer["selected"] = Language(args.lang) if args.lang in Language else args.lang 
         initializer["platform"] = initializer.pop("name")
+        
+        line_inc : Literal[1, 100]
+        match cast(ScriptFormat, initializer["out_fmt"]):
+            case ScriptFormat.MST: line_inc = 100
+            case ScriptFormat.SCT: line_inc = 1
+            case _:
+                assert_never(initializer["out_fmt"])
+        initializer["line_inc"] = line_inc
+
         initializer["versioned"] = spec[args.game]["versioned"]
         initializer["comments"] = spec[args.game]["comments"]
         initializer["clean"] = args.clean
