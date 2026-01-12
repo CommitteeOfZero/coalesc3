@@ -1,3 +1,5 @@
+# TODO: Documentation
+
 import os
 from pathlib import Path
 import shutil
@@ -128,9 +130,7 @@ def compile_scripts(dst_dir: Path, src_dir: Path, flag_set: str, charset: str, s
 		"--mode", "Compile",
 		"--bank-directory", BANK_PATH,
 		"--flag-set", flag_set,
-		# "--instruction-sets", "base,chaos_head_noah",
 		"--charset", charset,
-		# "--string-syntax", "ScsStrict",
 		"--uncompiled-directory", src_dir,
 		"--compiled-directory", dst_dir,
 		"--string-unit-encoding", string_unit_encoding
@@ -142,9 +142,7 @@ def decompile_scripts(dst_dir: Path, src_dir: Path, flag_set: str, charset: str,
 		"--mode", "Decompile",
 		"--bank-directory", BANK_PATH,
 		"--flag-set", flag_set,
-		# "--instruction-sets", "base,chaos_head_noah",
 		"--charset", charset,
-		# "--string-syntax", "ScsStrict",
 		"--uncompiled-directory", dst_dir,
 		"--compiled-directory", src_dir,
 		"--string-unit-encoding", string_unit_encoding

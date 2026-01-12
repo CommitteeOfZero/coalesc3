@@ -1,8 +1,12 @@
-import glob, shutil
+import glob
+import shutil
 import sys
 
 from pathlib import Path
 from argparse import Namespace, ArgumentError
+
+from typing import Any
+
 from config import RESOURCES_PATH
 
 from lib.ScriptPatcher import ScriptPatcher
@@ -14,7 +18,7 @@ from lib.utils import (
 	get_archive_unpacker,
 	get_archive_repacker,
 	compile_scripts,
-	decompile_scripts,
+	decompile_scripts
 )
 
 from lib.schema import YAML_SCHEMA
@@ -24,7 +28,7 @@ from lib.types import BuildInfo, Language
 def main() -> None:
 	data_dir = Path("data")
 
-	_spec = YAML_SCHEMA.validate(load_yaml(data_dir / "games.yaml"))
+	_spec : dict[str, Any] = YAML_SCHEMA.validate(load_yaml(data_dir / "games.yaml"))
 	_args : Namespace
 
 	try:
