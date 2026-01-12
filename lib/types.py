@@ -2,8 +2,13 @@
 `lib.types`, as the name implies, are where the types used across coalesc3 are defined.
 """
 
+from __future__ import annotations
+
 from enum import StrEnum, auto
 from dataclasses import dataclass
+
+from functools import reduce
+from operator import add
 
 from typing import Self, Literal, Any, cast, assert_never
 
@@ -142,7 +147,6 @@ class BuildInfo:
         initializer["clean"] = args.clean
 
         return BuildInfo(**initializer)
-    
 
 def get_platform_spec(platform_specs: list[dict[str, Any]], platform : str) -> dict[str, Any]:
     for current in platform_specs:
@@ -150,3 +154,72 @@ def get_platform_spec(platform_specs: list[dict[str, Any]], platform : str) -> d
         return current
     else:
         assert False, "Unreachable"
+
+@dataclass(frozen = True, init = False)
+class ScSPatchLine(str):
+    class Kind(StrEnum):
+        REMOVAL  =  "-"
+        NEUTRAL  =  ""
+        ADDITION =  "+"        
+
+    class Helpers:
+        @staticmethod
+        def _A(line : str) -> ScSPatchLine:
+            return +ScSPatchLine(line)
+        
+        @staticmethod
+        def _R(line : str) -> ScSPatchLine:
+            return -ScSPatchLine(line)
+    
+    kind : Kind
+    
+    def __new__(cls : type[Self], patch : str | None = None) -> Self:
+        assert patch is None or isinstance(patch, str), f"Expected 'str', got '{ type(patch).__name__ }'"
+        
+        if isinstance(patch, str) and len(patch.split("\n")) > 1:
+            raise ValueError("Argument string must be one line only")
+        
+        return super().__new__(cls, patch if patch is not None else "")
+    
+    def __init__(self : Self, patch : str | None = None) -> None:
+        super().__setattr__("kind", ScSPatchLine.Kind.NEUTRAL if not isinstance(patch, ScSPatchLine) else patch.kind)
+
+    def __pos__(self : Self) -> ScSPatchLine:
+        ret = ScSPatchLine(super().__str__())
+        super(str, ret).__setattr__("kind", ScSPatchLine.Kind.ADDITION)
+        return ret
+
+    def __neg__(self : Self) -> ScSPatchLine:
+        ret = ScSPatchLine(super().__str__())
+        super(str, ret).__setattr__("kind", ScSPatchLine.Kind.REMOVAL)
+        return ret
+
+    def __str__(self : Self) -> str:
+        return f"{ self.kind }\t{ "\t" if not self.rstrip().endswith(":") else "" }{ super().__str__() }\n"
+
+class ScSPatch:
+    def __init__(self : Self, other : None | ScSPatch = None):
+        assert other is None or isinstance(other, ScSPatch), f"Expected 'None' or '{ self.__class__.__name__ }', got { type(other).__name__ }"
+        self.patch_lines : list[ScSPatchLine] = other.patch_lines.copy() if other is not None else []
+
+    def add_or_concat(self : Self, other : Any, inplace : bool) -> ScSPatch | None:
+        if not isinstance(other, str) and not isinstance(other, ScSPatch):
+            raise TypeError(f"unsupported operand type(s) for +: '{ self.__class__.__name__ }' and '{ type(other).__name__ }'")
+        
+        ret = None if inplace else ScSPatch(self)
+        
+        if isinstance(other, ScSPatch): (ret or self).patch_lines += other.patch_lines
+        elif isinstance(other, ScSPatchLine): (ret or self).patch_lines.append(other)
+        else: (ret or self).patch_lines.append(ScSPatchLine(other))
+
+        return ret
+
+    def __add__(self : Self, other : Any) -> ScSPatch:
+        return cast(ScSPatch, self.add_or_concat(other, False))
+    
+    def __iadd__(self : Self, other : Any) -> None:
+        self.add_or_concat(other, True)
+    
+    def __str__(self : Self) -> str:
+        return reduce(add, map(str, self.patch_lines), "")
+
