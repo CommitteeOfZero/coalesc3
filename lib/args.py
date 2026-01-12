@@ -1,3 +1,8 @@
+"""
+`lib.args` houses `ArgumentParserHandler`, a simple wrapper aroud `argparse`'s `ArgumentParser`
+in order to isolate argument parsing logic to its own module.
+"""
+
 from argparse import ArgumentParser, ArgumentError, Namespace
 
 from typing import Any
@@ -11,31 +16,31 @@ class ArgumentParserHandler:
 
         self.arg_parser.add_argument(
             "--clean",
-            action="store_const",
-            const=True,
-            dest="clean",
-            default=False,
-            help="Clear cache and build from scratch."
+            action  =   "store_const",
+            const   =   True,
+            dest    =   "clean",
+            default =   False,
+            help    =   "Clear cache and build from scratch."
         )
 
         self.arg_parser.add_argument(
-            metavar="GAME",
-            dest="game",
-            choices=(*map(str, SupportedGame.__members__.values()),),
-            help="Game to build patch for."
+            metavar =   "GAME",
+            dest    =   "game",
+            choices =   tuple(map(str, SupportedGame.__members__.values())),
+            help    =   "Game to build patch for."
         )
 
         self.arg_parser.add_argument(
-            metavar="PLATFORM",
-            dest="platform",
-            help="Platform to build patch for."
+            metavar =   "PLATFORM",
+            dest    =   "platform",
+            help    =   "Platform to build patch for."
 	    )
 
         self.arg_parser.add_argument(
-            metavar="LANG",
-            dest="lang",
-            choices=(*map(str, Language.__members__.values()), "all"),
-            help="Language to build patch for (use 'all' for multi-language configurations)."
+            metavar =   "LANG",
+            dest    =   "lang",
+            choices =   (*map(str, Language.__members__.values()), "all"),
+            help    =   "Language to build patch for (use 'all' for multi-language configurations)."
 	    )
 
     def validate_against_spec(self : Self, spec : dict[str, Any]) -> Namespace:

@@ -1,3 +1,6 @@
+# TODO: Documentation
+# TODO: Patching overhaul
+
 from pathlib import Path
 import re
 from typing import Optional, Callable, Self, assert_never

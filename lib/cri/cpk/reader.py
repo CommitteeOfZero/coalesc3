@@ -1,4 +1,5 @@
 from dataclasses import dataclass
+from operator import itemgetter
 from io import BytesIO
 from typing import BinaryIO
 
@@ -68,7 +69,7 @@ class Reader:
 
             case 2:
                 toc = self._read_span_table(header["TocOffset"], header["TocSize"], b"TOC ").rows
-                itoc = sorted(self._read_span_table(header["ItocOffset"], header["ItocSize"], b"ITOC").rows, key = lambda row : row["TocIndex"])
+                itoc = sorted(self._read_span_table(header["ItocOffset"], header["ItocSize"], b"ITOC").rows, key = itemgetter("TocIndex"))
 
                 toc = tuple(zip(*sorted(zip(itoc, toc), key = lambda x : x[0]['ID'])))[1]
 
