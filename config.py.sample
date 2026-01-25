@@ -41,5 +41,11 @@ RESOURCES_PATH : Final[dict[SupportedGame, dict[str, Path | dict[Language, Path]
         "ps4" : {
             Language.ENGLISH : Path("path/to/chaos_child_lcc/ps4/USRDIR")
         }
+    },
+    SupportedGame.STEINS_GATE_HD : {
+        "windows" : {
+            Language.ENGLISH : Path("path/to/steins_gate_hd/steam/USRDIR"),
+            Language.FRENCH : Path("path/to/steins_gate_hd/steam/USRDIR")
+        }
     }
 }

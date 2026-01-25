@@ -56,6 +56,7 @@ class Language(StrEnum):
     """
     JAPANESE = "jpn"
     ENGLISH = "eng"
+    FRENCH = "fr"
     def __int__(self) -> int:
         return list(self.__class__.__members__.keys()).index(self.name)
     def __pos__(self) -> int:
@@ -83,6 +84,7 @@ class SupportedGame(StrEnum):
     CHAOS_CHILD = auto()
     CHAOS_HEAD_LCC = auto()
     CHAOS_CHILD_LCC = auto()
+    STEINS_GATE_HD = auto()
 
 class StringUnitEncoding(StrEnum):
     """

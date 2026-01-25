@@ -34,6 +34,8 @@ class TranslationProcessor:
 				self.process_entry(script, index, text, len(entries))
 
 	def process_entry(self, script: str, index: int, text: str, num_entries: int) -> None:
+		assert self.patcher.build_info.selected != "all", "Multilang games must have their languages processed individually"
+
 		language: int = +self.patcher.build_info.selected
 
 		if self.patcher.build_info.in_fmt == ScriptFormat.MST and re.match(r"_[0-9]{2}$", script):
@@ -56,6 +58,7 @@ class TranslationProcessor:
 			raise Exception
 		self.patcher.add_mst_line(script, language, index, parts[0])
 		new_indices : list[int] = []
+		voiced : bool = re.match(r"([0-9]+:)?〔", parts[0]) is not None
 		for i, part in enumerate(parts[1:]):
 			new_index : int
 
@@ -69,7 +72,7 @@ class TranslationProcessor:
 			
 			self.patcher.add_mst_line(script, language, new_index, part)
 			new_indices.append(new_index)
-		self.extend_mes(script, index, new_indices, self.patcher.build_info.selected)
+		self.extend_mes(script, index, voiced, new_indices, self.patcher.build_info.selected)
 
 	def remove_mes(self, script: str, index: int):
 		patch = f"""@@ {script}.scs
@@ -86,7 +89,7 @@ class TranslationProcessor:
 		key = f"{self.prefix}{script}:{index}"
 		self.patcher.add_patch(key, patch)
 
-	def extend_mes(self, script: str, index: int, new_indices: list[int], lang: Language | Literal["all"]):
+	def extend_mes(self, script: str, index: int, voiced : bool, new_indices: list[int], lang: Language | Literal["all"]):
 		patch = f"""@@ {script}.scs
 """
 
@@ -101,10 +104,10 @@ class TranslationProcessor:
 						patch += f"""+\t\tIf $W($$COZ_SAVEPOINT) == {new_index}, @label(_{new_index})
 """
 
-				insts : tuple[str, str]
+				insts : tuple[str, str, str]
 				match self.patcher.build_info.out_fmt:
-					case ScriptFormat.MST: insts = ("MesSetMesMsb", "/MesMsbRA")
-					case ScriptFormat.SCT: insts = ("MesSetMesScx", "/MesScxRA")
+					case ScriptFormat.MST: insts = ("MesSetMesMsb", "/MesMsbRA", "Mes2VSetMesMsb")
+					case ScriptFormat.SCT: insts = ("MesSetMesScx", "/MesScxRA", "Mes2VSetMesScx")
 				
 				if lang != Language.JAPANESE:
 					patch += f"""+\t@label(start):
@@ -114,7 +117,7 @@ class TranslationProcessor:
 \t\tMessWindowOpen
 \t\tMessWindowOpenedWait
 \t\tMesVoiceWait
-\t\t{insts[0]} 0, {index}
+\t\t{ f"{ insts[0] } 0," if not voiced else f"{ insts[2] } @ignore, @ignore, @ignore," } { index }
 \t\tMesMain
 { "+\t\tIf $W($$SW_LANGUAGE) != 1, @label(end)\n" if self.patcher.build_info.out_fmt == ScriptFormat.MST and lang != Language.JAPANESE else "" }"""
 
@@ -126,8 +129,8 @@ class TranslationProcessor:
 
 					patch += f"""+\t\t{insts[1]} @ref(ra), 0, {new_index}
 """
-					if lang != Language.JAPANESE:
-						patch += f"""+\t@label(end):
+				if self.patcher.build_info.out_fmt == ScriptFormat.MST and lang != Language.JAPANESE:
+					patch += f"""+\t@label(end):
 """
 				
 			case SaveMethod.IP:

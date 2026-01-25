@@ -1,0 +1,5 @@
+# Restore Gate of Steiner as Title Menu BGM instead of the Piano version
+@@ _STARTUP_WIN.scs
+-	BGMplay 0
++	BGMplay 1
+	Return
