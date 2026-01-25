@@ -13,4 +13,6 @@
 [submodule "data/steins_gate_hd/txt_eng"]
 	path = data/steins_gate_hd/txt_eng
 	url = https://github.com/CommitteeOfZero/sg-textdumps.git
-	branch = coz-steam-update-sct
+[submodule "data/steins_gate_hd/txt_fr"]
+	path = data/steins_gate_hd/txt_fr
+	url = https://github.com/Enorovan/sg-textdumps.git

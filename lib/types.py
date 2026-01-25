@@ -20,6 +20,7 @@ class SaveMethod(StrEnum):
 class Language(StrEnum):
     JAPANESE = "jpn"
     ENGLISH = "eng"
+    FRENCH = "fr"
     def __int__(self) -> int:
         return list(self.__class__.__members__.keys()).index(self.name)
     def __pos__(self) -> int:
