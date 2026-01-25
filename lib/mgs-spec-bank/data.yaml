@@ -460,7 +460,7 @@ flags:
     bgrelease: yes
 
     achchktitle: no
-    effyuge: yes
+    effyuge: no
     chaload: yes
     mescls: yes
     movie_01_27: yes
