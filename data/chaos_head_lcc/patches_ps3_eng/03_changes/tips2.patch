@@ -1,0 +1,262 @@
+# Added Tip 1: 3DPD
+@@ CHLCC_AA00.scs
++	SetDic2 99, 22
+-	CallFar 6, 733
++	CallFar 6, 734
+	MesSetSavePoint
+	MessWindowOpen
+	MessWindowOpenedWait
+	MesVoiceWait
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 182
+
+
+# Added Tip 2: An hero
+@@ CHLCC_AA09.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 362
+	MesMain
++	SetDic2 100, 20
++	CallFar 6, 732
+
+
+# Added Tip 3: But I refuse
+@@ CHLCC_AA08.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 278
+	MesMain
++	SetDic2 101, 20
++	CallFar 6, 732
+
+@@ CHLCC_AA09.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 293
+	MesMain
++	SetDic2 101, 20
++	CallFar 6, 732
+
+@@ CHLCC_AA14.scs
+	MesSetMesScx @ignore, 245
+	MesMain
++	SetDic2 101, 20
++	CallFar 6, 732
+
+@@ CHLCC_AA14.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 424
+	MesMain
++	SetDic2 101, 20
++	CallFar 6, 732
+
+@@ CHLCC_AA17.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 349
+	MesMain
++	SetDic2 101, 20
++	CallFar 6, 732
+
+@@ CHLCC_KO02.scs
++	SetDic2 101, 20
++	CallFar 6, 732
+    MesSetSavePoint
+	MessWindowOpen
+	MessWindowOpenedWait
+	MesVoiceWait
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 110
+
+@@ CHLCC_SE02.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 245
+	MesMain
++	SetDic2 101, 20
++	CallFar 6, 732
+
+@@ CHLCC_YU04A.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 233
+	MesMain
++	SetDic2 101, 20
++	CallFar 6, 732
+
+@@ CHLCC_YU04B.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 231
+	MesMain
++	SetDic2 101, 20
++	CallFar 6, 732
+
+
+# Added Tip 4: But that’s what’s so good about it.
+@@ CHLCC_AA05.scs
+	MesSetMesScx @ignore, 215
+	MesMain
++	SetDic2 102, 20
++	CallFar 6, 732
+
+@@ CHLCC_AA12.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 326
+	MesMain
++	SetDic2 102, 20
++	CallFar 6, 732
+
+@@ CHLCC_AA15.scs
+	MesSetMesScx @ignore, 327
+	MesMain
++	SetDic2 102, 20
++	CallFar 6, 732
+
+@@ CHLCC_AY06.scs
+	MesSetMesScx @ignore, 337
+	MesMain
++	SetDic2 102, 20
++	CallFar 6, 732
+
+@@ CHLCC_NA07.scs
+	MesSetMesScx @ignore, 92
+	MesMain
+    SetDic2 16, 20
+-	CallFar 6, 732
++	SetDic2 102, 21
++	CallFar 6, 733
+
+@@ CHLCC_RI03.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 61
+	MesMain
++	SetDic2 102, 20
++	CallFar 6, 732
+
+@@ CHLCC_YU04A.scs
+	MesSetMesScx @ignore, 171
+	MesMain
++	SetDic2 102, 20
++	CallFar 6, 732
+
+@@ CHLCC_YU04B.scs
+	MesSetMesScx @ignore, 169
+	MesMain
++	SetDic2 102, 20
++	CallFar 6, 732
+
+
+# Added Tip 20: No one likes to admit to them.
+# + TL;DR
+@@ CHLCC_NA02.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 113
+	MesMain
++	SetDic2 119, 20
++	SetDic2 129, 21
++	CallFar 6, 733
+
+
+# Added Tip 24: Over-the-knee socks
+@@ CHLCC_AA12.scs
+	MesSetMesScx @ignore, 83
+	MesMain
++	SetDic2 123, 20
++	CallFar 6, 732
+
+@@ CHLCC_AA12.scs
+	MesSetMesScx @ignore, 99
+	MesMain
++	SetDic2 123, 20
++	CallFar 6, 732
+
+@@ CHLCC_AA12.scs
+	MesSetMesScx @ignore, 101
+	MesMain
++	SetDic2 123, 20
++	CallFar 6, 732
+
+
+# Added Tip 27: STFU
+@@ CHLCC_AA00.scs
++	SetDic2 126, 20
++	CallFar 6, 732
+	MesSetSavePoint
+	MessWindowOpen
+	MessWindowOpenedWait
+	MesVoiceWait
+	MesSetMesScx @ignore, 119
+
+@@ CHLCC_AA14.scs
+	MesSetMesScx @ignore, 495
+	MesMain
++	SetDic2 126, 20
++	CallFar 6, 732
+
+@@ CHLCC_AA15.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 481
+	MesMain
++	SetDic2 126, 20
++	CallFar 6, 732
+
+@@ CHLCC_AY07.scs
+	MesSetMesScx @ignore, 13
+	MesMain
++	SetDic2 126, 20
++	CallFar 6, 732
+
+
+# Added Tip 28: Tentacle Porn
+@@ CHLCC_YU03A.scs
+	MesSetMesScx @ignore, 168
+	MesMain
++	SetDic2 127, 20
++	CallFar 6, 732
+
+@@ CHLCC_YU03B.scs
+	MesSetMesScx @ignore, 169
+	MesMain
++	SetDic2 127, 20
++	CallFar 6, 732
+
+
+# Added Tip 29: This guy’s hopeless
+@@ CHLCC_AY06.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 77
+	MesMain
++	SetDic2 128, 20
++	CallFar 6, 732
+
+@@ CHLCC_NA05.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 248
+	MesMain
++	SetDic2 128, 20
++	CallFar 6, 732
+
+@@ CHLCC_YU03A.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 195
+	MesMain
++	SetDic2 128, 20
++	CallFar 6, 732
+
+@@ CHLCC_YU03B.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 195
+	MesMain
++	SetDic2 128, 20
++	CallFar 6, 732
+
+@@ CHLCC_RI03.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 21
+	MesMain
++	SetDic2 128, 20
++	CallFar 6, 732
+
+
+# Added Tip 30: TL;DR
+@@ CHLCC_AA01.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 65
+	MesMain
++	SetDic2 129, 20
++	CallFar 6, 732
+
+@@ CHLCC_NA05.scs
+	MesSetMesScx @ignore, 86
+	MesMain
++	SetDic2 129, 20
++	CallFar 6, 732
+
+
+# Added Tip 31: You’re doing it wrong
+@@ CHLCC_AA06.scs
+	MesSetMesScx @ignore, 85
+	MesMain
++	SetDic2 130, 20
++	CallFar 6, 732
+
+@@ CHLCC_AY07.scs
+	MesSetMesScx @ignore, 247
+	MesMain
++	SetDic2 130, 20
++	CallFar 6, 732
