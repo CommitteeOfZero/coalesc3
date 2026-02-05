@@ -1,7 +1,11 @@
 # Added Tip 1: 3DPD
 @@ CHLCC_AA00.scs
-+	SetDic2 99, 22
+-	SetDic2 34, 20
+-	SetDic2 11, 21
 -	CallFar 6, 733
++	SetDic2 99, 20
++	SetDic2 34, 21
++	SetDic2 11, 22
 +	CallFar 6, 734
 	MesSetSavePoint
 	MessWindowOpen
@@ -105,9 +109,10 @@
 @@ CHLCC_NA07.scs
 	MesSetMesScx @ignore, 92
 	MesMain
-    SetDic2 16, 20
+-   SetDic2 16, 20
 -	CallFar 6, 732
-+	SetDic2 102, 21
++	SetDic2 102, 20
++	SetDic2 16, 21
 +	CallFar 6, 733
 
 @@ CHLCC_RI03.scs
@@ -174,9 +179,10 @@
 @@ CHLCC_AY09.scs
 	MesSetMesScx @ignore, 28
 	MesMain
-	SetDic2 81, 20
-+	SetDic2 107, 21	
+-	SetDic2 81, 20
 -	CallFar 6, 732
++	SetDic2 107, 20
++	SetDic2 81, 21
 +	CallFar 6, 733
 
 @@ CHLCC_YU06A.scs
@@ -379,8 +385,10 @@
 +	CallFar 6, 732
 
 @@ CHLCC_NA01.scs
-+	SetDic2 123, 21
+-	SetDic2 96, 20
 -	CallFar 6, 732
++	SetDic2 123, 20
++	SetDic2 96, 20
 +	CallFar 6, 733
 	MesSetSavePoint
 	MessWindowOpen
@@ -405,6 +413,8 @@
 
 # Added Tip 27: Soz
 @@ CHLCC_AA19.scs
+-	SetDic2 96, 20
+-	CallFar 6, 732
 +	SetDic2 125, 20
 +	SetDic2 96, 21
 +	CallFar 6, 733
@@ -413,7 +423,47 @@
 	MessWindowOpenedWait
 	MesVoiceWait
 	MesSetMesScx @ignore, 292
-#FIXME: MORE
+
+@@ CHLCC_AY01.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 56
+	MesMain
++	SetDic2 125, 20
++	CallFar 6, 732
+
+@@ CHLCC_NA07.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 102
+	MesMain
++	SetDic2 125, 20
++	CallFar 6, 732
+
+@@ CHLCC_RI06.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 22
+	MesMain
++	SetDic2 125, 20
++	CallFar 6, 732
+
+@@ CHLCC_SE01.scs
+	SetDic2 96, 20
+-	CallFar 6, 732
++	SetDic2 125, 21
++	CallFar 6, 733
+	MesSetSavePoint
+	MessWindowOpen
+	MessWindowOpenedWait
+	MesVoiceWait
+	MesSetMesScx @ignore, 292
+
+@@ CHLCC_YU04A.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 240
+	MesMain
++	SetDic2 125, 20
++	CallFar 6, 732
+
+@@ CHLCC_YU04B.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 238
+	MesMain
++	SetDic2 125, 20
++	CallFar 6, 732
 
 
 # Added Tip 28: STFU
