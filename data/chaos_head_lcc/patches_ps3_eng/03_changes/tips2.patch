@@ -451,7 +451,7 @@
 	MessWindowOpen
 	MessWindowOpenedWait
 	MesVoiceWait
-	MesSetMesScx @ignore, 292
+	MesSetMesScx @ignore, 280
 
 @@ CHLCC_YU04A.scs
 	Mes2VSetMesScx @ignore, @ignore, @ignore, 240
