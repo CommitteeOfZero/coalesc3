@@ -129,6 +129,85 @@
 +	CallFar 6, 732
 
 
+# Added Tip 5: Denpa
+@@ CHLCC_AA01.scs
+	MesSetMesScx @ignore, 394
+	MesMain
++	SetDic2 103, 20
++	CallFar 6, 732
+
+
+# Added Tip 6: Doujin
+@@ CHLCC_AA06.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 199
+	MesMain
++	SetDic2 104, 20
++	CallFar 6, 732
+
+
+# Added Tip 7: Gai
+@@ CHLCC_AA08.scs
+	MesSetMesScx @ignore, 1
+	MesMain
++	SetDic2 105, 20
++	CallFar 6, 732
+
+# Added Tip 8: GG EZ
+@@ CHLCC_AA14.scs
++	SetDic2 106, 21
+-	CallFar 6, 732
++	CallFar 7, 733
+	MesSetSavePoint
+	MessWindowOpen
+	MessWindowOpenedWait
+	MesVoiceWait
+	MesSetMesScx @ignore, 179
+
+
+# Added Tip 9: Grill
+@@ CHLCC_AA05.scs
+	MesSetMesScx @ignore, 218
+	MesMain
++	SetDic2 107, 20
++	CallFar 6, 732
+
+@@ CHLCC_AY09.scs
+	MesSetMesScx @ignore, 28
+	MesMain
+	SetDic2 81, 20
++	SetDic2 107, 21	
+-	CallFar 6, 732
++	CallFar 6, 733
+
+@@ CHLCC_YU06A.scs
+	MesSetMesScx @ignore, 25
+	MesMain
++	SetDic2 107, 20
++	CallFar 6, 732
+
+@@ CHLCC_YU06B.scs
+	MesSetMesScx @ignore, 28
+	MesMain
++	SetDic2 107, 20
++	CallFar 6, 732
+
+
+# Added Tip 10: Honorifics (Japanese)
+@@ CHLCC_AA00.scs
+	MesSetMesScx @ignore, 136
+	MesMain
++	SetDic2 108, 20
++	CallFar 6, 732
+
+
+# Added Tip 11: Hurr durr
+@@ CHLCC_AA00.scs
+	MesSetMesScx @ignore, 63
+	MesMain
++	SetDic2 109, 20
++	CallFar 6, 732
+
+
 # Added Tip 20: No one likes to admit to them.
 # + TL;DR
 @@ CHLCC_NA02.scs
