@@ -208,7 +208,106 @@
 +	CallFar 6, 732
 
 
-# Added Tip 20: No one likes to admit to them.
+# Added Tip 12: In Japanese, plz
+@@ CHLCC_AA16.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 68
+	MesMain
++	SetDic2 110, 20
++	CallFar 6, 732
+
+@@ CHLCC_AA18.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 26
+	MesMain
++	SetDic2 110, 20
++	CallFar 6, 732
+
+
+# Added Tip 13: It’d be fine with me!
+@@ CHLCC_NA05.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 109
+	MesMain
++	SetDic2 111, 20
++	CallFar 6, 732
+
+
+# Added Tip 14: I thought I was going insane
+@@ CHLCC_AA00.scs
+	MesSetMesScx @ignore, 14
+	MesMain
++	SetDic2 112, 20
++	CallFar 6, 732
+
+
+# Added Tip 15: Kamaitachi Phenomenon
+@@ CHLCC_NA03.scs
+	MesSetMesScx @ignore, 381
+	MesMain
++	SetDic2 113, 20
++	CallFar 6, 732
+
+
+# Added Tip 16: Keikaku
+@@ CHLCC_AA11.scs
+	MesSetMesScx @ignore, 80
+	MesMain
++	SetDic2 114, 20
++	CallFar 6, 732
+
+@@ CHLCC_SE02.scs
+	MesSetMesScx @ignore, 222
+	MesMain
++	SetDic2 114, 20
++	CallFar 6, 732
+
+
+# Added Tip 17: Kimoi Girls
+@@ CHLCC_KO01.scs
+	MesSetMesScx @ignore, 56
+	MesMain
++	SetDic2 115, 20
++	CallFar 6, 732
+
+
+# Added Tip 18: lolcow
+@@ CHLCC_AY02.scs
++	SetDic2 116, 20
++	CallFar 6, 732
+	MesSetSavePoint
+	MessWindowOpen
+	MessWindowOpenedWait
+	MesVoiceWait
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 18
+
+@@ CHLCC_YU07A.scs
+	MesSetMesScx @ignore, 30
+	MesMain
++	SetDic2 116, 20
++	CallFar 6, 732
+
+@@ CHLCC_YU07B.scs
+	MesSetMesScx @ignore, 34
+	MesMain
++	SetDic2 116, 20
++	CallFar 6, 732
+
+
+# Added Tip 19: Loli
+@@ CHLCC_AA01.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 306
+	MesMain
++	SetDic2 117, 20
++	CallFar 6, 732
+
+
+# Added Tip 20: Moe
+@@ CHLCC_AA00.scs
+	MesSetMesScx @ignore, 121
+	MesMain
++	SetDic2 118, 20
++	CallFar 6, 732
+
+
+# Added Tip 21: No one likes to admit to them.
 # + TL;DR
 @@ CHLCC_NA02.scs
 	Mes2VSetMesScx @ignore, @ignore, @ignore, 113
@@ -218,27 +317,106 @@
 +	CallFar 6, 733
 
 
+# Added Tip 22: No, that reasoning is flawed.
+@@ CHLCC_AA18.scs
+	MesSetMesScx @ignore, 147
+	MesMain
++	SetDic2 120, 20
++	CallFar 6, 732
+
+@@ CHLCC_YU01.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 219
+	MesMain
++	SetDic2 120, 20
++	CallFar 6, 732
+
+
+# Added Tip 23: Orlynao
+@@ CHLCC_AA02.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 148
+	MesMain
++	SetDic2 121, 20
++	CallFar 6, 732
+#FIXME: MORE
+
 # Added Tip 24: Over-the-knee socks
 @@ CHLCC_AA12.scs
 	MesSetMesScx @ignore, 83
 	MesMain
-+	SetDic2 123, 20
++	SetDic2 122, 20
 +	CallFar 6, 732
 
 @@ CHLCC_AA12.scs
 	MesSetMesScx @ignore, 99
 	MesMain
-+	SetDic2 123, 20
++	SetDic2 122, 20
 +	CallFar 6, 732
 
 @@ CHLCC_AA12.scs
 	MesSetMesScx @ignore, 101
 	MesMain
-+	SetDic2 123, 20
++	SetDic2 122, 20
 +	CallFar 6, 732
 
 
-# Added Tip 27: STFU
+# Added Tip 25: Pwned
+@@ CHLCC_AA16.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 367
+	MesMain
++	SetDic2 123, 20
++	CallFar 6, 732
+
+@@ CHLCC_AA19.scs
+	MesSetMesScx @ignore, 62
+	MesMain
++	SetDic2 123, 20
++	CallFar 6, 732
+
+@@ CHLCC_KO04.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 266
+	MesMain
++	SetDic2 123, 20
++	CallFar 6, 732
+
+@@ CHLCC_NA01.scs
++	SetDic2 123, 21
+-	CallFar 6, 732
++	CallFar 6, 733
+	MesSetSavePoint
+	MessWindowOpen
+	MessWindowOpenedWait
+	MesVoiceWait
+	MesSetMesScx @ignore, 112
+
+
+# Added Tip 26: Silence, boy!
+@@ CHLCC_AA02.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 295
+	MesMain
++	SetDic2 124, 20
++	CallFar 6, 732
+
+@@ CHLCC_AA19.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 71
+	MesMain
++	SetDic2 124, 20
++	CallFar 6, 732
+
+
+# Added Tip 27: Soz
+@@ CHLCC_AA19.scs
++	SetDic2 125, 20
++	SetDic2 96, 21
++	CallFar 6, 733
+	MesSetSavePoint
+	MessWindowOpen
+	MessWindowOpenedWait
+	MesVoiceWait
+	MesSetMesScx @ignore, 292
+#FIXME: MORE
+
+
+# Added Tip 28: STFU
 @@ CHLCC_AA00.scs
 +	SetDic2 126, 20
 +	CallFar 6, 732
@@ -248,26 +426,8 @@
 	MesVoiceWait
 	MesSetMesScx @ignore, 119
 
-@@ CHLCC_AA14.scs
-	Mes2VSetMesScx @ignore, @ignore, @ignore, 495
-	MesMain
-+	SetDic2 126, 20
-+	CallFar 6, 732
 
-@@ CHLCC_AA15.scs
-	Mes2VSetMesScx @ignore, @ignore, @ignore, 481
-	MesMain
-+	SetDic2 126, 20
-+	CallFar 6, 732
-
-@@ CHLCC_AY07.scs
-	MesSetMesScx @ignore, 13
-	MesMain
-+	SetDic2 126, 20
-+	CallFar 6, 732
-
-
-# Added Tip 28: Tentacle Porn
+# Added Tip 29: Tentacle Porn
 @@ CHLCC_YU03A.scs
 	MesSetMesScx @ignore, 168
 	MesMain
@@ -281,7 +441,7 @@
 +	CallFar 6, 732
 
 
-# Added Tip 29: This guy’s hopeless
+# Added Tip 30: This guy’s hopeless
 @@ CHLCC_AY06.scs
 	Mes2VSetMesScx @ignore, @ignore, @ignore, 77
 	MesMain
@@ -313,7 +473,7 @@
 +	CallFar 6, 732
 
 
-# Added Tip 30: TL;DR
+# Added Tip 31: TL;DR
 @@ CHLCC_AA01.scs
 	Mes2VSetMesScx @ignore, @ignore, @ignore, 65
 	MesMain
@@ -327,7 +487,7 @@
 +	CallFar 6, 732
 
 
-# Added Tip 31: You’re doing it wrong
+# Added Tip 32: You’re doing it wrong
 @@ CHLCC_AA06.scs
 	MesSetMesScx @ignore, 85
 	MesMain
