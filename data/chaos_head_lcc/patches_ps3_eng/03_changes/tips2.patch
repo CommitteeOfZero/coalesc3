@@ -343,7 +343,58 @@
 	MesMain
 +	SetDic2 121, 20
 +	CallFar 6, 732
-#FIXME: MORE
+
+@@ CHLCC_AA14.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 420
+	MesMain
++	SetDic2 121, 20
++	CallFar 6, 732
+
+@@ CHLCC_AY09.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 36
+	MesMain
++	SetDic2 121, 20
++	CallFar 6, 732
+
+@@ CHLCC_KO01.scs
++	SetDic2 121, 20
++	CallFar 6, 732
+	MesSetSavePoint
+	MessWindowOpen
+	MessWindowOpenedWait
+	MesVoiceWait
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 48
+
+@@ CHLCC_NA05.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 256
+	MesMain
++	SetDic2 121, 20
++	CallFar 6, 732
+
+@@ CHLCC_RI02.scs
++	SetDic2 121, 20
++	CallFar 6, 732
+	MesSetSavePoint
+	MessWindowOpen
+	MessWindowOpenedWait
+	MesVoiceWait
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 211
+
+@@ CHLCC_SE02.scs
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 123
+	MesMain
++	SetDic2 121, 20
++	CallFar 6, 732
+
+@@ CHLCC_YU01.scs
++	SetDic2 121, 20
++	CallFar 6, 732
+	MesSetSavePoint
+	MessWindowOpen
+	MessWindowOpenedWait
+	MesVoiceWait
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 78
+
 
 # Added Tip 24: Over-the-knee socks
 @@ CHLCC_AA12.scs
