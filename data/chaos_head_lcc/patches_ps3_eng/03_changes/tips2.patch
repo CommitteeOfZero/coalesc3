@@ -249,7 +249,7 @@
 	MesSetMesScx @ignore, 119
 
 @@ CHLCC_AA14.scs
-	MesSetMesScx @ignore, 495
+	Mes2VSetMesScx @ignore, @ignore, @ignore, 495
 	MesMain
 +	SetDic2 126, 20
 +	CallFar 6, 732
