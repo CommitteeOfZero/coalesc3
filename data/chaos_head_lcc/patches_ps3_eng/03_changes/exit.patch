@@ -1,0 +1,43 @@
+# Add System Message for exiting the game
+# TODO: replace FlagOnJump by KeyboardOnJump03 60, 1, @label(flag_on_jump) once implemented in Impacto
+@@ _Startup.scs
+	    Wait 1
+		TitleMenu
++       FlagOnJump 3340, @label(first_sysmes)
+		KeyOnJump2 5, 1, @ignore
+		KeyOnJump2 6, 1, @ignore
+	    Jump 22
++	@label(first_sysmes):
++		FlagOnJump 1223, @label(second_sysmes)
++		Call 304
++       SystemMesInit
++       SystemMesSetMesScx 114
++       SystemMesSetMesScx 115
++       SystemMesSetSelScx 116
++       SystemMesSetSelScx 117
++       SystemMesInit2 255
++       SystemMesFadeIn
++       SystemMesMain
++       SystemMesFadeOut
++       If $W(1028) == 0, @label(quit)
++       Call 305
++       ResetFlag 3340
++       Jump 22
++   @label(second_sysmes):
++       Call 304
++       SystemMesInit
++       SystemMesSetMesScx 114
++       SystemMesSetMesScx 115
++       SystemMesSetSelScx 116
++       SystemMesSetSelScx 117
++       SystemMesInit2 255
++       SystemMesFadeIn
++       SystemMesMain
++       SystemMesFadeOut
++       If $W(1028) == 0, @label(quit)
++       Call 305
++       ResetFlag 3340
++       Jump 22
++   @label(quit):
++       ExitGame
++       Halt
