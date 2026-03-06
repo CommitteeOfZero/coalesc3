@@ -109,20 +109,26 @@ def main() -> None:
 	
 	load_patches(data_dir / build_info.game / f"patches_{ build_info.platform }{ lang_suffix }")
 
-	txt_dir = txt_dir = data_dir / build_info.game / f"txt_{ build_info.selected if build_info.selected != "all" else "eng" }"
-	TranslationProcessor(
-		patcher,
-		"10_translation/",
-		txt_dir
-	).run()
+	multilang_targets : list[Language] = build_info.langs if build_info.selected == "all" else [build_info.selected]
+	multilang_translations : list[Language] = list(filter(Language.JAPANESE.__eq__, multilang_targets))
+	
+	for lang in multilang_translations:
+		txt_dir = txt_dir = data_dir / build_info.game / f"txt_{ lang }"
+		TranslationProcessor(
+			patcher,
+			"10_translation/",
+			txt_dir
+		).run()
 
 	patcher.run()
 
-	for raw in glob.glob("**/*.raw", root_dir=txt_dir, recursive=True):
-		dst = raw.removesuffix(".raw")
-		if dst not in build_info.raw: continue
+	for lang in multilang_targets:
+		txt_dir = txt_dir = data_dir / build_info.game / f"txt_{ lang }"
+		for raw in glob.glob("**/*.raw", root_dir=txt_dir, recursive=True):
+			dst = raw.removesuffix(".raw")
+			if dst not in build_info.raw: continue
 
-		shutil.copyfile(txt_dir / raw,  patch_scs_dir / dst, follow_symlinks=True)
+			shutil.copyfile(txt_dir / raw,  patch_scs_dir / dst, follow_symlinks=True)
 
 	compile_scripts(dst_dir, patch_scs_dir, build_info.flag_set, build_info.charset, build_info.string_unit_encoding)
 
