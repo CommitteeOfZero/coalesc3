@@ -110,18 +110,30 @@ def main() -> None:
 	load_patches(data_dir / build_info.game / f"patches_{ build_info.platform }{ lang_suffix }")
 
 	multilang_targets : list[Language] = build_info.langs if build_info.selected == "all" else [build_info.selected]
-	multilang_translations : list[Language] = list(filter(Language.JAPANESE.__eq__, multilang_targets))
-	
+	multilang_translations : list[Language] = list(filter(Language.JAPANESE.__ne__, multilang_targets))
+
+	patcher.run()
+
+	selected = build_info.selected
 	for lang in multilang_translations:
+		_lang_suffix = "" if selected == "all" else f"_{ lang }"
+		build_info.selected = lang
 		txt_dir = txt_dir = data_dir / build_info.game / f"txt_{ lang }"
+		lang_patcher = ScriptPatcher(
+			Path(f"build/{ build_info.game }/{ build_info.platform }{ _lang_suffix }/scs-patched"),
+			Path(f"build/{ build_info.game }/{ build_info.platform }{ _lang_suffix }"),
+			constants,
+			build_info
+		)
 		TranslationProcessor(
-			patcher,
+			lang_patcher,
 			"10_translation/",
 			txt_dir
 		).run()
 
-	patcher.run()
-
+		lang_patcher.run()
+	
+	build_info.selected = selected
 	for lang in multilang_targets:
 		txt_dir = txt_dir = data_dir / build_info.game / f"txt_{ lang }"
 		for raw in glob.glob("**/*.raw", root_dir=txt_dir, recursive=True):

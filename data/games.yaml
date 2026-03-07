@@ -20,6 +20,8 @@ chaos_head:
       langs:
         - jpn
         - eng
+      raw:
+      - _system_00.mst
   versioned:
     - _system
 
