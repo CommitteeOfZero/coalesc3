@@ -110,7 +110,7 @@ def main() -> None:
 	load_patches(data_dir / build_info.game / f"patches_{ build_info.platform }{ lang_suffix }")
 
 	multilang_targets : list[Language] = build_info.langs if build_info.selected == "all" else [build_info.selected]
-	multilang_translations : list[Language] = list(filter(Language.JAPANESE.__eq__, multilang_targets))
+	multilang_translations : list[Language] = list(filter(Language.JAPANESE.__ne__, multilang_targets))
 	
 	for lang in multilang_translations:
 		txt_dir = txt_dir = data_dir / build_info.game / f"txt_{ lang }"
