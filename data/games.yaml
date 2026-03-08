@@ -21,7 +21,7 @@ chaos_head:
         - jpn
         - eng
       raw:
-      - _system_00.mst
+        - _system_00.mst
   versioned:
     - _system
 

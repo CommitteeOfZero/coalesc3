@@ -2,8 +2,10 @@
 `lib.types`, as the name implies, are where the types used across coalesc3 are defined.
 """
 
+from __future__ import annotations
+
 from enum import StrEnum, auto
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 
 from typing import Self, Literal, Any, cast, assert_never
 
@@ -94,6 +96,7 @@ class StringUnitEncoding(StrEnum):
     UInt16 = "UInt16"
     UInt32 = "UInt32"
 
+
 @dataclass(kw_only = True)
 class BuildInfo:
     """
@@ -144,8 +147,12 @@ class BuildInfo:
         initializer["clean"] = args.clean
 
         return BuildInfo(**initializer)
-    
 
+    def with_language(self : Self, language : Language):
+        ret = asdict(self)
+        ret["selected"] = language
+        return BuildInfo(**ret)
+        
 def get_platform_spec(platform_specs: list[dict[str, Any]], platform : str) -> dict[str, Any]:
     for current in platform_specs:
         if current["name"] != platform: continue
