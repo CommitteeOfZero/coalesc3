@@ -1,8 +1,7 @@
 # Add System Message for exiting the game
-# TODO: replace FlagOnJump by KeyboardOnJump03 60, 1, @label(flag_on_jump) once implemented in Impacto
 @@ _startup_ps4.scs
 	    Wait 1
-+       FlagOnJump 3340, @label(flag_on_jump)
++       KeyboardOnJump03 60, 1, @label(flag_on_jump)
 	    Jump 1
 +	@label(flag_on_jump):
 +        FlagOnJump 1223, @label(call_rl)
