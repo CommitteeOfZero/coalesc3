@@ -161,7 +161,7 @@
 @@ CHLCC_AA14.scs
 +	SetDic2 106, 21
 -	CallFar 6, 732
-+	CallFar 7, 733
++	CallFar 6, 733
 	MesSetSavePoint
 	MessWindowOpen
 	MessWindowOpenedWait
