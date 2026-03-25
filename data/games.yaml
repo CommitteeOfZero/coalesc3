@@ -24,6 +24,8 @@ chaos_head:
         - _system_00.mst
   versioned:
     - _system
+  comments:
+    - "//"
 
 chaos_child:
   platforms:
@@ -54,6 +56,8 @@ chaos_child:
     - zzz
     - cc_02_08
     - cc_01_07
+  comments:
+    - "//"
 
 chaos_head_lcc:
   platforms:
@@ -138,6 +142,8 @@ chaos_child_lcc:
     - main90_cclcc
     - mstart
     - mstart_cclcc
+  comments:
+    - "//"
 
 steins_gate_hd:
   platforms:
@@ -151,3 +157,5 @@ steins_gate_hd:
       langs:
         - eng
         - fr
+  comments:
+    - "//"
