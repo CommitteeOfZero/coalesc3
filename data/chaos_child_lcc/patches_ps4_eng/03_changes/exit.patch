@@ -34,10 +34,14 @@
 +       SystemMesMain 1
 +       SystemMesFadeOut 1
 +       If $W(2128) == 0, @label(quit)
-+       CallRL 315, @ra(second_go_loop)
++       CallRL @label(unpause_controls), @ra(second_go_loop)
 +   *@ra(second_go_loop):
 +       ResetFlag 3340
 +       Jump 1
 +   @label(quit):
 +       ExitGame
 +       Halt
++	@label(unpause_controls):
++		ThreadControl 1, 2
++		SFDpause 0
++		Return
