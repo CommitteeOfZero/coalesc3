@@ -3,11 +3,11 @@ from lib.types import SupportedGame, Language
 
 from typing import Final
 
-MGSSCRIPTTOOLS_PATH : Final = Path("path/to/MagesScriptTool.exe")
-PATCHSCS_PATH : Final = Path("path/to/PatchScs.exe")
-UNGELIFY_PATH : Final = Path("path/to/ungelify.exe")
+MGSSCRIPTTOOLS_PATH : Final = Path("lib\\MagesScriptTool\\MagesScriptTool.exe")
+PATCHSCS_PATH : Final = Path("lib\\PatchScs\\PatchScs.exe")
+UNGELIFY_PATH : Final = Path("lib\\ungelify\\ungelify.exe")
 
-BANK_PATH : Final = Path("path/to/mgs-spec-bank")
+BANK_PATH : Final = Path("lib\\mgs-spec-bank")
 
 RESOURCES_PATH : Final[dict[SupportedGame, dict[str, Path | dict[Language, Path]]]] = {
     SupportedGame.CHAOS_HEAD : {
