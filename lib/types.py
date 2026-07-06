@@ -17,7 +17,7 @@ class Extension:
     to mimic file extension notation.
     """
     def __str__(self : Self):
-        return f".{ super().__str__() }"
+        return f".{ super().__str__().lower() }"
 
 class ScriptFormat(Extension, StrEnum):
     """
