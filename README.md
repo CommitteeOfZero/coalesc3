@@ -4,7 +4,7 @@ This is our script patches library. It's used to recompile the scripts of the ga
 
 ## Configuration
 
-First, you need to install python3, and pip install PyYAML.
+First, you need to install python3, and `pip install -r requirements.txt`.
 
 Then, you need to create a `config.py` file based on  `config.py.sample`, and change the paths for your own setup.
 
