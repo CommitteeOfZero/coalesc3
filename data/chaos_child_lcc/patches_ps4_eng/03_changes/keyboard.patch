@@ -1,0 +1,11 @@
+# Add Keyboard shortcuts to submenus
+# Labels for direct menu jumps are hard coded and start at 350
+@@ _startup_ps4.scs
+ 	KeyOnJump2 12, 1, 213
+ 	KeyOnJump2 21, 1, 193
+ 	KeyOnJump2 13, 1, 124
++	KeyboardOnJump03 52, 1, 213
++	KeyboardOnJump03 54, 1, 193
+ 	Jump 115
+ 116:
+ 	If $W(4300) == 65535, 115
