@@ -1,0 +1,356 @@
+# Add Keyboard shortcuts to submenus
+# Labels for direct menu jumps are hard coded and start at 350
+@@ _startup_ps4.scs
+ 	KeyOnJump2 12, 1, 213
+ 	KeyOnJump2 21, 1, 193
+ 	KeyOnJump2 13, 1, 124
+# Backlog
++	KeyboardOnJump03 52, 1, 213
+# Tips
++	KeyboardOnJump03 54, 1, 193
+# Help
++	KeyboardOnJump03 51, 1, 350
+# Load
++	KeyboardOnJump03 55, 1, 351
+# Save
++	KeyboardOnJump03 56, 1, 352
+# Quickload
++	KeyboardOnJump03 58, 1, 353
+# Config
++	KeyboardOnJump03 57, 1, 354
+# Title
++	KeyboardOnJump03 61, 1, 355
+ 	Jump 115
+ 116:
+ 	If $W(4300) == 65535, 115
+
+# Direct Help Menu
+@@ _startup_ps4.scs
+  $W(2152) = 0;
+  $W(2115) = 3;
+  Return
++350:
++ FlagOnJump 1234, 123
++ ResetFlag 1830
++ SetFlag 1228
++ $W(2113) |= 12;
++ ResetFlag 1830
++ SetFlag 1810
++ ResetFlag 1347
++ Wait 2
++ CallRL 315, @ra(help_ret1)
++*@ra(help_ret1):
++ HelpInit
++ CreateThread 1, 0, 186
++ $W(2148) = 11;
++ $W(2147) = 32;
++ $W(2142) = 32;
++ $W(2143) = 0;
++ $W(2149) = 0;
++@label(help_fade_loop):
++ Wait 1
++ $W(2143) += 16;
++ $W(2149) += 16;
++ If $W(2143) < 256, @label(help_fade_loop)
++@label(help_main_loop):
++ Wait 1
++ HelpMain
++ FlagOnJump 1830, @label(help_exit)
++ Jump @label(help_main_loop)
++@label(help_exit):
++	$W(2147) = 32;
++	$W(2142) = 32;
++@label(help_exit_loop):
++	Wait 1
++	$W(2143) -= 16;
++	$W(2149) -= 16;
++	If $W(2143), @label(help_exit_loop)
++	$W(2147) = 0;
++	$W(2142) = 0;
++	$W(2148) = 0;
++	ResetFlag 1228
++	ResetFlag 1810
++	CallRL 312, @ra(help_ret2)
++*@ra(help_ret2):
++	$W(2113) &= 243;
++	CallFarRL 1, 45, @ra(help_ret3)
++*@ra(help_ret3):
++	Jump 115
+
+ 181:
+        ResetFlag 1830
+        SetFlag 1810
+
+# Fix returning from load menu
+@@ _startup_ps4.scs
+        SaveMenuLockCancel
+ 278:
+        FlagOnJump 1810, 280
+-       $W(3503) = 32;
++       $W(2147) = 32;
++       $W(2142) = 32;
+ 279:
+        Wait 1
+-       $W(3503) -= 2;
+-       If $W(3503), 279
+-       $W(3505) = 0;
++       $W(2143) -= 16;
++       $W(2149) -= 16;
++       If $W(2143), 279
++       $W(2147) = 0;
++       $W(2142) = 0;
++       $W(2148) = 0;
++       ResetFlag 1228
++       ResetFlag 1810
++       Wait 1
++       SetFlag 1370
++       CallFarRL 1, 54, @ra(savemenu_ret)
++*@ra(savemenu_ret):
+        Return
+ 280:
+        Wait 1
+
+# Fix returning from save menu
+@@ _startup_ps4.scs
+        SaveMenuLockCancel
+ 301:
+        FlagOnJump 1810, 303
+-       $W(3503) = 32;
++       $W(2147) = 32;
++       $W(2142) = 32;
+ 302:
+        Wait 1
+-       $W(3503) -= 2;
+-       If $W(3503), 302
+-       $W(3505) = 0;
++       $W(2143) -= 16;
++       $W(2149) -= 16;
++       If $W(2143), 302
++       $W(2147) = 0;
++       $W(2142) = 0;
++       $W(2148) = 0;
++       ResetFlag 1228
++       ResetFlag 1810
++       Wait 1
++       SetFlag 1370
++       CallFarRL 1, 54, @ra(savemenu_ret)
++*@ra(savemenu_ret):
+        Return
+ 303:
+        Wait 1
+
+# Direct Load Menu
+@@ _startup_ps4.scs
+        Jump 264
+ 283:
+        Return
++351:
++       ResetFlag 1883
++       CallRL 315, @ra(load_ret1)
++*@ra(load_ret1):
++       CallRL 311, @ra(load_ret2)
++*@ra(load_ret2):
++       CallFarRL 1, 54, @ra(load_ret3)
++*@ra(load_ret3):
++       $W(2148) = 4;
++       LoadMenuInit
++       SetFlag 1228
++       $W(2113) |= 12;
++       $W(2147) = 32;
++       $W(2142) = 32;
++       $W(2143) = 0;
++       $W(2149) = 0;
++@label(load_direct_loop):
++       Wait 1
++       $W(2143) += 16;
++       $W(2149) += 16;
++       If $W(2143) < 256, @label(load_direct_loop)
++       CallRL 264, @ra(load_ret4)
++*@ra(load_ret4):
++       CallRL 312, @ra(load_ret5)
++*@ra(load_ret5):
++       FlagOffJump 1883, @label(load_off)
++       $T(48) = $W(3723);
++       $T(49) = $W(3724);
++       ResetFlag 1219
++       Jump 285
++@label(load_off):
++       $W(2113) &= 243;
++       Jump 115
+ 284:
+        CallFarRL 1, 54, 101
+ *101:
+
+# Direct Save Menu
+@@ _startup_ps4.scs
+        $W(2147) ++;
+        If $W(2147) < 32, 287
+        Jump 290
++352:
++       CallRL 315, @ra(save_ret1)
++*@ra(save_ret1):
++       CallRL 311, @ra(save_ret2)
++*@ra(save_ret2):
++       CallFarRL 1, 52, @ra(save_ret3)
++*@ra(save_ret3):
++       $W(2148) = 3;
++       SaveMenuInit
++       SetFlag 1228
++       $W(2113) |= 12;
++       $W(2147) = 32;
++       $W(2142) = 32;
++       $W(2143) = 0;
++       $W(2149) = 0;
++@label(save_direct_loop):
++       Wait 1
++       $W(2143) += 16;
++       $W(2149) += 16;
++       If $W(2143) < 256, @label(save_direct_loop)
++       CallRL 290, @ra(save_ret4)
++*@ra(save_ret4):
++       CallRL 312, @ra(save_ret5)
++*@ra(save_ret5):
++       $W(2113) &= 243;
++       Jump 115
++
+ 288:
+        CallFarRL 1, 51, 110
+ *110:
+
+# Direct Quick Load Menu
+@@ _startup_ps4.scs
+        $W(2147) ++;
+        If $W(2147) < 32, 260
+        Jump 264
++353:
++       ResetFlag 1883
++       CallRL 315, @ra(qload_ret1)
++*@ra(qload_ret1):
++       CallRL 311, @ra(qload_ret2)
++*@ra(qload_ret2):
++       CallFarRL 1, 58, @ra(qload_ret3)
++*@ra(qload_ret3):
++       $W(2148) = 0;
++       QLoadMenuInit
++       SetFlag 1228
++       $W(2113) |= 12;
++       $W(2147) = 32;
++       $W(2142) = 32;
++       $W(2143) = 0;
++       $W(2149) = 0;
+++@label(qload_direct_loop):
++       Wait 1
++       $W(2143) += 16;
++       $W(2149) += 16;
++       If $W(2143) < 256, @label(qload_direct_loop)
++       CallRL 264, @ra(qload_ret4)
++*@ra(qload_ret4):
++       CallRL 312, @ra(qload_ret5)
++*@ra(qload_ret5):
++       FlagOffJump 1883, @label(qload_direct_end)
++       $T(48) = $W(3723);
++       $T(49) = $W(3724);
++       ResetFlag 1219
++       Jump 285
++@label(qload_direct_end):
++       $W(2113) &= 243;
++       Jump 115
+ 261:
+        ResetFlag 1883
+        CallFarRL 1, 57, 94
+
+# Config Menu Return Fix
+@@ _startup_ps4.scs
+        $W(2147) = 0;
+ 208:
+        FlagOnJump 1810, 210
+-       $W(3503) = 16;
++       $W(2147) = 32;
++       $W(2142) = 32;
+ 209:
+        Wait 1
+-       $W(3503) --;
+-       If $W(3503), 209
+-       $W(3504) = 0;
+-       SetPadCustom
+-       SetFlag 1370
++       $W(2143) -= 16;
++       $W(2149) -= 16;
++       If $W(2143), 209
++       $W(2147) = 0;
++       $W(2142) = 0;
++       $W(2148) = 0;
++       ResetFlag 1228
+        Return
+ 210:
+        Wait 1
+
+# Direct Config Menu
+@@ _startup_ps4.scs
+        $W(2147) ++;
+        If $W(2147) < 32, 202
+        Jump 205
++354:
++       FlagOnJump 1234, 115
++       ResetFlag 1830
++       CallRL 315, @ra(config_ret1)
++*@ra(config_ret1):
++       CallRL 311, @ra(config_ret2)
++*@ra(config_ret2):
++       CallFarRL 1, 46, @ra(config_ret3)
++*@ra(config_ret3):
++       $W(2148) = 5;
++       OptionInit
++       SetFlag 1228
++       $W(2113) |= 12;
++       $W(2147) = 32;
++       $W(2142) = 32;
++       $W(2143) = 0;
++       $W(2149) = 0;
++@label(config_direct_loop):
++       Wait 1
++       $W(2143) += 16;
++       $W(2149) += 16;
++       If $W(2143) < 256, @label(config_direct_loop)
++       PresenceEx 20
++       CallRL 205, @ra(config_ret4)
++*@ra(config_ret4):
++       PresenceEx $W(4320)
++       CallRL 312, @ra(config_ret5)
++*@ra(config_ret5):
++       $W(2113) &= 243;
++       Jump 115
+ 203:
+        ResetFlag 1830
+        CallFarRL 1, 46, 78
+
+# Direct Config Menu
+@@ _startup_ps4.scs
+        CallRL 181, 55
+ *55:
+        Jump 119
++355:
++       FlagOnJump 1234, 115
++       ResetFlag 1830
++       SetFlag 1228
++       $W(2113) |= 12;
++       CallRL 311, @ra(title_ret1)
++*@ra(title_ret1):
++       SystemMesInit 0
++       SystemMesSetMesScx 0, 41
++       SystemMesSetMesScx 0, 42
++       SystemMesSetSelScx 0, 43
++       SystemMesSetSelScx 0, 44
++       SystemMesInit2 0, 1
++       SystemMesFadeIn 0
++       SystemMesMain 0
++       SystemMesFadeOut 0
++       FlagOnJump 1805, 305
++       If $W(2128) == 0, 137
++       CallRL 312, @ra(title_ret2)
++*@ra(title_ret2):
++       $W(2113) &= 243;
++       Jump 115
+ 134:
+        FlagOnJump 1807, 135
+        FlagOffJump 1808, 135
