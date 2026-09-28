@@ -10,6 +10,7 @@
 +	KeyboardOnJump03 55, 1, 351
 +	KeyboardOnJump03 56, 1, 352
 +	KeyboardOnJump03 58, 1, 353
++	KeyboardOnJump03 57, 1, 354
  	Jump 115
  116:
  	If $W(4300) == 65535, 115
@@ -249,3 +250,67 @@
         ResetFlag 1883
         CallFarRL 1, 57, 94
 
+# Config Menu Return Fix
+@@ _startup_ps4.scs
+        $W(2147) = 0;
+ 208:
+        FlagOnJump 1810, 210
+-       $W(3503) = 16;
++       $W(2147) = 32;
++       $W(2142) = 32;
+ 209:
+        Wait 1
+-       $W(3503) --;
+-       If $W(3503), 209
+-       $W(3504) = 0;
+-       SetPadCustom
+-       SetFlag 1370
++       $W(2143) -= 16;
++       $W(2149) -= 16;
++       If $W(2143), 209
++       $W(2147) = 0;
++       $W(2142) = 0;
++       $W(2148) = 0;
++       ResetFlag 1228
+        Return
+ 210:
+        Wait 1
+
+# Direct Config Menu
+@@ _startup_ps4.scs
+        $W(2147) ++;
+        If $W(2147) < 32, 202
+        Jump 205
++354:
++       FlagOnJump 1234, 115
++       ResetFlag 1830
++       CallRL 315, @ra(config_ret1)
++*@ra(config_ret1):
++       CallRL 311, @ra(config_ret2)
++*@ra(config_ret2):
++       CallFarRL 1, 46, @ra(config_ret3)
++*@ra(config_ret3):
++       $W(2148) = 5;
++       OptionInit
++       SetFlag 1228
++       $W(2113) |= 12;
++       $W(2147) = 32;
++       $W(2142) = 32;
++       $W(2143) = 0;
++       $W(2149) = 0;
++@label(config_direct_loop):
++       Wait 1
++       $W(2143) += 16;
++       $W(2149) += 16;
++       If $W(2143) < 256, @label(config_direct_loop)
++       PresenceEx 20
++       CallRL 205, @ra(config_ret4)
++*@ra(config_ret4):
++       PresenceEx $W(4320)
++       CallRL 312, @ra(config_ret5)
++*@ra(config_ret5):
++       $W(2113) &= 243;
++       Jump 115
+ 203:
+        ResetFlag 1830
+        CallFarRL 1, 46, 78
