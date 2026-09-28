@@ -11,6 +11,7 @@
 +	KeyboardOnJump03 56, 1, 352
 +	KeyboardOnJump03 58, 1, 353
 +	KeyboardOnJump03 57, 1, 354
++	KeyboardOnJump03 61, 1, 355
  	Jump 115
  116:
  	If $W(4300) == 65535, 115
@@ -314,3 +315,34 @@
  203:
         ResetFlag 1830
         CallFarRL 1, 46, 78
+
+# Direct Config Menu
+@@ _startup_ps4.scs
+        CallRL 181, 55
+ *55:
+        Jump 119
++355:
++       FlagOnJump 1234, 115
++       ResetFlag 1830
++       SetFlag 1228
++       $W(2113) |= 12;
++       CallRL 311, @ra(title_ret1)
++*@ra(title_ret1):
++       SystemMesInit 0
++       SystemMesSetMesScx 0, 41
++       SystemMesSetMesScx 0, 42
++       SystemMesSetSelScx 0, 43
++       SystemMesSetSelScx 0, 44
++       SystemMesInit2 0, 1
++       SystemMesFadeIn 0
++       SystemMesMain 0
++       SystemMesFadeOut 0
++       FlagOnJump 1805, 305
++       If $W(2128) == 0, 137
++       CallRL 312, @ra(title_ret2)
++*@ra(title_ret2):
++       $W(2113) &= 243;
++       Jump 115
+ 134:
+        FlagOnJump 1807, 135
+        FlagOffJump 1808, 135
