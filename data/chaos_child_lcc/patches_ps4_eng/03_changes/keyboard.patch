@@ -6,6 +6,65 @@
  	KeyOnJump2 13, 1, 124
 +	KeyboardOnJump03 52, 1, 213
 +	KeyboardOnJump03 54, 1, 193
++	KeyboardOnJump03 51, 1, 350
  	Jump 115
  116:
  	If $W(4300) == 65535, 115
+
+# Direct Help Menu
+@@ _startup_ps4.scs
+  $W(2152) = 0;
+  $W(2115) = 3;
+  Return
++350:
++ FlagOnJump 1234, 123
++ ResetFlag 1830
++ SetFlag 1228
++ $W(2113) |= 12;
++ ResetFlag 1830
++ SetFlag 1810
++ ResetFlag 1347
++ Wait 2
++ CallRL 315, @ra(help_ret1)
++*@ra(help_ret1):
++ HelpInit
++ CreateThread 1, 0, 186
++ $W(2148) = 11;
++ $W(2147) = 32;
++ $W(2142) = 32;
++ $W(2143) = 0;
++ $W(2149) = 0;
++@label(help_fade_loop):
++ Wait 1
++ $W(2143) += 16;
++ $W(2149) += 16;
++ If $W(2143) < 256, @label(help_fade_loop)
++@label(help_main_loop):
++ Wait 1
++ HelpMain
++ FlagOnJump 1830, @label(help_exit)
++ Jump @label(help_main_loop)
++@label(help_exit):
++	$W(2147) = 32;
++	$W(2142) = 32;
++@label(help_exit_loop):
++	Wait 1
++	$W(2143) -= 16;
++	$W(2149) -= 16;
++	If $W(2143), @label(help_exit_loop)
++	$W(2147) = 0;
++	$W(2142) = 0;
++	$W(2148) = 0;
++	ResetFlag 1228
++	ResetFlag 1810
++	CallRL 312, @ra(help_ret2)
++*@ra(help_ret2):
++	$W(2113) &= 243;
++	CallFarRL 1, 45, @ra(help_ret3)
++*@ra(help_ret3):
++	Jump 115
+
+ 181:
+        ResetFlag 1830
+        SetFlag 1810
+
