@@ -4,13 +4,21 @@
  	KeyOnJump2 12, 1, 213
  	KeyOnJump2 21, 1, 193
  	KeyOnJump2 13, 1, 124
+# Backlog
 +	KeyboardOnJump03 52, 1, 213
+# Tips
 +	KeyboardOnJump03 54, 1, 193
+# Help
 +	KeyboardOnJump03 51, 1, 350
+# Load
 +	KeyboardOnJump03 55, 1, 351
+# Save
 +	KeyboardOnJump03 56, 1, 352
+# Quickload
 +	KeyboardOnJump03 58, 1, 353
+# Config
 +	KeyboardOnJump03 57, 1, 354
+# Title
 +	KeyboardOnJump03 61, 1, 355
  	Jump 115
  116:
