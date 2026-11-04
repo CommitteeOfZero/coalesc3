@@ -1,0 +1,12 @@
+# Add keyboard shortcuts to submenus
+@@ _Startup.scs
+ 	KeyOnJump2 12, 1, 168
+	KeyOnJump2 21, 1, 133
+	KeyOnJump2 13, 1, 79
+# Backlog - F2
++	KeyboardOnJump03 52, 1, 168
+# Tips - F4
++	KeyboardOnJump03 54, 1, 133
+	Jump 65
+ 66:
+	If $W(2300) == 65535, 65
