@@ -20,84 +20,18 @@
 
 # Direct Config Menu
 @@ _Startup.scs
-	SystemMesMain
-	SystemMesFadeOut
+	$W(1040) ++;
+	If $W(1040) < 64, 155
 	Jump 158
 +400:
-# Load background images
-+	CallFar 1, 74
-+	SSEplay 6
-+	FlagOnWait 1820
-# Pause gameplay
 +	Call 304
 +	$W(1012) |= 12;
 +	$W(1042) = 0;
 +	$W(1040) = 0;
-+	OptionInit
-+	SetFlag 1352
-+	SetFlag 1227
-+	$W(1043) = 256;
-+	$W(1041) = 256;
-+@label(config_direct_loop):
-+	Wait 1
-+	$W(1042) ++;
-+	If $W(1042) < 64, @label(config_direct_loop)
-+	$W(1042) = 10000;
-+	$W(1040) = 0;
-+@label(config_main_loop):
-+	Wait 1
-+	OptionMain
-+	KeyOnJump2 6, 1, @label(config_close)
-+	KeyOnJump2 18, 1, @label(config_default)
-+	FlagOnJump 1805, 299
-+	Jump @label(config_main_loop)
-+@label(config_default):
-+	SystemMesInitTitle
-+	SystemMesSetMesScx 11
-+	SystemMesSetSelScx 12
-+	SystemMesSetSelScx 13
-+	SystemMesInit2 1
-+	SystemMesFadeIn
-+	SystemMesMain
-+	SystemMesFadeOut
-+	If $W(1028) == 1, @label(config_main_loop)
-+	OptionDefault $W(1045)
-+	SetPadCustom
-+	SystemMesInitTitle
-+	SystemMesSetMesScx 14
-+	SystemMesInit2 255
-+	SystemMesFadeIn
-+	SystemMesMain
-+	SystemMesFadeOut
-+	Jump @label(config_main_loop)
-+@label(config_close):
-+	SSEplay 9
-+	If $W(1040), @label(config_ret_system_menu)
-+	$W(1042) = 64;
-+@label(config_close_loop):
-+	Wait 1
-+	$W(1042) --;
-+	If $W(1042), @label(config_close_loop)
-+	$W(1043) = 0;
-+	$W(1041) = 0;
-+	$W(1040) = 0;
-+	ResetFlag 1227
-+	ResetFlag 1352
-# Resume gameplay
++ Call 156
 +	Call 305
 +	$W(1012) &= 243;
-# Return to main loop
 +	Jump 65
-+@label(config_ret_system_menu):
-+	Wait 1
-+	$W(1040) --;
-+	If $W(1040), @label(config_ret_system_menu)
-+	ResetFlag 1352
-+	ResetFlag 1810
-# Return to system menu loop
-+	Jump 70
- 160:
-	If $W(1040), 163
 
 # Direct Load/QLoad Menus
 @@ _Startup.scs
