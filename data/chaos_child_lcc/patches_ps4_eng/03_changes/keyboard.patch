@@ -153,7 +153,7 @@
 +       CallFarRL 1, 54, @ra(load_ret3)
 +*@ra(load_ret3):
 +       $W(2148) = 4;
-+       LoadMenuInit
++       LoadMenuDirectInit
 +       SetFlag 1228
 +       $W(2113) |= 12;
 +       $W(2147) = 32;
@@ -194,7 +194,7 @@
 +       CallFarRL 1, 52, @ra(save_ret3)
 +*@ra(save_ret3):
 +       $W(2148) = 3;
-+       SaveMenuInit
++       SaveMenuDirectInit
 +       SetFlag 1228
 +       $W(2113) |= 12;
 +       $W(2147) = 32;
@@ -231,7 +231,7 @@
 +       CallFarRL 1, 58, @ra(qload_ret3)
 +*@ra(qload_ret3):
 +       $W(2148) = 0;
-+       QLoadMenuInit
++       QLoadMenuDirectInit
 +       SetFlag 1228
 +       $W(2113) |= 12;
 +       $W(2147) = 32;
