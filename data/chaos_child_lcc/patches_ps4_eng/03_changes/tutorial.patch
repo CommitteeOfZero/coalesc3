@@ -6,7 +6,7 @@
 	*@ref(next):
 	*@ref(save):
 		MesSetSavePointRL @ref(save)
-+		/LoadBg 5, 550, 80, 0, 0
++		/LoadBg 5, 600, 80, 0, 0
 +   	/FadeBg 5, 250, 1000
 
 @@ CLYU01.scs
@@ -23,7 +23,7 @@
 	*@ref(next):
 	*@ref(save):
 		MesSetSavePointRL @ref(save)
-+		/LoadBg 5, 550, 80, 0, 0
++		/LoadBg 5, 600, 80, 0, 0
 +   	/FadeBg 5, 250, 1000
 
 @@ CLKN01.scs
@@ -45,7 +45,7 @@
 	*@ref(next):
 	*@ref(save):
 		MesSetSavePointRL @ref(save)
-+		/LoadBg 5, 550, 80, 0, 0
++		/LoadBg 5, 600, 80, 0, 0
 +   	/FadeBg 5, 250, 1000
 
 @@ CLKA05.scs
@@ -62,7 +62,7 @@
 	*@ref(next):
 	*@ref(save):
 		MesSetSavePointRL @ref(save)
-+		/LoadBg 5, 550, 80, 0, 0
++		/LoadBg 5, 600, 80, 0, 0
 +   	/FadeBg 5, 250, 1000
 
 @@ CLAH01.scs
