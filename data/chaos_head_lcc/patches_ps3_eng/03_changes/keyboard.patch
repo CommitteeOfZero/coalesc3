@@ -12,6 +12,8 @@
 +	KeyboardOnJump03 57, 1, 400
 # Load - F5
 +	KeyboardOnJump03 55, 1, 401
+# Save - F6
++	KeyboardOnJump03 56, 1, 403
 # Quickload - F7
 +	KeyboardOnJump03 58, 1, 402
 	Jump 65
@@ -92,3 +94,46 @@
 +	$W(1012) &= 243;
 # Return to main loop
 +	Jump 65
+
+# Direct Save Menu
+@@ _Startup.scs
+ 	Jump 65
++403:
++	CallFar 1, 58
++	SSEplay 6
++	SaveMenuDirectInit
++	$W(1042) = 0;
++	$W(1040) = 0;
++	SetFlag 1351
++	SetFlag 1227
++ $W(1043) = 256;
++ $W(1041) = 256;
++@label(save_menu_open):
++	Wait 1
++	$W(1042) ++;
++	If $W(1042) < 64, @label(save_menu_open)
++	$W(1042) = 10000;
++	$W(1040) = 0;
++ Call 202
++ Jump 65
+ 200:
+
+@@ _Startup.scs
+ 	SystemMesFadeOut
+ 	If $W(1028) == 1, 213
+ 	Call 237
+ 213:
++ If $W(1040), 214
++	$W(1042) = 64;
++@label(save_menu_close):
++	Wait 1
++	$W(1042) --;
++	If $W(1042), @label(save_menu_close)
++	ResetFlag 1351
++	$W(1042) = 0;
++	$W(1043) = 0;
++	$W(1041) = 0;
++	$W(1040) = 0;
++	ResetFlag 1227
++	ResetFlag 1352
++ Return
