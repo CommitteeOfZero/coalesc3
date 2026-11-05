@@ -16,6 +16,9 @@
 +	KeyboardOnJump03 56, 1, 403
 # Quickload - F7
 +	KeyboardOnJump03 58, 1, 402
+# Title - F10
++	KeyboardOnJump03 61, 1, 404
+
 	Jump 65
  66:
 	If $W(2300) == 65535, 65
@@ -137,3 +140,19 @@
 +	ResetFlag 1227
 +	ResetFlag 1352
 + Return
+
+@@ _Startup.scs
+ 	FlagOnJump 1805, 299
+ 	If $W(1028) == 0, 90
++FlagOffJump 1353, @label(return_title_close)
+ 	Jump 69
++ 404:
++	Call 304
++	$W(1012) |= 12;
++	$W(1042) = 0;
++	$W(1040) = 0;
++ Call 89
++@label(return_title_close):
++	Call 305
++	$W(1012) &= 243;
++	Jump 65
