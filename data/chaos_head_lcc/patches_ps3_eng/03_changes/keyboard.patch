@@ -33,7 +33,7 @@
 +	$W(1012) |= 12;
 +	$W(1042) = 0;
 +	$W(1040) = 0;
-+ Call 156
++	Call 156
 +	Call 305
 +	$W(1012) &= 243;
 +	Jump 65
@@ -102,6 +102,8 @@
 @@ _Startup.scs
  	Jump 65
 +403:
++	Call 304
++	$W(1012) |= 12;
 +	CallFar 1, 58
 +	SSEplay 6
 +	SaveMenuDirectInit
@@ -109,16 +111,18 @@
 +	$W(1040) = 0;
 +	SetFlag 1351
 +	SetFlag 1227
-+ $W(1043) = 256;
-+ $W(1041) = 256;
++	$W(1043) = 256;
++	$W(1041) = 256;
 +@label(save_menu_open):
 +	Wait 1
 +	$W(1042) ++;
 +	If $W(1042) < 64, @label(save_menu_open)
 +	$W(1042) = 10000;
 +	$W(1040) = 0;
-+ Call 202
-+ Jump 65
++	Call 202
++	Call 305
++	$W(1012) &= 243;
++	Jump 65
  200:
 
 @@ _Startup.scs
@@ -126,7 +130,7 @@
  	If $W(1028) == 1, 213
  	Call 237
  213:
-+ If $W(1040), 214
++	If $W(1040), 214
 +	$W(1042) = 64;
 +@label(save_menu_close):
 +	Wait 1
@@ -139,19 +143,19 @@
 +	$W(1040) = 0;
 +	ResetFlag 1227
 +	ResetFlag 1352
-+ Return
++	Return
 
 @@ _Startup.scs
  	FlagOnJump 1805, 299
  	If $W(1028) == 0, 90
-+FlagOffJump 1353, @label(return_title_close)
++	FlagOffJump 1353, @label(return_title_close)
  	Jump 69
-+ 404:
++404:
 +	Call 304
 +	$W(1012) |= 12;
 +	$W(1042) = 0;
 +	$W(1040) = 0;
-+ Call 89
++	Call 89
 +@label(return_title_close):
 +	Call 305
 +	$W(1012) &= 243;
