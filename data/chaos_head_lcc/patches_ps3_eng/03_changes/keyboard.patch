@@ -1,5 +1,5 @@
 # Add keyboard shortcuts to submenus
-# Labels for direct menu jumps are hard-coded and start at 350
+# Labels for direct menu jumps are hard-coded and start at 400
 @@ _Startup.scs
  	KeyOnJump2 12, 1, 168
 	KeyOnJump2 21, 1, 133
@@ -9,7 +9,11 @@
 # Tips - F4
 +	KeyboardOnJump03 54, 1, 133
 # Config - F9
-+	KeyboardOnJump03 57, 1, 350
++	KeyboardOnJump03 57, 1, 400
+# Load - F5
++	KeyboardOnJump03 55, 1, 401
+# Quickload - F7
++	KeyboardOnJump03 58, 1, 402
 	Jump 65
  66:
 	If $W(2300) == 65535, 65
@@ -19,7 +23,7 @@
 	SystemMesMain
 	SystemMesFadeOut
 	Jump 158
-+350:
++400:
 # Load background images
 +	CallFar 1, 74
 +	SSEplay 6
@@ -94,3 +98,63 @@
 +	Jump 70
  160:
 	If $W(1040), 163
+
+# Direct Load/QLoad Menus
+@@ _Startup.scs
+ 178:
+ 	ResetFlag 1883
+ 	CallFar 1, 60
+ 	FlagOnJump 1240, 179
++	FlagOffJump 1353, 179
+ 	QLoadMenuInit
+ 	Jump 180
+ 179:
+ 	QLoadMenuDirectInit
+ 	Jump 182
+
+@@ _Startup.scs
+ 193:
+ 	FlagOnJump 1240, 195
++	FlagOffJump 1353, 195
+
+@@ _Startup.scs
+ 197:
+ 	ResetFlag 1883
+ 	CallFar 1, 59
+ 	FlagOnJump 1240, 198
++	FlagOffJump 1353, 198
+ 	LoadMenuInit
+ 	Jump 180
+ 198:
+ 	LoadMenuDirectInit
+ 	Jump 182
++401:
+# Pause gameplay
++	Call 304
++	$W(1012) |= 12;
+# Call load menu procedure
++	Call 197
++	SetFlag 1332
++	FlagOffJump 1883, @label(load_menu_close)
++	ResetFlag 1332
++	$T(48) = $W(2123);
++	Jump 199
++402:
+# Pause gameplay
++	Call 304
++	$W(1012) |= 12;
+# Call quick-load menu procedure
++	Call 178
++	SetFlag 1332
++	FlagOffJump 1883, @label(load_menu_close)
++	ResetFlag 1332
++	$T(48) = $W(2123);
++	Jump 199
++@label(load_menu_close):
++	$W(1041) = 0;
++	$W(1040) = 0;
+# Resume gameplay
++	Call 305
++	$W(1012) &= 243;
+# Return to main loop
++	Jump 65
