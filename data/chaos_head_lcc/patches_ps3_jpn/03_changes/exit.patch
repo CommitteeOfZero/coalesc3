@@ -1,0 +1,51 @@
+# Add System Message for exiting the game
+@@ _Startup.scs
+		CallFar 1, 1
+		CallFar 9, 0
+		CallFar 4, 0
++		CreateThread 0, 0, @label(loop) 
++		Jump @label(init)
++	@label(loop):
++		Wait 1
++		KeyboardOnJump03 60, 1, @label(first_sysmes)
++		Jump @label(loop)
++	@label(first_sysmes):
++		FlagOnJump 1223, @label(second_sysmes)
++		Call 304
++		SystemMesInit
++		SystemMesSetMesScx 114
++		SystemMesSetMesScx 115
++		SystemMesSetSelScx 116
++		SystemMesSetSelScx 117
++		SystemMesInit2 255
++		SystemMesFadeIn
++		SystemMesMain
++		SystemMesFadeOut
++		If $W(1028) == 0, @label(quit)
++		Call 305
++		ResetFlag 3340
++		Jump @label(loop)
++	@label(second_sysmes):
++		Call 304
++		SystemMesInit
++		SystemMesSetMesScx 114
++		SystemMesSetMesScx 115
++		SystemMesSetSelScx 116
++		SystemMesSetSelScx 117
++		SystemMesInit2 255
++		SystemMesFadeIn
++		SystemMesMain
++		SystemMesFadeOut
++		If $W(1028) == 0, @label(quit)
++		Call @label(unpause_controls)
++		ResetFlag 3340
++		Jump @label(loop)
++	@label(quit):
++		ExitGame
++		Halt
++	@label(unpause_controls):
++		ThreadControl 1, 2
++		SFDpause 0
++		Return
++	@label(init):
+		SetX360SysMesPos 0
