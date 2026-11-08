@@ -16,3 +16,9 @@
 [submodule "data/steins_gate_hd/txt_fr"]
 	path = data/steins_gate_hd/txt_fr
 	url = https://github.com/Enorovan/sg-textdumps.git
+[submodule "data/chaos_head_lcc/txt_jpn"]
+	path = data/chaos_head_lcc/txt_jpn
+	url = https://github.com/CommitteeOfZero/chlcc-scripts.git
+[submodule "data/chaos_child_lcc/txt_jpn"]
+	path = data/chaos_child_lcc/txt_jpn
+	url = https://github.com/CommitteeOfZero/cclcc-scripts.git
