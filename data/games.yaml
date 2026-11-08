@@ -69,6 +69,7 @@ chaos_head_lcc:
       archive: cpk
       save_method: ip
       langs:
+        - jpn
         - eng
     - name: switch
       flag_set: chaos_head_lcc_switch
@@ -113,6 +114,7 @@ chaos_child_lcc:
       save_method: ra
       langs:
         - eng
+        - jpn
     - name: switch
       flag_set: chaos_child_lcc_switch
       charset: lcc_double_pack-extended

@@ -548,4 +548,3 @@ z_binklogo.png
 z_chiyologo.png
 z_mageslogo.png
 z_warning.png
-tutorial.png
