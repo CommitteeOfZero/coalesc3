@@ -1,0 +1,33 @@
+# During the map trigger in CLAA03 the textbox type sometimes changes before hiding the old one,
+# and only *then* starts hiding the textbox
+@@ CLAA03.scs
+ 	MesSetMesScx 0, 156
+ 	MesMain
+-	$W(4363) = 0;
+ 	MessWindowCloseEx 0
+ 	MessWindowClosedWait
++	$W(4363) = 0;
+
+@@ CLAA03.scs
+ 	MesSetMesScx 0, 164
+ 	MesMain
+-	$W(4363) = 0;
+ 	MessWindowCloseEx 0
+ 	MessWindowClosedWait
++	$W(4363) = 0;
+
+@@ CLAA03.scs
+ 	MesSetMesScx 0, 170
+ 	MesMain
+-	$W(4363) = 0;
+ 	MessWindowCloseEx 0
+ 	MessWindowClosedWait
++	$W(4363) = 0;
+
+@@ CLAA03.scs
+ 	MesSetMesScx 0, 174
+ 	MesMain
+-	$W(4363) = 0;
+ 	MessWindowCloseEx 0
+ 	MessWindowClosedWait
++	$W(4363) = 0;
