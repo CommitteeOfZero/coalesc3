@@ -1,0 +1,11 @@
+# Remove memory card warning when click new game
+@@ _Startup.scs
+-   SystemMesInitTitle
+-	SystemMesSetMesScx 0
+-	SystemMesSetMesScx 1
+-	SystemMesSetMesScx 2
+-	SystemMesSetMesScx 3
+-	SystemMesInit2 255
+-	SystemMesFadeIn
+-	SystemMesMain
+-	SystemMesFadeOut
