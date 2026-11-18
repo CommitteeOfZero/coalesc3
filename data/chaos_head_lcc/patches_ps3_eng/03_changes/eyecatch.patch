@@ -1,0 +1,4 @@
+# Fixes eyecatch fade bug
+@@ CHLCC_AA10.scs
++   $W(3269) = 0;
+    CallFar 6, 446
