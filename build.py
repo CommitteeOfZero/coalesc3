@@ -136,8 +136,8 @@ def main() -> None:
 
 	out_dir.mkdir(parents=True, exist_ok=True)
 
-	if not build_info.archive: shutil.copytree(dst_dir, out_dir, dirs_exist_ok=True)
-	else:
+	shutil.copytree(dst_dir, out_dir/"script", dirs_exist_ok=True)
+	if build_info.archive: 
 		# For case-sensitive filesystems
 		sought_extension = Path(load_custom_cls("script")[0]).suffix
 		if not str.islower(sought_extension):
