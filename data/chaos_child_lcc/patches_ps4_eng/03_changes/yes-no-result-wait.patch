@@ -1,0 +1,9 @@
+# Waits for user input on the result screen of the Yes/No trigger
+# also skips the wait with force skip and regular skip
+@@ macrosys2.scs
+    $W(6433) = 32;
++   If $F(1233) == 1, 670
++   If $F(1234) == 1, 670
++   KeyWait_00 13568, 1
+ 670:
+        $W(6433) --;
